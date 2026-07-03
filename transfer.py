@@ -237,15 +237,15 @@ def run_transfer(args: argparse.Namespace) -> None:
                 }
             )
 
-    report_json = out_root / (
-        f"transfer_{args.source_model_type}_{args.source_model_name}.json"
-    )
+    output_stem = f"transfer_{args.source_model_type}_{args.source_model_name}"
+    if len(targets) == 1:
+        output_stem += f"__to__{targets[0][0]}_{targets[0][1]}"
+
+    report_json = out_root / f"{output_stem}.json"
     with report_json.open("w", encoding="utf-8") as f:
         json.dump(full_report, f, ensure_ascii=False, indent=2)
 
-    report_csv = out_root / (
-        f"transfer_{args.source_model_type}_{args.source_model_name}_summary.csv"
-    )
+    report_csv = out_root / f"{output_stem}_summary.csv"
     with report_csv.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(
             f,

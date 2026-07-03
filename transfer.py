@@ -53,6 +53,17 @@ def _parse_target_list(raw: str | None, source: tuple[str, str]) -> list[tuple[s
     return parsed
 
 
+def _resolve_targets(args: argparse.Namespace, source: tuple[str, str]) -> list[tuple[str, str]]:
+    if args.target_model_type is not None or args.target_model_name is not None:
+        if not args.target_model_type or not args.target_model_name:
+            raise ValueError("Please provide both --target-model-type and --target-model-name.")
+        target = (args.target_model_type, args.target_model_name)
+        if target == source:
+            raise ValueError("Target model must be different from source model.")
+        return [target]
+    return _parse_target_list(args.targets, source)
+
+
 def _load_checkpoint_overrides(path: Path | None) -> dict[str, str]:
     if path is None:
         return {}
@@ -150,7 +161,7 @@ def run_transfer(args: argparse.Namespace) -> None:
     device = _resolve_device(args.device)
 
     source = (args.source_model_type, args.source_model_name)
-    targets = _parse_target_list(args.targets, source)
+    targets = _resolve_targets(args, source)
     checkpoint_overrides = _load_checkpoint_overrides(
         Path(args.checkpoint_override_json) if args.checkpoint_override_json else None
     )
@@ -185,8 +196,7 @@ def run_transfer(args: argparse.Namespace) -> None:
             model_type=target_type,
             model_name=target_name,
             device=device,
-            checkpoint=Path(override_ckpt) if override_ckpt else None,
-            checkpoint_dir=Path(args.checkpoint_dir),
+
         )
         model.eval()
 
@@ -263,6 +273,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate transfer attack from source PGD outputs to target models")
     parser.add_argument("--source-model-type", type=str, required=True, choices=["torchvision", "bcos", "bcosify"])
     parser.add_argument("--source-model-name", type=str, required=True)
+    parser.add_argument("--target-model-type", type=str, default=None, choices=["torchvision", "bcos", "bcosify"])
+    parser.add_argument("--target-model-name", type=str, default=None)
     parser.add_argument(
         "--attack-root",
         type=str,
@@ -279,7 +291,7 @@ def parse_args() -> argparse.Namespace:
         "--targets",
         type=str,
         default="all",
-        help="'all' or comma-separated list like torchvision:resnet50,bcos:resnet50",
+        help="Fallback mode: 'all' or comma-separated list like torchvision:resnet50,bcos:resnet50",
     )
     parser.add_argument(
         "--checkpoint-override-json",

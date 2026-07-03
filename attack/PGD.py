@@ -146,7 +146,7 @@ class PGDAttack:
 
         history: list[dict[str, Any]] = []
 
-        for step in tqdm(range(steps), desc="PGD Attack", unit="step"):
+        for step in range(steps):
             adv_rgb.requires_grad_(True)
             logits = self._predict(adv_rgb)
 

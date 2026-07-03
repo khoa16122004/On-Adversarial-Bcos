@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-
+import tqdm
 import torch
 from PIL import Image
 
@@ -70,7 +70,7 @@ def run_attack(args: argparse.Namespace) -> None:
     print(f"Model: {args.model_type}/{args.model_name}")
     print(f"Output root: {output_root}")
 
-    for class_id_str, image_list in samples.items():
+    for class_id_str, image_list in tqdm.tqdm(samples.items()):
         if not image_list:
             print(f"[skip] class {class_id_str}: empty image list")
             continue

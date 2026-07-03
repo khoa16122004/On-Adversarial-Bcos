@@ -14,7 +14,6 @@ REQUIRED_VRAM=20000  # Quan trọng - Số vRAM cần dùng (để tìm GPU phù
 # =========================================================
 module clear -f
 # *** Kích hoạt venv (Sửa đường dẫn / môi trường theo user)
-cd /datastore/elo/khoatn/BCOS_ATTACK/script
 source /home/elo/miniconda3/etc/profile.d/conda.sh
 conda activate bcos_attack
 echo "ENV:" $CONDA_DEFAULT_ENV

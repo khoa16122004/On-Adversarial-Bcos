@@ -94,6 +94,7 @@ class SimBAAttack:
         target_class: int | None = None,
         targeted: bool = False,
         log_every: int = 100,
+        stop_on_success: bool = True,
         device: torch.device | None = None,
     ) -> tuple[torch.Tensor, int, int, int, list[dict[str, Any]], torch.Tensor, torch.Tensor, float]:
         if clean_rgb.ndim != 4 or clean_rgb.shape[0] != 1 or clean_rgb.shape[1] != 3:
@@ -104,6 +105,8 @@ class SimBAAttack:
             raise ValueError("steps must be positive.")
         if self.epsilon <= 0:
             raise ValueError("epsilon must be positive.")
+        if log_every <= 0:
+            raise ValueError("log_every must be positive.")
 
         if device is None:
             device = clean_rgb.device
@@ -144,7 +147,7 @@ class SimBAAttack:
 
         max_steps = min(int(self.steps), int(indices.numel()))
         for step_idx in range(max_steps):
-            if success_step != -1:
+            if stop_on_success and success_step != -1:
                 break
 
             dim = int(indices[step_idx].item())
@@ -186,6 +189,7 @@ class SimBAAttack:
                     {
                         "step": int(step_idx + 1),
                         "score": float(best_score),
+                        "loss": float(best_score),
                         "pred_class": int(best_pred),
                         "queries": int(queries),
                         "chosen_direction": chosen_direction,

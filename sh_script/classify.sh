@@ -117,9 +117,9 @@ BCOSIFY_MODELS=(
 #     run_classify "torchvision" "$model_name"
 # done
 
-for model_name in "${BCOS_MODELS[@]}"; do
-    run_classify "bcos" "$model_name"
-done
+# for model_name in "${BCOS_MODELS[@]}"; do
+#     run_classify "bcos" "$model_name"
+# done
 
 for model_name in "${BCOSIFY_MODELS[@]}"; do
     run_classify "bcosify" "$model_name"

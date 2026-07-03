@@ -114,8 +114,8 @@ def run_attack(args: argparse.Namespace) -> None:
         model_type=args.model_type,
         model_name=args.model_name,
         device=device,
-        checkpoint=checkpoint,
-        checkpoint_dir=Path(args.checkpoint_dir),
+        # checkpoint=checkpoint,
+        # checkpoint_dir=Path(args.checkpoint_dir),
     )
     model.eval()
 

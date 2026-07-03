@@ -1,0 +1,2 @@
+source_model_type,source_model_name,target_model_type,target_model_name,epsilon,total,success_vs_true,asr_vs_true,success_vs_source_clean,asr_vs_source_clean
+torchvision,resnet50,bcosify,resnet50,epsilon_0.03,1000,132,0.132,132,0.132

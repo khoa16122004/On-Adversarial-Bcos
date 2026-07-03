@@ -62,8 +62,8 @@ export PYTHONPATH="$PROJECT_ROOT:${PYTHONPATH:-}"
 SOURCE_MODEL_TYPE="torchvision"
 SOURCE_MODEL_NAME="resnet50"
 DEVICE="cuda"
-BATCH_SIZE=128
-EPSILONS=(0.03)
+BATCH_SIZE=256
+EPSILONS=(0.05 0.1 0.2)
 
 # transfer từ torchvision -> bcos/bcosify (6 target models)
 TARGETS=(

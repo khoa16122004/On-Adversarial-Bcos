@@ -1,0 +1,3002 @@
+{
+  "0": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01440764/ILSVRC2012_val_00046499.JPEG"
+  ],
+  "1": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01443537/ILSVRC2012_val_00004677.JPEG"
+  ],
+  "2": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01484850/ILSVRC2012_val_00002752.JPEG"
+  ],
+  "3": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01491361/ILSVRC2012_val_00040388.JPEG"
+  ],
+  "4": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01494475/ILSVRC2012_val_00025627.JPEG"
+  ],
+  "5": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01496331/ILSVRC2012_val_00014741.JPEG"
+  ],
+  "6": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01498041/ILSVRC2012_val_00023239.JPEG"
+  ],
+  "7": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01514668/ILSVRC2012_val_00009219.JPEG"
+  ],
+  "8": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01514859/ILSVRC2012_val_00007530.JPEG"
+  ],
+  "9": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01518878/ILSVRC2012_val_00046260.JPEG"
+  ],
+  "10": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01530575/ILSVRC2012_val_00043788.JPEG"
+  ],
+  "11": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01531178/ILSVRC2012_val_00004243.JPEG"
+  ],
+  "12": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01532829/ILSVRC2012_val_00038372.JPEG"
+  ],
+  "13": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01534433/ILSVRC2012_val_00017712.JPEG"
+  ],
+  "14": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01537544/ILSVRC2012_val_00002071.JPEG"
+  ],
+  "15": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01558993/ILSVRC2012_val_00002825.JPEG"
+  ],
+  "16": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01560419/ILSVRC2012_val_00001751.JPEG"
+  ],
+  "17": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01580077/ILSVRC2012_val_00011446.JPEG"
+  ],
+  "18": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01582220/ILSVRC2012_val_00010501.JPEG"
+  ],
+  "19": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01592084/ILSVRC2012_val_00038192.JPEG"
+  ],
+  "20": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01601694/ILSVRC2012_val_00047732.JPEG"
+  ],
+  "21": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01608432/ILSVRC2012_val_00000073.JPEG"
+  ],
+  "22": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01614925/ILSVRC2012_val_00042380.JPEG"
+  ],
+  "23": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01616318/ILSVRC2012_val_00012615.JPEG"
+  ],
+  "24": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01622779/ILSVRC2012_val_00049639.JPEG"
+  ],
+  "25": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01629819/ILSVRC2012_val_00048445.JPEG"
+  ],
+  "26": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01630670/ILSVRC2012_val_00045451.JPEG"
+  ],
+  "27": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01631663/ILSVRC2012_val_00044852.JPEG"
+  ],
+  "28": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01632458/ILSVRC2012_val_00031521.JPEG"
+  ],
+  "29": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01632777/ILSVRC2012_val_00017274.JPEG"
+  ],
+  "30": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01641577/ILSVRC2012_val_00034383.JPEG"
+  ],
+  "31": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01644373/ILSVRC2012_val_00033084.JPEG"
+  ],
+  "32": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01644900/ILSVRC2012_val_00013354.JPEG"
+  ],
+  "33": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01664065/ILSVRC2012_val_00000404.JPEG"
+  ],
+  "34": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01665541/ILSVRC2012_val_00009889.JPEG"
+  ],
+  "35": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01667114/ILSVRC2012_val_00041017.JPEG"
+  ],
+  "36": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01667778/ILSVRC2012_val_00040314.JPEG"
+  ],
+  "37": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01669191/ILSVRC2012_val_00027858.JPEG"
+  ],
+  "38": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01675722/ILSVRC2012_val_00012267.JPEG"
+  ],
+  "39": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01677366/ILSVRC2012_val_00001950.JPEG"
+  ],
+  "40": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01682714/ILSVRC2012_val_00009911.JPEG"
+  ],
+  "41": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01685808/ILSVRC2012_val_00027095.JPEG"
+  ],
+  "42": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01687978/ILSVRC2012_val_00013870.JPEG"
+  ],
+  "43": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01688243/ILSVRC2012_val_00008586.JPEG"
+  ],
+  "44": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01689811/ILSVRC2012_val_00024252.JPEG"
+  ],
+  "45": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01692333/ILSVRC2012_val_00012304.JPEG"
+  ],
+  "46": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01693334/ILSVRC2012_val_00026648.JPEG"
+  ],
+  "47": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01694178/ILSVRC2012_val_00037261.JPEG"
+  ],
+  "48": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01695060/ILSVRC2012_val_00049420.JPEG"
+  ],
+  "49": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01697457/ILSVRC2012_val_00027263.JPEG"
+  ],
+  "50": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01698640/ILSVRC2012_val_00046615.JPEG"
+  ],
+  "51": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01704323/ILSVRC2012_val_00004310.JPEG"
+  ],
+  "52": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01728572/ILSVRC2012_val_00032556.JPEG"
+  ],
+  "53": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01728920/ILSVRC2012_val_00032086.JPEG"
+  ],
+  "54": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01729322/ILSVRC2012_val_00038365.JPEG"
+  ],
+  "55": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01729977/ILSVRC2012_val_00010545.JPEG"
+  ],
+  "56": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01734418/ILSVRC2012_val_00028301.JPEG"
+  ],
+  "57": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01735189/ILSVRC2012_val_00006699.JPEG"
+  ],
+  "58": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01737021/ILSVRC2012_val_00046131.JPEG"
+  ],
+  "59": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01739381/ILSVRC2012_val_00015794.JPEG"
+  ],
+  "60": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01740131/ILSVRC2012_val_00020494.JPEG"
+  ],
+  "61": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01742172/ILSVRC2012_val_00013771.JPEG"
+  ],
+  "62": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01744401/ILSVRC2012_val_00007220.JPEG"
+  ],
+  "63": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01748264/ILSVRC2012_val_00010194.JPEG"
+  ],
+  "64": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01749939/ILSVRC2012_val_00043850.JPEG"
+  ],
+  "65": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01751748/ILSVRC2012_val_00016846.JPEG"
+  ],
+  "66": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01753488/ILSVRC2012_val_00046538.JPEG"
+  ],
+  "67": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01755581/ILSVRC2012_val_00019097.JPEG"
+  ],
+  "68": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01756291/ILSVRC2012_val_00022529.JPEG"
+  ],
+  "69": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01768244/ILSVRC2012_val_00015756.JPEG"
+  ],
+  "70": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01770081/ILSVRC2012_val_00006831.JPEG"
+  ],
+  "71": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01770393/ILSVRC2012_val_00030311.JPEG"
+  ],
+  "72": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01773157/ILSVRC2012_val_00020726.JPEG"
+  ],
+  "73": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01773549/ILSVRC2012_val_00029496.JPEG"
+  ],
+  "74": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01773797/ILSVRC2012_val_00047551.JPEG"
+  ],
+  "75": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01774384/ILSVRC2012_val_00029208.JPEG"
+  ],
+  "76": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01774750/ILSVRC2012_val_00015999.JPEG"
+  ],
+  "77": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01775062/ILSVRC2012_val_00026848.JPEG"
+  ],
+  "78": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01776313/ILSVRC2012_val_00027940.JPEG"
+  ],
+  "79": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01784675/ILSVRC2012_val_00014417.JPEG"
+  ],
+  "80": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01795545/ILSVRC2012_val_00047404.JPEG"
+  ],
+  "81": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01796340/ILSVRC2012_val_00024630.JPEG"
+  ],
+  "82": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01797886/ILSVRC2012_val_00009565.JPEG"
+  ],
+  "83": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01798484/ILSVRC2012_val_00046239.JPEG"
+  ],
+  "84": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01806143/ILSVRC2012_val_00046380.JPEG"
+  ],
+  "85": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01806567/ILSVRC2012_val_00018248.JPEG"
+  ],
+  "86": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01807496/ILSVRC2012_val_00043041.JPEG"
+  ],
+  "87": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01817953/ILSVRC2012_val_00015799.JPEG"
+  ],
+  "88": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01818515/ILSVRC2012_val_00009811.JPEG"
+  ],
+  "89": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01819313/ILSVRC2012_val_00042665.JPEG"
+  ],
+  "90": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01820546/ILSVRC2012_val_00026488.JPEG"
+  ],
+  "91": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01824575/ILSVRC2012_val_00021564.JPEG"
+  ],
+  "92": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01828970/ILSVRC2012_val_00045200.JPEG"
+  ],
+  "93": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01829413/ILSVRC2012_val_00048549.JPEG"
+  ],
+  "94": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01833805/ILSVRC2012_val_00016325.JPEG"
+  ],
+  "95": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01843065/ILSVRC2012_val_00045643.JPEG"
+  ],
+  "96": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01843383/ILSVRC2012_val_00023390.JPEG"
+  ],
+  "97": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01847000/ILSVRC2012_val_00003828.JPEG"
+  ],
+  "98": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01855032/ILSVRC2012_val_00026967.JPEG"
+  ],
+  "99": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01855672/ILSVRC2012_val_00047025.JPEG"
+  ],
+  "100": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01860187/ILSVRC2012_val_00001732.JPEG"
+  ],
+  "101": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01871265/ILSVRC2012_val_00031675.JPEG"
+  ],
+  "102": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01872401/ILSVRC2012_val_00030500.JPEG"
+  ],
+  "103": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01873310/ILSVRC2012_val_00022384.JPEG"
+  ],
+  "104": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01877812/ILSVRC2012_val_00002971.JPEG"
+  ],
+  "105": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01882714/ILSVRC2012_val_00015072.JPEG"
+  ],
+  "106": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01883070/ILSVRC2012_val_00047920.JPEG"
+  ],
+  "107": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01910747/ILSVRC2012_val_00027271.JPEG"
+  ],
+  "108": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01914609/ILSVRC2012_val_00023520.JPEG"
+  ],
+  "109": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01917289/ILSVRC2012_val_00046097.JPEG"
+  ],
+  "110": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01924916/ILSVRC2012_val_00039672.JPEG"
+  ],
+  "111": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01930112/ILSVRC2012_val_00037821.JPEG"
+  ],
+  "112": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01943899/ILSVRC2012_val_00009481.JPEG"
+  ],
+  "113": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01944390/ILSVRC2012_val_00019895.JPEG"
+  ],
+  "114": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01945685/ILSVRC2012_val_00007975.JPEG"
+  ],
+  "115": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01950731/ILSVRC2012_val_00021059.JPEG"
+  ],
+  "116": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01955084/ILSVRC2012_val_00021788.JPEG"
+  ],
+  "117": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01968897/ILSVRC2012_val_00049763.JPEG"
+  ],
+  "118": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01978287/ILSVRC2012_val_00040484.JPEG"
+  ],
+  "119": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01978455/ILSVRC2012_val_00034605.JPEG"
+  ],
+  "120": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01980166/ILSVRC2012_val_00010725.JPEG"
+  ],
+  "121": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01981276/ILSVRC2012_val_00012962.JPEG"
+  ],
+  "122": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01983481/ILSVRC2012_val_00013789.JPEG"
+  ],
+  "123": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01984695/ILSVRC2012_val_00049180.JPEG"
+  ],
+  "124": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01985128/ILSVRC2012_val_00021094.JPEG"
+  ],
+  "125": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01986214/ILSVRC2012_val_00004444.JPEG"
+  ],
+  "126": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n01990800/ILSVRC2012_val_00002060.JPEG"
+  ],
+  "127": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02002556/ILSVRC2012_val_00010084.JPEG"
+  ],
+  "128": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02002724/ILSVRC2012_val_00013896.JPEG"
+  ],
+  "129": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02006656/ILSVRC2012_val_00040455.JPEG"
+  ],
+  "130": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02007558/ILSVRC2012_val_00014883.JPEG"
+  ],
+  "131": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02009229/ILSVRC2012_val_00040310.JPEG"
+  ],
+  "132": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02009912/ILSVRC2012_val_00006761.JPEG"
+  ],
+  "133": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02011460/ILSVRC2012_val_00022706.JPEG"
+  ],
+  "134": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02012849/ILSVRC2012_val_00014005.JPEG"
+  ],
+  "135": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02013706/ILSVRC2012_val_00042703.JPEG"
+  ],
+  "136": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02017213/ILSVRC2012_val_00032538.JPEG"
+  ],
+  "137": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02018207/ILSVRC2012_val_00038948.JPEG"
+  ],
+  "138": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02018795/ILSVRC2012_val_00018570.JPEG"
+  ],
+  "139": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02025239/ILSVRC2012_val_00039083.JPEG"
+  ],
+  "140": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02027492/ILSVRC2012_val_00000177.JPEG"
+  ],
+  "141": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02028035/ILSVRC2012_val_00005034.JPEG"
+  ],
+  "142": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02033041/ILSVRC2012_val_00045088.JPEG"
+  ],
+  "143": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02037110/ILSVRC2012_val_00023492.JPEG"
+  ],
+  "144": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02051845/ILSVRC2012_val_00048664.JPEG"
+  ],
+  "145": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02056570/ILSVRC2012_val_00022735.JPEG"
+  ],
+  "146": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02058221/ILSVRC2012_val_00009694.JPEG"
+  ],
+  "147": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02066245/ILSVRC2012_val_00017716.JPEG"
+  ],
+  "148": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02071294/ILSVRC2012_val_00034766.JPEG"
+  ],
+  "149": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02074367/ILSVRC2012_val_00008901.JPEG"
+  ],
+  "150": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02077923/ILSVRC2012_val_00044328.JPEG"
+  ],
+  "151": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02085620/ILSVRC2012_val_00001049.JPEG"
+  ],
+  "152": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02085782/ILSVRC2012_val_00038247.JPEG"
+  ],
+  "153": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02085936/ILSVRC2012_val_00040549.JPEG"
+  ],
+  "154": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02086079/ILSVRC2012_val_00020926.JPEG"
+  ],
+  "155": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02086240/ILSVRC2012_val_00022799.JPEG"
+  ],
+  "156": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02086646/ILSVRC2012_val_00011473.JPEG"
+  ],
+  "157": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02086910/ILSVRC2012_val_00036012.JPEG"
+  ],
+  "158": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02087046/ILSVRC2012_val_00015110.JPEG"
+  ],
+  "159": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02087394/ILSVRC2012_val_00044285.JPEG"
+  ],
+  "160": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02088094/ILSVRC2012_val_00049756.JPEG"
+  ],
+  "161": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02088238/ILSVRC2012_val_00019581.JPEG"
+  ],
+  "162": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02088364/ILSVRC2012_val_00048273.JPEG"
+  ],
+  "163": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02088466/ILSVRC2012_val_00044605.JPEG"
+  ],
+  "164": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02088632/ILSVRC2012_val_00032429.JPEG"
+  ],
+  "165": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02089078/ILSVRC2012_val_00015252.JPEG"
+  ],
+  "166": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02089867/ILSVRC2012_val_00010249.JPEG"
+  ],
+  "167": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02089973/ILSVRC2012_val_00036728.JPEG"
+  ],
+  "168": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02090379/ILSVRC2012_val_00015885.JPEG"
+  ],
+  "169": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02090622/ILSVRC2012_val_00045735.JPEG"
+  ],
+  "170": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02090721/ILSVRC2012_val_00037137.JPEG"
+  ],
+  "171": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02091032/ILSVRC2012_val_00001825.JPEG"
+  ],
+  "172": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02091134/ILSVRC2012_val_00029407.JPEG"
+  ],
+  "173": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02091244/ILSVRC2012_val_00012608.JPEG"
+  ],
+  "174": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02091467/ILSVRC2012_val_00040052.JPEG"
+  ],
+  "175": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02091635/ILSVRC2012_val_00000079.JPEG"
+  ],
+  "176": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02091831/ILSVRC2012_val_00003546.JPEG"
+  ],
+  "177": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02092002/ILSVRC2012_val_00044345.JPEG"
+  ],
+  "178": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02092339/ILSVRC2012_val_00030285.JPEG"
+  ],
+  "179": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02093256/ILSVRC2012_val_00026058.JPEG"
+  ],
+  "180": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02093428/ILSVRC2012_val_00021229.JPEG"
+  ],
+  "181": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02093647/ILSVRC2012_val_00003887.JPEG"
+  ],
+  "182": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02093754/ILSVRC2012_val_00017227.JPEG"
+  ],
+  "183": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02093859/ILSVRC2012_val_00041776.JPEG"
+  ],
+  "184": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02093991/ILSVRC2012_val_00039027.JPEG"
+  ],
+  "185": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02094114/ILSVRC2012_val_00001634.JPEG"
+  ],
+  "186": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02094258/ILSVRC2012_val_00009525.JPEG"
+  ],
+  "187": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02094433/ILSVRC2012_val_00040036.JPEG"
+  ],
+  "188": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02095314/ILSVRC2012_val_00043157.JPEG"
+  ],
+  "189": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02095570/ILSVRC2012_val_00005146.JPEG"
+  ],
+  "190": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02095889/ILSVRC2012_val_00042005.JPEG"
+  ],
+  "191": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02096051/ILSVRC2012_val_00013463.JPEG"
+  ],
+  "192": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02096177/ILSVRC2012_val_00011680.JPEG"
+  ],
+  "193": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02096294/ILSVRC2012_val_00045487.JPEG"
+  ],
+  "194": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02096437/ILSVRC2012_val_00016056.JPEG"
+  ],
+  "195": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02096585/ILSVRC2012_val_00016902.JPEG"
+  ],
+  "196": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02097047/ILSVRC2012_val_00035480.JPEG"
+  ],
+  "197": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02097130/ILSVRC2012_val_00048087.JPEG"
+  ],
+  "198": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02097209/ILSVRC2012_val_00034823.JPEG"
+  ],
+  "199": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02097298/ILSVRC2012_val_00014283.JPEG"
+  ],
+  "200": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02097474/ILSVRC2012_val_00039144.JPEG"
+  ],
+  "201": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02097658/ILSVRC2012_val_00044353.JPEG"
+  ],
+  "202": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02098105/ILSVRC2012_val_00009019.JPEG"
+  ],
+  "203": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02098286/ILSVRC2012_val_00029760.JPEG"
+  ],
+  "204": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02098413/ILSVRC2012_val_00025423.JPEG"
+  ],
+  "205": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02099267/ILSVRC2012_val_00035859.JPEG"
+  ],
+  "206": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02099429/ILSVRC2012_val_00039794.JPEG"
+  ],
+  "207": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02099601/ILSVRC2012_val_00020367.JPEG"
+  ],
+  "208": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02099712/ILSVRC2012_val_00016148.JPEG"
+  ],
+  "209": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02099849/ILSVRC2012_val_00041137.JPEG"
+  ],
+  "210": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02100236/ILSVRC2012_val_00010533.JPEG"
+  ],
+  "211": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02100583/ILSVRC2012_val_00013398.JPEG"
+  ],
+  "212": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02100735/ILSVRC2012_val_00008349.JPEG"
+  ],
+  "213": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02100877/ILSVRC2012_val_00007595.JPEG"
+  ],
+  "214": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02101006/ILSVRC2012_val_00022371.JPEG"
+  ],
+  "215": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02101388/ILSVRC2012_val_00005276.JPEG"
+  ],
+  "216": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02101556/ILSVRC2012_val_00044059.JPEG"
+  ],
+  "217": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02102040/ILSVRC2012_val_00040876.JPEG"
+  ],
+  "218": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02102177/ILSVRC2012_val_00018942.JPEG"
+  ],
+  "219": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02102318/ILSVRC2012_val_00040400.JPEG"
+  ],
+  "220": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02102480/ILSVRC2012_val_00007971.JPEG"
+  ],
+  "221": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02102973/ILSVRC2012_val_00001693.JPEG"
+  ],
+  "222": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02104029/ILSVRC2012_val_00006336.JPEG"
+  ],
+  "223": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02104365/ILSVRC2012_val_00005937.JPEG"
+  ],
+  "224": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02105056/ILSVRC2012_val_00012237.JPEG"
+  ],
+  "225": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02105162/ILSVRC2012_val_00011323.JPEG"
+  ],
+  "226": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02105251/ILSVRC2012_val_00010255.JPEG"
+  ],
+  "227": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02105412/ILSVRC2012_val_00025001.JPEG"
+  ],
+  "228": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02105505/ILSVRC2012_val_00008044.JPEG"
+  ],
+  "229": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02105641/ILSVRC2012_val_00041024.JPEG"
+  ],
+  "230": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02105855/ILSVRC2012_val_00019764.JPEG"
+  ],
+  "231": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02106030/ILSVRC2012_val_00023702.JPEG"
+  ],
+  "232": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02106166/ILSVRC2012_val_00034069.JPEG"
+  ],
+  "233": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02106382/ILSVRC2012_val_00032822.JPEG"
+  ],
+  "234": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02106550/ILSVRC2012_val_00019518.JPEG"
+  ],
+  "235": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02106662/ILSVRC2012_val_00048403.JPEG"
+  ],
+  "236": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02107142/ILSVRC2012_val_00008177.JPEG"
+  ],
+  "237": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02107312/ILSVRC2012_val_00046730.JPEG"
+  ],
+  "238": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02107574/ILSVRC2012_val_00043234.JPEG"
+  ],
+  "239": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02107683/ILSVRC2012_val_00048515.JPEG"
+  ],
+  "240": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02107908/ILSVRC2012_val_00040952.JPEG"
+  ],
+  "241": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02108000/ILSVRC2012_val_00007829.JPEG"
+  ],
+  "242": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02108089/ILSVRC2012_val_00031314.JPEG"
+  ],
+  "243": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02108422/ILSVRC2012_val_00038455.JPEG"
+  ],
+  "244": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02108551/ILSVRC2012_val_00016579.JPEG"
+  ],
+  "245": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02108915/ILSVRC2012_val_00008627.JPEG"
+  ],
+  "246": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02109047/ILSVRC2012_val_00013414.JPEG"
+  ],
+  "247": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02109525/ILSVRC2012_val_00049356.JPEG"
+  ],
+  "248": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02109961/ILSVRC2012_val_00029313.JPEG"
+  ],
+  "249": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02110063/ILSVRC2012_val_00019519.JPEG"
+  ],
+  "250": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02110185/ILSVRC2012_val_00031687.JPEG"
+  ],
+  "251": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02110341/ILSVRC2012_val_00025903.JPEG"
+  ],
+  "252": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02110627/ILSVRC2012_val_00044949.JPEG"
+  ],
+  "253": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02110806/ILSVRC2012_val_00007695.JPEG"
+  ],
+  "254": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02110958/ILSVRC2012_val_00047017.JPEG"
+  ],
+  "255": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02111129/ILSVRC2012_val_00042400.JPEG"
+  ],
+  "256": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02111277/ILSVRC2012_val_00028091.JPEG"
+  ],
+  "257": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02111500/ILSVRC2012_val_00010466.JPEG"
+  ],
+  "258": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02111889/ILSVRC2012_val_00006353.JPEG"
+  ],
+  "259": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02112018/ILSVRC2012_val_00027360.JPEG"
+  ],
+  "260": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02112137/ILSVRC2012_val_00026730.JPEG"
+  ],
+  "261": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02112350/ILSVRC2012_val_00008118.JPEG"
+  ],
+  "262": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02112706/ILSVRC2012_val_00028642.JPEG"
+  ],
+  "263": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02113023/ILSVRC2012_val_00012060.JPEG"
+  ],
+  "264": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02113186/ILSVRC2012_val_00013309.JPEG"
+  ],
+  "265": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02113624/ILSVRC2012_val_00036458.JPEG"
+  ],
+  "266": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02113712/ILSVRC2012_val_00031306.JPEG"
+  ],
+  "267": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02113799/ILSVRC2012_val_00016697.JPEG"
+  ],
+  "268": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02113978/ILSVRC2012_val_00038583.JPEG"
+  ],
+  "269": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02114367/ILSVRC2012_val_00017311.JPEG"
+  ],
+  "270": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02114548/ILSVRC2012_val_00019391.JPEG"
+  ],
+  "271": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02114712/ILSVRC2012_val_00044684.JPEG"
+  ],
+  "272": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02114855/ILSVRC2012_val_00028347.JPEG"
+  ],
+  "273": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02115641/ILSVRC2012_val_00004334.JPEG"
+  ],
+  "274": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02115913/ILSVRC2012_val_00032685.JPEG"
+  ],
+  "275": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02116738/ILSVRC2012_val_00037354.JPEG"
+  ],
+  "276": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02117135/ILSVRC2012_val_00006604.JPEG"
+  ],
+  "277": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02119022/ILSVRC2012_val_00003449.JPEG"
+  ],
+  "278": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02119789/ILSVRC2012_val_00048440.JPEG"
+  ],
+  "279": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02120079/ILSVRC2012_val_00037343.JPEG"
+  ],
+  "280": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02120505/ILSVRC2012_val_00044748.JPEG"
+  ],
+  "281": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02123045/ILSVRC2012_val_00002823.JPEG"
+  ],
+  "282": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02123159/ILSVRC2012_val_00000796.JPEG"
+  ],
+  "283": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02123394/ILSVRC2012_val_00010995.JPEG"
+  ],
+  "284": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02123597/ILSVRC2012_val_00015401.JPEG"
+  ],
+  "285": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02124075/ILSVRC2012_val_00019119.JPEG"
+  ],
+  "286": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02125311/ILSVRC2012_val_00030787.JPEG"
+  ],
+  "287": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02127052/ILSVRC2012_val_00044925.JPEG"
+  ],
+  "288": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02128385/ILSVRC2012_val_00021212.JPEG"
+  ],
+  "289": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02128757/ILSVRC2012_val_00035192.JPEG"
+  ],
+  "290": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02128925/ILSVRC2012_val_00009209.JPEG"
+  ],
+  "291": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02129165/ILSVRC2012_val_00012343.JPEG"
+  ],
+  "292": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02129604/ILSVRC2012_val_00031017.JPEG"
+  ],
+  "293": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02130308/ILSVRC2012_val_00000348.JPEG"
+  ],
+  "294": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02132136/ILSVRC2012_val_00039777.JPEG"
+  ],
+  "295": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02133161/ILSVRC2012_val_00027292.JPEG"
+  ],
+  "296": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02134084/ILSVRC2012_val_00037253.JPEG"
+  ],
+  "297": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02134418/ILSVRC2012_val_00034200.JPEG"
+  ],
+  "298": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02137549/ILSVRC2012_val_00041597.JPEG"
+  ],
+  "299": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02138441/ILSVRC2012_val_00046893.JPEG"
+  ],
+  "300": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02165105/ILSVRC2012_val_00007429.JPEG"
+  ],
+  "301": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02165456/ILSVRC2012_val_00018142.JPEG"
+  ],
+  "302": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02167151/ILSVRC2012_val_00016594.JPEG"
+  ],
+  "303": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02168699/ILSVRC2012_val_00015603.JPEG"
+  ],
+  "304": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02169497/ILSVRC2012_val_00003430.JPEG"
+  ],
+  "305": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02172182/ILSVRC2012_val_00003993.JPEG"
+  ],
+  "306": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02174001/ILSVRC2012_val_00023719.JPEG"
+  ],
+  "307": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02177972/ILSVRC2012_val_00006901.JPEG"
+  ],
+  "308": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02190166/ILSVRC2012_val_00004132.JPEG"
+  ],
+  "309": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02206856/ILSVRC2012_val_00035838.JPEG"
+  ],
+  "310": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02219486/ILSVRC2012_val_00031267.JPEG"
+  ],
+  "311": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02226429/ILSVRC2012_val_00044404.JPEG"
+  ],
+  "312": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02229544/ILSVRC2012_val_00042904.JPEG"
+  ],
+  "313": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02231487/ILSVRC2012_val_00035014.JPEG"
+  ],
+  "314": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02233338/ILSVRC2012_val_00007863.JPEG"
+  ],
+  "315": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02236044/ILSVRC2012_val_00002415.JPEG"
+  ],
+  "316": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02256656/ILSVRC2012_val_00039744.JPEG"
+  ],
+  "317": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02259212/ILSVRC2012_val_00011112.JPEG"
+  ],
+  "318": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02264363/ILSVRC2012_val_00022155.JPEG"
+  ],
+  "319": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02268443/ILSVRC2012_val_00010150.JPEG"
+  ],
+  "320": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02268853/ILSVRC2012_val_00002582.JPEG"
+  ],
+  "321": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02276258/ILSVRC2012_val_00045550.JPEG"
+  ],
+  "322": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02277742/ILSVRC2012_val_00023815.JPEG"
+  ],
+  "323": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02279972/ILSVRC2012_val_00026906.JPEG"
+  ],
+  "324": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02280649/ILSVRC2012_val_00011589.JPEG"
+  ],
+  "325": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02281406/ILSVRC2012_val_00042019.JPEG"
+  ],
+  "326": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02281787/ILSVRC2012_val_00024595.JPEG"
+  ],
+  "327": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02317335/ILSVRC2012_val_00048358.JPEG"
+  ],
+  "328": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02319095/ILSVRC2012_val_00001026.JPEG"
+  ],
+  "329": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02321529/ILSVRC2012_val_00044355.JPEG"
+  ],
+  "330": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02325366/ILSVRC2012_val_00002473.JPEG"
+  ],
+  "331": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02326432/ILSVRC2012_val_00034786.JPEG"
+  ],
+  "332": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02328150/ILSVRC2012_val_00048594.JPEG"
+  ],
+  "333": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02342885/ILSVRC2012_val_00038780.JPEG"
+  ],
+  "334": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02346627/ILSVRC2012_val_00047267.JPEG"
+  ],
+  "335": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02356798/ILSVRC2012_val_00048669.JPEG"
+  ],
+  "336": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02361337/ILSVRC2012_val_00025533.JPEG"
+  ],
+  "337": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02363005/ILSVRC2012_val_00024409.JPEG"
+  ],
+  "338": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02364673/ILSVRC2012_val_00016612.JPEG"
+  ],
+  "339": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02389026/ILSVRC2012_val_00047494.JPEG"
+  ],
+  "340": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02391049/ILSVRC2012_val_00045135.JPEG"
+  ],
+  "341": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02395406/ILSVRC2012_val_00020095.JPEG"
+  ],
+  "342": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02396427/ILSVRC2012_val_00019873.JPEG"
+  ],
+  "343": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02397096/ILSVRC2012_val_00021428.JPEG"
+  ],
+  "344": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02398521/ILSVRC2012_val_00032449.JPEG"
+  ],
+  "345": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02403003/ILSVRC2012_val_00009046.JPEG"
+  ],
+  "346": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02408429/ILSVRC2012_val_00022696.JPEG"
+  ],
+  "347": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02410509/ILSVRC2012_val_00040273.JPEG"
+  ],
+  "348": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02412080/ILSVRC2012_val_00030484.JPEG"
+  ],
+  "349": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02415577/ILSVRC2012_val_00048266.JPEG"
+  ],
+  "350": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02417914/ILSVRC2012_val_00002956.JPEG"
+  ],
+  "351": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02422106/ILSVRC2012_val_00001232.JPEG"
+  ],
+  "352": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02422699/ILSVRC2012_val_00047823.JPEG"
+  ],
+  "353": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02423022/ILSVRC2012_val_00036577.JPEG"
+  ],
+  "354": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02437312/ILSVRC2012_val_00039249.JPEG"
+  ],
+  "355": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02437616/ILSVRC2012_val_00009719.JPEG"
+  ],
+  "356": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02441942/ILSVRC2012_val_00007735.JPEG"
+  ],
+  "357": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02442845/ILSVRC2012_val_00040698.JPEG"
+  ],
+  "358": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02443114/ILSVRC2012_val_00010052.JPEG"
+  ],
+  "359": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02443484/ILSVRC2012_val_00036771.JPEG"
+  ],
+  "360": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02444819/ILSVRC2012_val_00007443.JPEG"
+  ],
+  "361": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02445715/ILSVRC2012_val_00017860.JPEG"
+  ],
+  "362": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02447366/ILSVRC2012_val_00006734.JPEG"
+  ],
+  "363": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02454379/ILSVRC2012_val_00018994.JPEG"
+  ],
+  "364": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02457408/ILSVRC2012_val_00029890.JPEG"
+  ],
+  "365": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02480495/ILSVRC2012_val_00022223.JPEG"
+  ],
+  "366": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02480855/ILSVRC2012_val_00010853.JPEG"
+  ],
+  "367": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02481823/ILSVRC2012_val_00037790.JPEG"
+  ],
+  "368": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02483362/ILSVRC2012_val_00028219.JPEG"
+  ],
+  "369": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02483708/ILSVRC2012_val_00036823.JPEG"
+  ],
+  "370": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02484975/ILSVRC2012_val_00045413.JPEG"
+  ],
+  "371": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02486261/ILSVRC2012_val_00000964.JPEG"
+  ],
+  "372": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02486410/ILSVRC2012_val_00045037.JPEG"
+  ],
+  "373": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02487347/ILSVRC2012_val_00022040.JPEG"
+  ],
+  "374": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02488291/ILSVRC2012_val_00007010.JPEG"
+  ],
+  "375": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02488702/ILSVRC2012_val_00009645.JPEG"
+  ],
+  "376": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02489166/ILSVRC2012_val_00018017.JPEG"
+  ],
+  "377": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02490219/ILSVRC2012_val_00003541.JPEG"
+  ],
+  "378": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02492035/ILSVRC2012_val_00005934.JPEG"
+  ],
+  "379": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02492660/ILSVRC2012_val_00048897.JPEG"
+  ],
+  "380": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02493509/ILSVRC2012_val_00006931.JPEG"
+  ],
+  "381": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02493793/ILSVRC2012_val_00032964.JPEG"
+  ],
+  "382": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02494079/ILSVRC2012_val_00019807.JPEG"
+  ],
+  "383": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02497673/ILSVRC2012_val_00044050.JPEG"
+  ],
+  "384": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02500267/ILSVRC2012_val_00021284.JPEG"
+  ],
+  "385": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02504013/ILSVRC2012_val_00021618.JPEG"
+  ],
+  "386": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02504458/ILSVRC2012_val_00010078.JPEG"
+  ],
+  "387": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02509815/ILSVRC2012_val_00045029.JPEG"
+  ],
+  "388": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02510455/ILSVRC2012_val_00042615.JPEG"
+  ],
+  "389": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02514041/ILSVRC2012_val_00030179.JPEG"
+  ],
+  "390": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02526121/ILSVRC2012_val_00041627.JPEG"
+  ],
+  "391": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02536864/ILSVRC2012_val_00048920.JPEG"
+  ],
+  "392": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02606052/ILSVRC2012_val_00012238.JPEG"
+  ],
+  "393": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02607072/ILSVRC2012_val_00006366.JPEG"
+  ],
+  "394": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02640242/ILSVRC2012_val_00004574.JPEG"
+  ],
+  "395": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02641379/ILSVRC2012_val_00035176.JPEG"
+  ],
+  "396": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02643566/ILSVRC2012_val_00026873.JPEG"
+  ],
+  "397": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02655020/ILSVRC2012_val_00023468.JPEG"
+  ],
+  "398": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02666196/ILSVRC2012_val_00000499.JPEG"
+  ],
+  "399": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02667093/ILSVRC2012_val_00001285.JPEG"
+  ],
+  "400": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02669723/ILSVRC2012_val_00021881.JPEG"
+  ],
+  "401": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02672831/ILSVRC2012_val_00005924.JPEG"
+  ],
+  "402": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02676566/ILSVRC2012_val_00015491.JPEG"
+  ],
+  "403": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02687172/ILSVRC2012_val_00012386.JPEG"
+  ],
+  "404": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02690373/ILSVRC2012_val_00033441.JPEG"
+  ],
+  "405": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02692877/ILSVRC2012_val_00036643.JPEG"
+  ],
+  "406": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02699494/ILSVRC2012_val_00000932.JPEG"
+  ],
+  "407": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02701002/ILSVRC2012_val_00013686.JPEG"
+  ],
+  "408": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02704792/ILSVRC2012_val_00008360.JPEG"
+  ],
+  "409": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02708093/ILSVRC2012_val_00044049.JPEG"
+  ],
+  "410": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02727426/ILSVRC2012_val_00015129.JPEG"
+  ],
+  "411": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02730930/ILSVRC2012_val_00034094.JPEG"
+  ],
+  "412": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02747177/ILSVRC2012_val_00000422.JPEG"
+  ],
+  "413": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02749479/ILSVRC2012_val_00039737.JPEG"
+  ],
+  "414": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02769748/ILSVRC2012_val_00043513.JPEG"
+  ],
+  "415": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02776631/ILSVRC2012_val_00020990.JPEG"
+  ],
+  "416": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02777292/ILSVRC2012_val_00041331.JPEG"
+  ],
+  "417": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02782093/ILSVRC2012_val_00010127.JPEG"
+  ],
+  "418": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02783161/ILSVRC2012_val_00010497.JPEG"
+  ],
+  "419": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02786058/ILSVRC2012_val_00018115.JPEG"
+  ],
+  "420": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02787622/ILSVRC2012_val_00025664.JPEG"
+  ],
+  "421": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02788148/ILSVRC2012_val_00049054.JPEG"
+  ],
+  "422": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02790996/ILSVRC2012_val_00010081.JPEG"
+  ],
+  "423": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02791124/ILSVRC2012_val_00021359.JPEG"
+  ],
+  "424": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02791270/ILSVRC2012_val_00014176.JPEG"
+  ],
+  "425": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02793495/ILSVRC2012_val_00049694.JPEG"
+  ],
+  "426": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02794156/ILSVRC2012_val_00014876.JPEG"
+  ],
+  "427": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02795169/ILSVRC2012_val_00006525.JPEG"
+  ],
+  "428": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02797295/ILSVRC2012_val_00021614.JPEG"
+  ],
+  "429": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02799071/ILSVRC2012_val_00041843.JPEG"
+  ],
+  "430": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02802426/ILSVRC2012_val_00049469.JPEG"
+  ],
+  "431": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02804414/ILSVRC2012_val_00042655.JPEG"
+  ],
+  "432": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02804610/ILSVRC2012_val_00011274.JPEG"
+  ],
+  "433": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02807133/ILSVRC2012_val_00020561.JPEG"
+  ],
+  "434": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02808304/ILSVRC2012_val_00010463.JPEG"
+  ],
+  "435": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02808440/ILSVRC2012_val_00012823.JPEG"
+  ],
+  "436": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02814533/ILSVRC2012_val_00026029.JPEG"
+  ],
+  "437": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02814860/ILSVRC2012_val_00000483.JPEG"
+  ],
+  "438": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02815834/ILSVRC2012_val_00010595.JPEG"
+  ],
+  "439": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02817516/ILSVRC2012_val_00028104.JPEG"
+  ],
+  "440": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02823428/ILSVRC2012_val_00031030.JPEG"
+  ],
+  "441": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02823750/ILSVRC2012_val_00047477.JPEG"
+  ],
+  "442": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02825657/ILSVRC2012_val_00048037.JPEG"
+  ],
+  "443": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02834397/ILSVRC2012_val_00012510.JPEG"
+  ],
+  "444": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02835271/ILSVRC2012_val_00026795.JPEG"
+  ],
+  "445": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02837789/ILSVRC2012_val_00009805.JPEG"
+  ],
+  "446": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02840245/ILSVRC2012_val_00047802.JPEG"
+  ],
+  "447": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02841315/ILSVRC2012_val_00011935.JPEG"
+  ],
+  "448": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02843684/ILSVRC2012_val_00020214.JPEG"
+  ],
+  "449": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02859443/ILSVRC2012_val_00042363.JPEG"
+  ],
+  "450": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02860847/ILSVRC2012_val_00001443.JPEG"
+  ],
+  "451": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02865351/ILSVRC2012_val_00046688.JPEG"
+  ],
+  "452": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02869837/ILSVRC2012_val_00020328.JPEG"
+  ],
+  "453": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02870880/ILSVRC2012_val_00009820.JPEG"
+  ],
+  "454": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02871525/ILSVRC2012_val_00029773.JPEG"
+  ],
+  "455": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02877765/ILSVRC2012_val_00023029.JPEG"
+  ],
+  "456": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02879718/ILSVRC2012_val_00019789.JPEG"
+  ],
+  "457": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02883205/ILSVRC2012_val_00047478.JPEG"
+  ],
+  "458": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02892201/ILSVRC2012_val_00022073.JPEG"
+  ],
+  "459": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02892767/ILSVRC2012_val_00028757.JPEG"
+  ],
+  "460": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02894605/ILSVRC2012_val_00001941.JPEG"
+  ],
+  "461": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02895154/ILSVRC2012_val_00033570.JPEG"
+  ],
+  "462": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02906734/ILSVRC2012_val_00010496.JPEG"
+  ],
+  "463": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02909870/ILSVRC2012_val_00034503.JPEG"
+  ],
+  "464": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02910353/ILSVRC2012_val_00032039.JPEG"
+  ],
+  "465": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02916936/ILSVRC2012_val_00018897.JPEG"
+  ],
+  "466": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02917067/ILSVRC2012_val_00005622.JPEG"
+  ],
+  "467": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02927161/ILSVRC2012_val_00029764.JPEG"
+  ],
+  "468": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02930766/ILSVRC2012_val_00023507.JPEG"
+  ],
+  "469": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02939185/ILSVRC2012_val_00038645.JPEG"
+  ],
+  "470": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02948072/ILSVRC2012_val_00041374.JPEG"
+  ],
+  "471": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02950826/ILSVRC2012_val_00036357.JPEG"
+  ],
+  "472": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02951358/ILSVRC2012_val_00039945.JPEG"
+  ],
+  "473": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02951585/ILSVRC2012_val_00019613.JPEG"
+  ],
+  "474": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02963159/ILSVRC2012_val_00002392.JPEG"
+  ],
+  "475": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02965783/ILSVRC2012_val_00003527.JPEG"
+  ],
+  "476": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02966193/ILSVRC2012_val_00012851.JPEG"
+  ],
+  "477": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02966687/ILSVRC2012_val_00021634.JPEG"
+  ],
+  "478": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02971356/ILSVRC2012_val_00029119.JPEG"
+  ],
+  "479": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02974003/ILSVRC2012_val_00009164.JPEG"
+  ],
+  "480": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02977058/ILSVRC2012_val_00006276.JPEG"
+  ],
+  "481": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02978881/ILSVRC2012_val_00014829.JPEG"
+  ],
+  "482": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02979186/ILSVRC2012_val_00035751.JPEG"
+  ],
+  "483": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02980441/ILSVRC2012_val_00041139.JPEG"
+  ],
+  "484": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02981792/ILSVRC2012_val_00019980.JPEG"
+  ],
+  "485": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02988304/ILSVRC2012_val_00027863.JPEG"
+  ],
+  "486": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02992211/ILSVRC2012_val_00037840.JPEG"
+  ],
+  "487": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02992529/ILSVRC2012_val_00034755.JPEG"
+  ],
+  "488": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n02999410/ILSVRC2012_val_00017849.JPEG"
+  ],
+  "489": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03000134/ILSVRC2012_val_00008927.JPEG"
+  ],
+  "490": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03000247/ILSVRC2012_val_00023358.JPEG"
+  ],
+  "491": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03000684/ILSVRC2012_val_00025063.JPEG"
+  ],
+  "492": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03014705/ILSVRC2012_val_00019319.JPEG"
+  ],
+  "493": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03016953/ILSVRC2012_val_00007893.JPEG"
+  ],
+  "494": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03017168/ILSVRC2012_val_00038376.JPEG"
+  ],
+  "495": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03018349/ILSVRC2012_val_00000506.JPEG"
+  ],
+  "496": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03026506/ILSVRC2012_val_00040934.JPEG"
+  ],
+  "497": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03028079/ILSVRC2012_val_00042207.JPEG"
+  ],
+  "498": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03032252/ILSVRC2012_val_00014990.JPEG"
+  ],
+  "499": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03041632/ILSVRC2012_val_00034599.JPEG"
+  ],
+  "500": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03042490/ILSVRC2012_val_00029218.JPEG"
+  ],
+  "501": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03045698/ILSVRC2012_val_00003717.JPEG"
+  ],
+  "502": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03047690/ILSVRC2012_val_00030064.JPEG"
+  ],
+  "503": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03062245/ILSVRC2012_val_00047232.JPEG"
+  ],
+  "504": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03063599/ILSVRC2012_val_00025548.JPEG"
+  ],
+  "505": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03063689/ILSVRC2012_val_00007862.JPEG"
+  ],
+  "506": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03065424/ILSVRC2012_val_00020012.JPEG"
+  ],
+  "507": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03075370/ILSVRC2012_val_00030077.JPEG"
+  ],
+  "508": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03085013/ILSVRC2012_val_00014436.JPEG"
+  ],
+  "509": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03089624/ILSVRC2012_val_00032619.JPEG"
+  ],
+  "510": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03095699/ILSVRC2012_val_00029800.JPEG"
+  ],
+  "511": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03100240/ILSVRC2012_val_00019496.JPEG"
+  ],
+  "512": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03109150/ILSVRC2012_val_00038771.JPEG"
+  ],
+  "513": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03110669/ILSVRC2012_val_00020782.JPEG"
+  ],
+  "514": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03124043/ILSVRC2012_val_00032790.JPEG"
+  ],
+  "515": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03124170/ILSVRC2012_val_00006490.JPEG"
+  ],
+  "516": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03125729/ILSVRC2012_val_00004667.JPEG"
+  ],
+  "517": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03126707/ILSVRC2012_val_00035686.JPEG"
+  ],
+  "518": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03127747/ILSVRC2012_val_00025943.JPEG"
+  ],
+  "519": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03127925/ILSVRC2012_val_00013348.JPEG"
+  ],
+  "520": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03131574/ILSVRC2012_val_00033955.JPEG"
+  ],
+  "521": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03133878/ILSVRC2012_val_00031362.JPEG"
+  ],
+  "522": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03134739/ILSVRC2012_val_00041240.JPEG"
+  ],
+  "523": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03141823/ILSVRC2012_val_00001337.JPEG"
+  ],
+  "524": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03146219/ILSVRC2012_val_00017297.JPEG"
+  ],
+  "525": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03160309/ILSVRC2012_val_00019891.JPEG"
+  ],
+  "526": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03179701/ILSVRC2012_val_00008332.JPEG"
+  ],
+  "527": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03180011/ILSVRC2012_val_00020117.JPEG"
+  ],
+  "528": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03187595/ILSVRC2012_val_00048472.JPEG"
+  ],
+  "529": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03188531/ILSVRC2012_val_00041052.JPEG"
+  ],
+  "530": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03196217/ILSVRC2012_val_00042911.JPEG"
+  ],
+  "531": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03197337/ILSVRC2012_val_00034547.JPEG"
+  ],
+  "532": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03201208/ILSVRC2012_val_00028606.JPEG"
+  ],
+  "533": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03207743/ILSVRC2012_val_00044274.JPEG"
+  ],
+  "534": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03207941/ILSVRC2012_val_00035882.JPEG"
+  ],
+  "535": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03208938/ILSVRC2012_val_00017225.JPEG"
+  ],
+  "536": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03216828/ILSVRC2012_val_00040985.JPEG"
+  ],
+  "537": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03218198/ILSVRC2012_val_00043640.JPEG"
+  ],
+  "538": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03220513/ILSVRC2012_val_00042459.JPEG"
+  ],
+  "539": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03223299/ILSVRC2012_val_00017336.JPEG"
+  ],
+  "540": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03240683/ILSVRC2012_val_00005973.JPEG"
+  ],
+  "541": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03249569/ILSVRC2012_val_00013981.JPEG"
+  ],
+  "542": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03250847/ILSVRC2012_val_00027965.JPEG"
+  ],
+  "543": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03255030/ILSVRC2012_val_00041644.JPEG"
+  ],
+  "544": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03259280/ILSVRC2012_val_00042985.JPEG"
+  ],
+  "545": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03271574/ILSVRC2012_val_00016188.JPEG"
+  ],
+  "546": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03272010/ILSVRC2012_val_00002143.JPEG"
+  ],
+  "547": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03272562/ILSVRC2012_val_00023047.JPEG"
+  ],
+  "548": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03290653/ILSVRC2012_val_00020890.JPEG"
+  ],
+  "549": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03291819/ILSVRC2012_val_00025489.JPEG"
+  ],
+  "550": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03297495/ILSVRC2012_val_00012573.JPEG"
+  ],
+  "551": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03314780/ILSVRC2012_val_00003881.JPEG"
+  ],
+  "552": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03325584/ILSVRC2012_val_00001256.JPEG"
+  ],
+  "553": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03337140/ILSVRC2012_val_00005667.JPEG"
+  ],
+  "554": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03344393/ILSVRC2012_val_00016565.JPEG"
+  ],
+  "555": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03345487/ILSVRC2012_val_00043256.JPEG"
+  ],
+  "556": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03347037/ILSVRC2012_val_00024604.JPEG"
+  ],
+  "557": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03355925/ILSVRC2012_val_00047786.JPEG"
+  ],
+  "558": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03372029/ILSVRC2012_val_00008240.JPEG"
+  ],
+  "559": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03376595/ILSVRC2012_val_00035959.JPEG"
+  ],
+  "560": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03379051/ILSVRC2012_val_00034208.JPEG"
+  ],
+  "561": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03384352/ILSVRC2012_val_00018938.JPEG"
+  ],
+  "562": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03388043/ILSVRC2012_val_00039949.JPEG"
+  ],
+  "563": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03388183/ILSVRC2012_val_00020364.JPEG"
+  ],
+  "564": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03388549/ILSVRC2012_val_00036483.JPEG"
+  ],
+  "565": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03393912/ILSVRC2012_val_00016231.JPEG"
+  ],
+  "566": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03394916/ILSVRC2012_val_00007985.JPEG"
+  ],
+  "567": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03400231/ILSVRC2012_val_00002860.JPEG"
+  ],
+  "568": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03404251/ILSVRC2012_val_00010157.JPEG"
+  ],
+  "569": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03417042/ILSVRC2012_val_00033842.JPEG"
+  ],
+  "570": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03424325/ILSVRC2012_val_00021850.JPEG"
+  ],
+  "571": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03425413/ILSVRC2012_val_00006434.JPEG"
+  ],
+  "572": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03443371/ILSVRC2012_val_00048114.JPEG"
+  ],
+  "573": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03444034/ILSVRC2012_val_00037078.JPEG"
+  ],
+  "574": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03445777/ILSVRC2012_val_00007755.JPEG"
+  ],
+  "575": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03445924/ILSVRC2012_val_00029978.JPEG"
+  ],
+  "576": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03447447/ILSVRC2012_val_00010200.JPEG"
+  ],
+  "577": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03447721/ILSVRC2012_val_00028468.JPEG"
+  ],
+  "578": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03450230/ILSVRC2012_val_00006802.JPEG"
+  ],
+  "579": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03452741/ILSVRC2012_val_00043659.JPEG"
+  ],
+  "580": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03457902/ILSVRC2012_val_00035352.JPEG"
+  ],
+  "581": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03459775/ILSVRC2012_val_00032839.JPEG"
+  ],
+  "582": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03461385/ILSVRC2012_val_00040502.JPEG"
+  ],
+  "583": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03467068/ILSVRC2012_val_00044502.JPEG"
+  ],
+  "584": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03476684/ILSVRC2012_val_00040254.JPEG"
+  ],
+  "585": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03476991/ILSVRC2012_val_00044434.JPEG"
+  ],
+  "586": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03478589/ILSVRC2012_val_00047819.JPEG"
+  ],
+  "587": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03481172/ILSVRC2012_val_00024678.JPEG"
+  ],
+  "588": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03482405/ILSVRC2012_val_00035968.JPEG"
+  ],
+  "589": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03483316/ILSVRC2012_val_00034530.JPEG"
+  ],
+  "590": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03485407/ILSVRC2012_val_00003188.JPEG"
+  ],
+  "591": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03485794/ILSVRC2012_val_00048409.JPEG"
+  ],
+  "592": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03492542/ILSVRC2012_val_00038630.JPEG"
+  ],
+  "593": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03494278/ILSVRC2012_val_00017366.JPEG"
+  ],
+  "594": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03495258/ILSVRC2012_val_00023475.JPEG"
+  ],
+  "595": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03496892/ILSVRC2012_val_00048961.JPEG"
+  ],
+  "596": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03498962/ILSVRC2012_val_00045508.JPEG"
+  ],
+  "597": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03527444/ILSVRC2012_val_00027730.JPEG"
+  ],
+  "598": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03529860/ILSVRC2012_val_00044319.JPEG"
+  ],
+  "599": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03530642/ILSVRC2012_val_00042041.JPEG"
+  ],
+  "600": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03532672/ILSVRC2012_val_00006060.JPEG"
+  ],
+  "601": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03534580/ILSVRC2012_val_00012716.JPEG"
+  ],
+  "602": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03535780/ILSVRC2012_val_00031416.JPEG"
+  ],
+  "603": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03538406/ILSVRC2012_val_00006364.JPEG"
+  ],
+  "604": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03544143/ILSVRC2012_val_00049292.JPEG"
+  ],
+  "605": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03584254/ILSVRC2012_val_00031376.JPEG"
+  ],
+  "606": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03584829/ILSVRC2012_val_00019167.JPEG"
+  ],
+  "607": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03590841/ILSVRC2012_val_00018651.JPEG"
+  ],
+  "608": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03594734/ILSVRC2012_val_00021119.JPEG"
+  ],
+  "609": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03594945/ILSVRC2012_val_00019410.JPEG"
+  ],
+  "610": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03595614/ILSVRC2012_val_00045268.JPEG"
+  ],
+  "611": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03598930/ILSVRC2012_val_00035195.JPEG"
+  ],
+  "612": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03599486/ILSVRC2012_val_00005448.JPEG"
+  ],
+  "613": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03602883/ILSVRC2012_val_00008424.JPEG"
+  ],
+  "614": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03617480/ILSVRC2012_val_00012926.JPEG"
+  ],
+  "615": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03623198/ILSVRC2012_val_00016824.JPEG"
+  ],
+  "616": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03627232/ILSVRC2012_val_00029564.JPEG"
+  ],
+  "617": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03630383/ILSVRC2012_val_00047559.JPEG"
+  ],
+  "618": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03633091/ILSVRC2012_val_00002347.JPEG"
+  ],
+  "619": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03637318/ILSVRC2012_val_00021095.JPEG"
+  ],
+  "620": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03642806/ILSVRC2012_val_00007373.JPEG"
+  ],
+  "621": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03649909/ILSVRC2012_val_00038906.JPEG"
+  ],
+  "622": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03657121/ILSVRC2012_val_00036313.JPEG"
+  ],
+  "623": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03658185/ILSVRC2012_val_00034870.JPEG"
+  ],
+  "624": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03661043/ILSVRC2012_val_00041823.JPEG"
+  ],
+  "625": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03662601/ILSVRC2012_val_00029426.JPEG"
+  ],
+  "626": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03666591/ILSVRC2012_val_00035671.JPEG"
+  ],
+  "627": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03670208/ILSVRC2012_val_00001438.JPEG"
+  ],
+  "628": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03673027/ILSVRC2012_val_00014164.JPEG"
+  ],
+  "629": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03676483/ILSVRC2012_val_00049924.JPEG"
+  ],
+  "630": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03680355/ILSVRC2012_val_00024652.JPEG"
+  ],
+  "631": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03690938/ILSVRC2012_val_00024702.JPEG"
+  ],
+  "632": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03691459/ILSVRC2012_val_00047253.JPEG"
+  ],
+  "633": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03692522/ILSVRC2012_val_00002045.JPEG"
+  ],
+  "634": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03697007/ILSVRC2012_val_00046301.JPEG"
+  ],
+  "635": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03706229/ILSVRC2012_val_00047605.JPEG"
+  ],
+  "636": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03709823/ILSVRC2012_val_00032639.JPEG"
+  ],
+  "637": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03710193/ILSVRC2012_val_00032424.JPEG"
+  ],
+  "638": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03710637/ILSVRC2012_val_00000117.JPEG"
+  ],
+  "639": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03710721/ILSVRC2012_val_00016414.JPEG"
+  ],
+  "640": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03717622/ILSVRC2012_val_00027367.JPEG"
+  ],
+  "641": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03720891/ILSVRC2012_val_00025932.JPEG"
+  ],
+  "642": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03721384/ILSVRC2012_val_00039895.JPEG"
+  ],
+  "643": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03724870/ILSVRC2012_val_00029084.JPEG"
+  ],
+  "644": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03729826/ILSVRC2012_val_00049995.JPEG"
+  ],
+  "645": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03733131/ILSVRC2012_val_00030564.JPEG"
+  ],
+  "646": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03733281/ILSVRC2012_val_00022141.JPEG"
+  ],
+  "647": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03733805/ILSVRC2012_val_00032926.JPEG"
+  ],
+  "648": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03742115/ILSVRC2012_val_00020086.JPEG"
+  ],
+  "649": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03743016/ILSVRC2012_val_00020640.JPEG"
+  ],
+  "650": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03759954/ILSVRC2012_val_00045167.JPEG"
+  ],
+  "651": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03761084/ILSVRC2012_val_00038763.JPEG"
+  ],
+  "652": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03763968/ILSVRC2012_val_00003199.JPEG"
+  ],
+  "653": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03764736/ILSVRC2012_val_00036896.JPEG"
+  ],
+  "654": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03769881/ILSVRC2012_val_00010968.JPEG"
+  ],
+  "655": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03770439/ILSVRC2012_val_00035350.JPEG"
+  ],
+  "656": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03770679/ILSVRC2012_val_00043939.JPEG"
+  ],
+  "657": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03773504/ILSVRC2012_val_00026052.JPEG"
+  ],
+  "658": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03775071/ILSVRC2012_val_00049880.JPEG"
+  ],
+  "659": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03775546/ILSVRC2012_val_00016383.JPEG"
+  ],
+  "660": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03776460/ILSVRC2012_val_00029250.JPEG"
+  ],
+  "661": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03777568/ILSVRC2012_val_00013826.JPEG"
+  ],
+  "662": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03777754/ILSVRC2012_val_00045892.JPEG"
+  ],
+  "663": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03781244/ILSVRC2012_val_00000812.JPEG"
+  ],
+  "664": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03782006/ILSVRC2012_val_00046624.JPEG"
+  ],
+  "665": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03785016/ILSVRC2012_val_00043896.JPEG"
+  ],
+  "666": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03786901/ILSVRC2012_val_00041826.JPEG"
+  ],
+  "667": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03787032/ILSVRC2012_val_00004558.JPEG"
+  ],
+  "668": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03788195/ILSVRC2012_val_00006508.JPEG"
+  ],
+  "669": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03788365/ILSVRC2012_val_00029559.JPEG"
+  ],
+  "670": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03791053/ILSVRC2012_val_00004789.JPEG"
+  ],
+  "671": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03792782/ILSVRC2012_val_00044080.JPEG"
+  ],
+  "672": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03792972/ILSVRC2012_val_00024316.JPEG"
+  ],
+  "673": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03793489/ILSVRC2012_val_00006070.JPEG"
+  ],
+  "674": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03794056/ILSVRC2012_val_00022616.JPEG"
+  ],
+  "675": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03796401/ILSVRC2012_val_00027298.JPEG"
+  ],
+  "676": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03803284/ILSVRC2012_val_00024189.JPEG"
+  ],
+  "677": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03804744/ILSVRC2012_val_00009193.JPEG"
+  ],
+  "678": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03814639/ILSVRC2012_val_00031947.JPEG"
+  ],
+  "679": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03814906/ILSVRC2012_val_00032693.JPEG"
+  ],
+  "680": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03825788/ILSVRC2012_val_00027341.JPEG"
+  ],
+  "681": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03832673/ILSVRC2012_val_00021380.JPEG"
+  ],
+  "682": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03837869/ILSVRC2012_val_00031825.JPEG"
+  ],
+  "683": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03838899/ILSVRC2012_val_00047869.JPEG"
+  ],
+  "684": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03840681/ILSVRC2012_val_00031151.JPEG"
+  ],
+  "685": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03841143/ILSVRC2012_val_00016681.JPEG"
+  ],
+  "686": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03843555/ILSVRC2012_val_00007698.JPEG"
+  ],
+  "687": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03854065/ILSVRC2012_val_00031719.JPEG"
+  ],
+  "688": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03857828/ILSVRC2012_val_00004476.JPEG"
+  ],
+  "689": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03866082/ILSVRC2012_val_00041091.JPEG"
+  ],
+  "690": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03868242/ILSVRC2012_val_00026732.JPEG"
+  ],
+  "691": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03868863/ILSVRC2012_val_00005568.JPEG"
+  ],
+  "692": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03871628/ILSVRC2012_val_00018251.JPEG"
+  ],
+  "693": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03873416/ILSVRC2012_val_00018501.JPEG"
+  ],
+  "694": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03874293/ILSVRC2012_val_00002995.JPEG"
+  ],
+  "695": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03874599/ILSVRC2012_val_00002908.JPEG"
+  ],
+  "696": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03876231/ILSVRC2012_val_00004356.JPEG"
+  ],
+  "697": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03877472/ILSVRC2012_val_00015534.JPEG"
+  ],
+  "698": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03877845/ILSVRC2012_val_00014323.JPEG"
+  ],
+  "699": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03884397/ILSVRC2012_val_00000844.JPEG"
+  ],
+  "700": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03887697/ILSVRC2012_val_00013453.JPEG"
+  ],
+  "701": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03888257/ILSVRC2012_val_00016387.JPEG"
+  ],
+  "702": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03888605/ILSVRC2012_val_00011389.JPEG"
+  ],
+  "703": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03891251/ILSVRC2012_val_00031221.JPEG"
+  ],
+  "704": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03891332/ILSVRC2012_val_00012116.JPEG"
+  ],
+  "705": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03895866/ILSVRC2012_val_00014494.JPEG"
+  ],
+  "706": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03899768/ILSVRC2012_val_00024191.JPEG"
+  ],
+  "707": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03902125/ILSVRC2012_val_00037873.JPEG"
+  ],
+  "708": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03903868/ILSVRC2012_val_00021999.JPEG"
+  ],
+  "709": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03908618/ILSVRC2012_val_00026350.JPEG"
+  ],
+  "710": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03908714/ILSVRC2012_val_00010751.JPEG"
+  ],
+  "711": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03916031/ILSVRC2012_val_00011335.JPEG"
+  ],
+  "712": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03920288/ILSVRC2012_val_00015865.JPEG"
+  ],
+  "713": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03924679/ILSVRC2012_val_00027967.JPEG"
+  ],
+  "714": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03929660/ILSVRC2012_val_00008974.JPEG"
+  ],
+  "715": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03929855/ILSVRC2012_val_00001180.JPEG"
+  ],
+  "716": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03930313/ILSVRC2012_val_00031316.JPEG"
+  ],
+  "717": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03930630/ILSVRC2012_val_00026922.JPEG"
+  ],
+  "718": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03933933/ILSVRC2012_val_00043682.JPEG"
+  ],
+  "719": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03935335/ILSVRC2012_val_00037879.JPEG"
+  ],
+  "720": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03937543/ILSVRC2012_val_00021446.JPEG"
+  ],
+  "721": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03938244/ILSVRC2012_val_00045046.JPEG"
+  ],
+  "722": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03942813/ILSVRC2012_val_00020369.JPEG"
+  ],
+  "723": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03944341/ILSVRC2012_val_00012260.JPEG"
+  ],
+  "724": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03947888/ILSVRC2012_val_00028471.JPEG"
+  ],
+  "725": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03950228/ILSVRC2012_val_00039959.JPEG"
+  ],
+  "726": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03954731/ILSVRC2012_val_00013179.JPEG"
+  ],
+  "727": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03956157/ILSVRC2012_val_00004337.JPEG"
+  ],
+  "728": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03958227/ILSVRC2012_val_00047831.JPEG"
+  ],
+  "729": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03961711/ILSVRC2012_val_00020253.JPEG"
+  ],
+  "730": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03967562/ILSVRC2012_val_00038074.JPEG"
+  ],
+  "731": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03970156/ILSVRC2012_val_00027934.JPEG"
+  ],
+  "732": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03976467/ILSVRC2012_val_00007918.JPEG"
+  ],
+  "733": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03976657/ILSVRC2012_val_00043573.JPEG"
+  ],
+  "734": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03977966/ILSVRC2012_val_00003121.JPEG"
+  ],
+  "735": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03980874/ILSVRC2012_val_00029677.JPEG"
+  ],
+  "736": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03982430/ILSVRC2012_val_00046262.JPEG"
+  ],
+  "737": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03983396/ILSVRC2012_val_00024985.JPEG"
+  ],
+  "738": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03991062/ILSVRC2012_val_00037312.JPEG"
+  ],
+  "739": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03992509/ILSVRC2012_val_00031153.JPEG"
+  ],
+  "740": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03995372/ILSVRC2012_val_00004395.JPEG"
+  ],
+  "741": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n03998194/ILSVRC2012_val_00037709.JPEG"
+  ],
+  "742": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04004767/ILSVRC2012_val_00018781.JPEG"
+  ],
+  "743": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04005630/ILSVRC2012_val_00003477.JPEG"
+  ],
+  "744": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04008634/ILSVRC2012_val_00016696.JPEG"
+  ],
+  "745": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04009552/ILSVRC2012_val_00038006.JPEG"
+  ],
+  "746": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04019541/ILSVRC2012_val_00006926.JPEG"
+  ],
+  "747": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04023962/ILSVRC2012_val_00019768.JPEG"
+  ],
+  "748": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04026417/ILSVRC2012_val_00011830.JPEG"
+  ],
+  "749": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04033901/ILSVRC2012_val_00036981.JPEG"
+  ],
+  "750": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04033995/ILSVRC2012_val_00042257.JPEG"
+  ],
+  "751": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04037443/ILSVRC2012_val_00043047.JPEG"
+  ],
+  "752": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04039381/ILSVRC2012_val_00009044.JPEG"
+  ],
+  "753": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04040759/ILSVRC2012_val_00028613.JPEG"
+  ],
+  "754": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04041544/ILSVRC2012_val_00007349.JPEG"
+  ],
+  "755": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04044716/ILSVRC2012_val_00039296.JPEG"
+  ],
+  "756": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04049303/ILSVRC2012_val_00036683.JPEG"
+  ],
+  "757": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04065272/ILSVRC2012_val_00028062.JPEG"
+  ],
+  "758": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04067472/ILSVRC2012_val_00038499.JPEG"
+  ],
+  "759": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04069434/ILSVRC2012_val_00035133.JPEG"
+  ],
+  "760": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04070727/ILSVRC2012_val_00046187.JPEG"
+  ],
+  "761": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04074963/ILSVRC2012_val_00028701.JPEG"
+  ],
+  "762": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04081281/ILSVRC2012_val_00044550.JPEG"
+  ],
+  "763": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04086273/ILSVRC2012_val_00032740.JPEG"
+  ],
+  "764": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04090263/ILSVRC2012_val_00045410.JPEG"
+  ],
+  "765": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04099969/ILSVRC2012_val_00041732.JPEG"
+  ],
+  "766": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04111531/ILSVRC2012_val_00021187.JPEG"
+  ],
+  "767": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04116512/ILSVRC2012_val_00019486.JPEG"
+  ],
+  "768": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04118538/ILSVRC2012_val_00032103.JPEG"
+  ],
+  "769": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04118776/ILSVRC2012_val_00049087.JPEG"
+  ],
+  "770": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04120489/ILSVRC2012_val_00048425.JPEG"
+  ],
+  "771": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04125021/ILSVRC2012_val_00009443.JPEG"
+  ],
+  "772": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04127249/ILSVRC2012_val_00019637.JPEG"
+  ],
+  "773": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04131690/ILSVRC2012_val_00042373.JPEG"
+  ],
+  "774": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04133789/ILSVRC2012_val_00023232.JPEG"
+  ],
+  "775": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04136333/ILSVRC2012_val_00039828.JPEG"
+  ],
+  "776": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04141076/ILSVRC2012_val_00024972.JPEG"
+  ],
+  "777": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04141327/ILSVRC2012_val_00036286.JPEG"
+  ],
+  "778": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04141975/ILSVRC2012_val_00027733.JPEG"
+  ],
+  "779": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04146614/ILSVRC2012_val_00019046.JPEG"
+  ],
+  "780": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04147183/ILSVRC2012_val_00003815.JPEG"
+  ],
+  "781": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04149813/ILSVRC2012_val_00042239.JPEG"
+  ],
+  "782": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04152593/ILSVRC2012_val_00031567.JPEG"
+  ],
+  "783": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04153751/ILSVRC2012_val_00011550.JPEG"
+  ],
+  "784": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04154565/ILSVRC2012_val_00041073.JPEG"
+  ],
+  "785": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04162706/ILSVRC2012_val_00005254.JPEG"
+  ],
+  "786": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04179913/ILSVRC2012_val_00032677.JPEG"
+  ],
+  "787": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04192698/ILSVRC2012_val_00047613.JPEG"
+  ],
+  "788": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04200800/ILSVRC2012_val_00014459.JPEG"
+  ],
+  "789": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04201297/ILSVRC2012_val_00020022.JPEG"
+  ],
+  "790": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04204238/ILSVRC2012_val_00013624.JPEG"
+  ],
+  "791": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04204347/ILSVRC2012_val_00032081.JPEG"
+  ],
+  "792": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04208210/ILSVRC2012_val_00020101.JPEG"
+  ],
+  "793": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04209133/ILSVRC2012_val_00031460.JPEG"
+  ],
+  "794": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04209239/ILSVRC2012_val_00000527.JPEG"
+  ],
+  "795": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04228054/ILSVRC2012_val_00027692.JPEG"
+  ],
+  "796": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04229816/ILSVRC2012_val_00011305.JPEG"
+  ],
+  "797": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04235860/ILSVRC2012_val_00004467.JPEG"
+  ],
+  "798": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04238763/ILSVRC2012_val_00014937.JPEG"
+  ],
+  "799": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04239074/ILSVRC2012_val_00029411.JPEG"
+  ],
+  "800": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04243546/ILSVRC2012_val_00037072.JPEG"
+  ],
+  "801": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04251144/ILSVRC2012_val_00023981.JPEG"
+  ],
+  "802": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04252077/ILSVRC2012_val_00035620.JPEG"
+  ],
+  "803": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04252225/ILSVRC2012_val_00045243.JPEG"
+  ],
+  "804": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04254120/ILSVRC2012_val_00048758.JPEG"
+  ],
+  "805": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04254680/ILSVRC2012_val_00005713.JPEG"
+  ],
+  "806": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04254777/ILSVRC2012_val_00010318.JPEG"
+  ],
+  "807": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04258138/ILSVRC2012_val_00026702.JPEG"
+  ],
+  "808": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04259630/ILSVRC2012_val_00017596.JPEG"
+  ],
+  "809": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04263257/ILSVRC2012_val_00024365.JPEG"
+  ],
+  "810": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04264628/ILSVRC2012_val_00027566.JPEG"
+  ],
+  "811": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04265275/ILSVRC2012_val_00034838.JPEG"
+  ],
+  "812": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04266014/ILSVRC2012_val_00049754.JPEG"
+  ],
+  "813": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04270147/ILSVRC2012_val_00031848.JPEG"
+  ],
+  "814": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04273569/ILSVRC2012_val_00039041.JPEG"
+  ],
+  "815": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04275548/ILSVRC2012_val_00042422.JPEG"
+  ],
+  "816": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04277352/ILSVRC2012_val_00031810.JPEG"
+  ],
+  "817": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04285008/ILSVRC2012_val_00025587.JPEG"
+  ],
+  "818": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04286575/ILSVRC2012_val_00039842.JPEG"
+  ],
+  "819": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04296562/ILSVRC2012_val_00026407.JPEG"
+  ],
+  "820": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04310018/ILSVRC2012_val_00048686.JPEG"
+  ],
+  "821": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04311004/ILSVRC2012_val_00041187.JPEG"
+  ],
+  "822": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04311174/ILSVRC2012_val_00022834.JPEG"
+  ],
+  "823": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04317175/ILSVRC2012_val_00024810.JPEG"
+  ],
+  "824": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04325704/ILSVRC2012_val_00021577.JPEG"
+  ],
+  "825": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04326547/ILSVRC2012_val_00006563.JPEG"
+  ],
+  "826": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04328186/ILSVRC2012_val_00012946.JPEG"
+  ],
+  "827": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04330267/ILSVRC2012_val_00046914.JPEG"
+  ],
+  "828": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04332243/ILSVRC2012_val_00006074.JPEG"
+  ],
+  "829": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04335435/ILSVRC2012_val_00027691.JPEG"
+  ],
+  "830": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04336792/ILSVRC2012_val_00002814.JPEG"
+  ],
+  "831": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04344873/ILSVRC2012_val_00041978.JPEG"
+  ],
+  "832": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04346328/ILSVRC2012_val_00042326.JPEG"
+  ],
+  "833": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04347754/ILSVRC2012_val_00046371.JPEG"
+  ],
+  "834": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04350905/ILSVRC2012_val_00019882.JPEG"
+  ],
+  "835": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04355338/ILSVRC2012_val_00020611.JPEG"
+  ],
+  "836": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04355933/ILSVRC2012_val_00043739.JPEG"
+  ],
+  "837": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04356056/ILSVRC2012_val_00019127.JPEG"
+  ],
+  "838": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04357314/ILSVRC2012_val_00031584.JPEG"
+  ],
+  "839": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04366367/ILSVRC2012_val_00011875.JPEG"
+  ],
+  "840": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04367480/ILSVRC2012_val_00042852.JPEG"
+  ],
+  "841": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04370456/ILSVRC2012_val_00049185.JPEG"
+  ],
+  "842": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04371430/ILSVRC2012_val_00036018.JPEG"
+  ],
+  "843": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04371774/ILSVRC2012_val_00015540.JPEG"
+  ],
+  "844": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04372370/ILSVRC2012_val_00003304.JPEG"
+  ],
+  "845": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04376876/ILSVRC2012_val_00028349.JPEG"
+  ],
+  "846": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04380533/ILSVRC2012_val_00008897.JPEG"
+  ],
+  "847": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04389033/ILSVRC2012_val_00015255.JPEG"
+  ],
+  "848": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04392985/ILSVRC2012_val_00005368.JPEG"
+  ],
+  "849": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04398044/ILSVRC2012_val_00011297.JPEG"
+  ],
+  "850": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04399382/ILSVRC2012_val_00025345.JPEG"
+  ],
+  "851": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04404412/ILSVRC2012_val_00002821.JPEG"
+  ],
+  "852": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04409515/ILSVRC2012_val_00049400.JPEG"
+  ],
+  "853": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04417672/ILSVRC2012_val_00018764.JPEG"
+  ],
+  "854": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04418357/ILSVRC2012_val_00017202.JPEG"
+  ],
+  "855": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04423845/ILSVRC2012_val_00009038.JPEG"
+  ],
+  "856": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04428191/ILSVRC2012_val_00003800.JPEG"
+  ],
+  "857": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04429376/ILSVRC2012_val_00041883.JPEG"
+  ],
+  "858": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04435653/ILSVRC2012_val_00022683.JPEG"
+  ],
+  "859": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04442312/ILSVRC2012_val_00042626.JPEG"
+  ],
+  "860": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04443257/ILSVRC2012_val_00010034.JPEG"
+  ],
+  "861": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04447861/ILSVRC2012_val_00042935.JPEG"
+  ],
+  "862": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04456115/ILSVRC2012_val_00005528.JPEG"
+  ],
+  "863": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04458633/ILSVRC2012_val_00000525.JPEG"
+  ],
+  "864": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04461696/ILSVRC2012_val_00046241.JPEG"
+  ],
+  "865": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04462240/ILSVRC2012_val_00026073.JPEG"
+  ],
+  "866": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04465501/ILSVRC2012_val_00027450.JPEG"
+  ],
+  "867": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04467665/ILSVRC2012_val_00021567.JPEG"
+  ],
+  "868": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04476259/ILSVRC2012_val_00027040.JPEG"
+  ],
+  "869": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04479046/ILSVRC2012_val_00029051.JPEG"
+  ],
+  "870": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04482393/ILSVRC2012_val_00008141.JPEG"
+  ],
+  "871": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04483307/ILSVRC2012_val_00049859.JPEG"
+  ],
+  "872": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04485082/ILSVRC2012_val_00001547.JPEG"
+  ],
+  "873": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04486054/ILSVRC2012_val_00015485.JPEG"
+  ],
+  "874": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04487081/ILSVRC2012_val_00033342.JPEG"
+  ],
+  "875": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04487394/ILSVRC2012_val_00005309.JPEG"
+  ],
+  "876": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04493381/ILSVRC2012_val_00013218.JPEG"
+  ],
+  "877": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04501370/ILSVRC2012_val_00019008.JPEG"
+  ],
+  "878": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04505470/ILSVRC2012_val_00037048.JPEG"
+  ],
+  "879": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04507155/ILSVRC2012_val_00016972.JPEG"
+  ],
+  "880": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04509417/ILSVRC2012_val_00042074.JPEG"
+  ],
+  "881": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04515003/ILSVRC2012_val_00038019.JPEG"
+  ],
+  "882": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04517823/ILSVRC2012_val_00039615.JPEG"
+  ],
+  "883": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04522168/ILSVRC2012_val_00000895.JPEG"
+  ],
+  "884": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04523525/ILSVRC2012_val_00004513.JPEG"
+  ],
+  "885": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04525038/ILSVRC2012_val_00010858.JPEG"
+  ],
+  "886": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04525305/ILSVRC2012_val_00046288.JPEG"
+  ],
+  "887": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04532106/ILSVRC2012_val_00024073.JPEG"
+  ],
+  "888": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04532670/ILSVRC2012_val_00009733.JPEG"
+  ],
+  "889": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04536866/ILSVRC2012_val_00021288.JPEG"
+  ],
+  "890": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04540053/ILSVRC2012_val_00009527.JPEG"
+  ],
+  "891": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04542943/ILSVRC2012_val_00040294.JPEG"
+  ],
+  "892": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04548280/ILSVRC2012_val_00044685.JPEG"
+  ],
+  "893": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04548362/ILSVRC2012_val_00025157.JPEG"
+  ],
+  "894": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04550184/ILSVRC2012_val_00046982.JPEG"
+  ],
+  "895": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04552348/ILSVRC2012_val_00037822.JPEG"
+  ],
+  "896": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04553703/ILSVRC2012_val_00048031.JPEG"
+  ],
+  "897": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04554684/ILSVRC2012_val_00032346.JPEG"
+  ],
+  "898": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04557648/ILSVRC2012_val_00014215.JPEG"
+  ],
+  "899": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04560804/ILSVRC2012_val_00033522.JPEG"
+  ],
+  "900": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04562935/ILSVRC2012_val_00033898.JPEG"
+  ],
+  "901": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04579145/ILSVRC2012_val_00033363.JPEG"
+  ],
+  "902": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04579432/ILSVRC2012_val_00015212.JPEG"
+  ],
+  "903": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04584207/ILSVRC2012_val_00049337.JPEG"
+  ],
+  "904": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04589890/ILSVRC2012_val_00025873.JPEG"
+  ],
+  "905": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04590129/ILSVRC2012_val_00023042.JPEG"
+  ],
+  "906": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04591157/ILSVRC2012_val_00018039.JPEG"
+  ],
+  "907": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04591713/ILSVRC2012_val_00043192.JPEG"
+  ],
+  "908": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04592741/ILSVRC2012_val_00037034.JPEG"
+  ],
+  "909": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04596742/ILSVRC2012_val_00007608.JPEG"
+  ],
+  "910": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04597913/ILSVRC2012_val_00025963.JPEG"
+  ],
+  "911": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04599235/ILSVRC2012_val_00047175.JPEG"
+  ],
+  "912": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04604644/ILSVRC2012_val_00010250.JPEG"
+  ],
+  "913": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04606251/ILSVRC2012_val_00027832.JPEG"
+  ],
+  "914": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04612504/ILSVRC2012_val_00032584.JPEG"
+  ],
+  "915": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n04613696/ILSVRC2012_val_00014904.JPEG"
+  ],
+  "916": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n06359193/ILSVRC2012_val_00018429.JPEG"
+  ],
+  "917": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n06596364/ILSVRC2012_val_00040324.JPEG"
+  ],
+  "918": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n06785654/ILSVRC2012_val_00011536.JPEG"
+  ],
+  "919": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n06794110/ILSVRC2012_val_00006637.JPEG"
+  ],
+  "920": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n06874185/ILSVRC2012_val_00030276.JPEG"
+  ],
+  "921": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07248320/ILSVRC2012_val_00011080.JPEG"
+  ],
+  "922": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07565083/ILSVRC2012_val_00010366.JPEG"
+  ],
+  "923": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07579787/ILSVRC2012_val_00004547.JPEG"
+  ],
+  "924": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07583066/ILSVRC2012_val_00000728.JPEG"
+  ],
+  "925": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07584110/ILSVRC2012_val_00028538.JPEG"
+  ],
+  "926": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07590611/ILSVRC2012_val_00038436.JPEG"
+  ],
+  "927": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07613480/ILSVRC2012_val_00043617.JPEG"
+  ],
+  "928": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07614500/ILSVRC2012_val_00034087.JPEG"
+  ],
+  "929": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07615774/ILSVRC2012_val_00020656.JPEG"
+  ],
+  "930": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07684084/ILSVRC2012_val_00003329.JPEG"
+  ],
+  "931": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07693725/ILSVRC2012_val_00024953.JPEG"
+  ],
+  "932": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07695742/ILSVRC2012_val_00013979.JPEG"
+  ],
+  "933": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07697313/ILSVRC2012_val_00027479.JPEG"
+  ],
+  "934": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07697537/ILSVRC2012_val_00044831.JPEG"
+  ],
+  "935": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07711569/ILSVRC2012_val_00000863.JPEG"
+  ],
+  "936": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07714571/ILSVRC2012_val_00016627.JPEG"
+  ],
+  "937": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07714990/ILSVRC2012_val_00018650.JPEG"
+  ],
+  "938": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07715103/ILSVRC2012_val_00048429.JPEG"
+  ],
+  "939": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07716358/ILSVRC2012_val_00032041.JPEG"
+  ],
+  "940": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07716906/ILSVRC2012_val_00022147.JPEG"
+  ],
+  "941": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07717410/ILSVRC2012_val_00025236.JPEG"
+  ],
+  "942": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07717556/ILSVRC2012_val_00011945.JPEG"
+  ],
+  "943": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07718472/ILSVRC2012_val_00039243.JPEG"
+  ],
+  "944": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07718747/ILSVRC2012_val_00023053.JPEG"
+  ],
+  "945": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07720875/ILSVRC2012_val_00009973.JPEG"
+  ],
+  "946": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07730033/ILSVRC2012_val_00014802.JPEG"
+  ],
+  "947": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07734744/ILSVRC2012_val_00010608.JPEG"
+  ],
+  "948": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07742313/ILSVRC2012_val_00007614.JPEG"
+  ],
+  "949": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07745940/ILSVRC2012_val_00004428.JPEG"
+  ],
+  "950": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07747607/ILSVRC2012_val_00010681.JPEG"
+  ],
+  "951": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07749582/ILSVRC2012_val_00025921.JPEG"
+  ],
+  "952": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07753113/ILSVRC2012_val_00047228.JPEG"
+  ],
+  "953": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07753275/ILSVRC2012_val_00048671.JPEG"
+  ],
+  "954": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07753592/ILSVRC2012_val_00023220.JPEG"
+  ],
+  "955": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07754684/ILSVRC2012_val_00033779.JPEG"
+  ],
+  "956": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07760859/ILSVRC2012_val_00004213.JPEG"
+  ],
+  "957": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07768694/ILSVRC2012_val_00029499.JPEG"
+  ],
+  "958": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07802026/ILSVRC2012_val_00023170.JPEG"
+  ],
+  "959": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07831146/ILSVRC2012_val_00029301.JPEG"
+  ],
+  "960": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07836838/ILSVRC2012_val_00007824.JPEG"
+  ],
+  "961": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07860988/ILSVRC2012_val_00044608.JPEG"
+  ],
+  "962": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07871810/ILSVRC2012_val_00042577.JPEG"
+  ],
+  "963": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07873807/ILSVRC2012_val_00048685.JPEG"
+  ],
+  "964": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07875152/ILSVRC2012_val_00022876.JPEG"
+  ],
+  "965": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07880968/ILSVRC2012_val_00006189.JPEG"
+  ],
+  "966": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07892512/ILSVRC2012_val_00029480.JPEG"
+  ],
+  "967": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07920052/ILSVRC2012_val_00005689.JPEG"
+  ],
+  "968": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07930864/ILSVRC2012_val_00029908.JPEG"
+  ],
+  "969": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n07932039/ILSVRC2012_val_00038359.JPEG"
+  ],
+  "970": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09193705/ILSVRC2012_val_00027394.JPEG"
+  ],
+  "971": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09229709/ILSVRC2012_val_00029935.JPEG"
+  ],
+  "972": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09246464/ILSVRC2012_val_00024359.JPEG"
+  ],
+  "973": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09256479/ILSVRC2012_val_00000235.JPEG"
+  ],
+  "974": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09288635/ILSVRC2012_val_00006488.JPEG"
+  ],
+  "975": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09332890/ILSVRC2012_val_00012261.JPEG"
+  ],
+  "976": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09399592/ILSVRC2012_val_00037890.JPEG"
+  ],
+  "977": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09421951/ILSVRC2012_val_00047284.JPEG"
+  ],
+  "978": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09428293/ILSVRC2012_val_00016661.JPEG"
+  ],
+  "979": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09468604/ILSVRC2012_val_00002805.JPEG"
+  ],
+  "980": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09472597/ILSVRC2012_val_00030382.JPEG"
+  ],
+  "981": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n09835506/ILSVRC2012_val_00034949.JPEG"
+  ],
+  "982": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n10148035/ILSVRC2012_val_00002235.JPEG"
+  ],
+  "983": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n10565667/ILSVRC2012_val_00020796.JPEG"
+  ],
+  "984": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n11879895/ILSVRC2012_val_00032270.JPEG"
+  ],
+  "985": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n11939491/ILSVRC2012_val_00037872.JPEG"
+  ],
+  "986": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n12057211/ILSVRC2012_val_00046270.JPEG"
+  ],
+  "987": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n12144580/ILSVRC2012_val_00025440.JPEG"
+  ],
+  "988": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n12267677/ILSVRC2012_val_00024580.JPEG"
+  ],
+  "989": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n12620546/ILSVRC2012_val_00017959.JPEG"
+  ],
+  "990": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n12768682/ILSVRC2012_val_00048677.JPEG"
+  ],
+  "991": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n12985857/ILSVRC2012_val_00030986.JPEG"
+  ],
+  "992": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n12998815/ILSVRC2012_val_00042792.JPEG"
+  ],
+  "993": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n13037406/ILSVRC2012_val_00002927.JPEG"
+  ],
+  "994": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n13040303/ILSVRC2012_val_00029304.JPEG"
+  ],
+  "995": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n13044778/ILSVRC2012_val_00026455.JPEG"
+  ],
+  "996": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n13052670/ILSVRC2012_val_00032695.JPEG"
+  ],
+  "997": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n13054560/ILSVRC2012_val_00026665.JPEG"
+  ],
+  "998": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n13133613/ILSVRC2012_val_00013710.JPEG"
+  ],
+  "999": [
+    "/datastore/elo/quanphm/dataset/ImageNet1K/val/n15075141/ILSVRC2012_val_00013028.JPEG"
+  ]
+}

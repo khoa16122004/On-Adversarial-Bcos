@@ -1,0 +1,13 @@
+{
+  "model_type": "torchvision",
+  "model_name": "vit_b_16",
+  "checkpoint": null,
+  "checkpoint_dir": "/datastore/elo/khoatn/On-Adversarial-Bcos/checkpoints/bcos-v2",
+  "device": "cuda",
+  "batch_size": 32,
+  "num_workers": 4,
+  "total_samples": 50000,
+  "total_correct": 40534,
+  "top1_acc": 0.81068,
+  "num_classes_with_correct": 1000
+}

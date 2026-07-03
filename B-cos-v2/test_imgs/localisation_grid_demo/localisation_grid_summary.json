@@ -1,0 +1,470 @@
+{
+  "checkpoint": "None",
+  "model_type": "torchvision",
+  "model_name": "resnet50",
+  "explain_method": "simple-gradient",
+  "grid_output_dir": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\grid_outputs",
+  "single_target_output_dir": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\single_target_outputs",
+  "top5_adv_output_dir": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv",
+  "top5_clean_output_dir": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean",
+  "images": [
+    "D:\\BCOS_ATTACK\\attack_result\\bcos\\resnet50\\epsilon_0p05\\local_black_swan_black-swan_o100_tuntargeted\\adv_rgb.png",
+    "D:\\BCOS_ATTACK\\attack_result\\torchvision\\resnet50\\epsilon_0p05\\local_ostrich_ostrich_o9_tuntargeted\\clean_rgb.png",
+    "D:\\BCOS_ATTACK\\attack_result\\torchvision\\resnet50\\epsilon_0p05\\local_peacock_peacock_o84_tuntargeted\\clean_rgb.png",
+    "D:\\BCOS_ATTACK\\attack_result\\torchvision\\resnet50\\epsilon_0p05\\local_pelican_pelican_o144_tuntargeted\\clean_rgb.png"
+  ],
+  "target_specs": [
+    "pred",
+    "pred",
+    "pred",
+    "pred"
+  ],
+  "cell_target_specs": [
+    "pred",
+    "pred",
+    "pred",
+    "pred"
+  ],
+  "extra_target_specs": [],
+  "single_predictions": [
+    100,
+    9,
+    84,
+    144
+  ],
+  "single_prediction_names": [
+    "black swan",
+    "ostrich",
+    "peacock",
+    "pelican"
+  ],
+  "target_classes": [
+    100,
+    9,
+    84,
+    144
+  ],
+  "cell_target_classes": [
+    100,
+    9,
+    84,
+    144
+  ],
+  "extra_target_classes": [],
+  "target_class_names": [
+    "black swan",
+    "ostrich",
+    "peacock",
+    "pelican"
+  ],
+  "grid_prediction": 9,
+  "grid_prediction_name": "ostrich",
+  "ig_steps": 100,
+  "sg_samples": 32,
+  "sg_noise_std": 0.1,
+  "top5_saliency_k": 5,
+  "smooth": 0,
+  "input_format": "spatial-rgb",
+  "localization_scores": [
+    0.42942488193511963,
+    0.08554194867610931,
+    0.1610906720161438,
+    0.4595494568347931
+  ],
+  "mean_localization_score": 0.28390175104141235,
+  "details": [
+    {
+      "cell_index": 0,
+      "image_path": "D:\\BCOS_ATTACK\\attack_result\\bcos\\resnet50\\epsilon_0p05\\local_black_swan_black-swan_o100_tuntargeted\\adv_rgb.png",
+      "target_class": 100,
+      "target_class_name": "black swan",
+      "target_spec": "pred",
+      "single_prediction": 100,
+      "single_prediction_name": "black swan",
+      "single_target_class": 100,
+      "single_target_class_name": "black swan",
+      "single_target_paths": {
+        "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\single_target_outputs\\cell-0_target-class-100\\cell-0_map-class-100_pred-class-100_single_target_saliency_hot.png",
+        "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\single_target_outputs\\cell-0_target-class-100\\cell-0_map-class-100_pred-class-100_single_target_saliency.pt"
+      },
+      "adv_topk_classes_for_saliency": [
+        99,
+        1,
+        3,
+        4,
+        0
+      ],
+      "adv_topk_source": "top_probs",
+      "clean_pair_image_path": "D:\\BCOS_ATTACK\\attack_result\\bcos\\resnet50\\epsilon_0p05\\local_black_swan_black-swan_o100_tuntargeted\\clean_rgb.png",
+      "top5_adv_paths": [
+        {
+          "rank": 1,
+          "class_id": 99,
+          "class_name": "goose",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-0\\cell-0_rank-1_class-99_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-0\\cell-0_rank-1_class-99_saliency.pt"
+        },
+        {
+          "rank": 2,
+          "class_id": 1,
+          "class_name": "goldfish",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-0\\cell-0_rank-2_class-1_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-0\\cell-0_rank-2_class-1_saliency.pt"
+        },
+        {
+          "rank": 3,
+          "class_id": 3,
+          "class_name": "tiger shark",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-0\\cell-0_rank-3_class-3_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-0\\cell-0_rank-3_class-3_saliency.pt"
+        },
+        {
+          "rank": 4,
+          "class_id": 4,
+          "class_name": "hammerhead",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-0\\cell-0_rank-4_class-4_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-0\\cell-0_rank-4_class-4_saliency.pt"
+        },
+        {
+          "rank": 5,
+          "class_id": 0,
+          "class_name": "tench",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-0\\cell-0_rank-5_class-0_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-0\\cell-0_rank-5_class-0_saliency.pt"
+        }
+      ],
+      "top5_clean_paths": [
+        {
+          "rank": 1,
+          "class_id": 99,
+          "class_name": "goose",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-0\\cell-0_rank-1_class-99_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-0\\cell-0_rank-1_class-99_saliency.pt"
+        },
+        {
+          "rank": 2,
+          "class_id": 1,
+          "class_name": "goldfish",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-0\\cell-0_rank-2_class-1_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-0\\cell-0_rank-2_class-1_saliency.pt"
+        },
+        {
+          "rank": 3,
+          "class_id": 3,
+          "class_name": "tiger shark",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-0\\cell-0_rank-3_class-3_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-0\\cell-0_rank-3_class-3_saliency.pt"
+        },
+        {
+          "rank": 4,
+          "class_id": 4,
+          "class_name": "hammerhead",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-0\\cell-0_rank-4_class-4_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-0\\cell-0_rank-4_class-4_saliency.pt"
+        },
+        {
+          "rank": 5,
+          "class_id": 0,
+          "class_name": "tench",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-0\\cell-0_rank-5_class-0_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-0\\cell-0_rank-5_class-0_saliency.pt"
+        }
+      ]
+    },
+    {
+      "cell_index": 1,
+      "image_path": "D:\\BCOS_ATTACK\\attack_result\\torchvision\\resnet50\\epsilon_0p05\\local_ostrich_ostrich_o9_tuntargeted\\clean_rgb.png",
+      "target_class": 9,
+      "target_class_name": "ostrich",
+      "target_spec": "pred",
+      "single_prediction": 9,
+      "single_prediction_name": "ostrich",
+      "single_target_class": 9,
+      "single_target_class_name": "ostrich",
+      "single_target_paths": {
+        "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\single_target_outputs\\cell-1_target-class-9\\cell-1_map-class-9_pred-class-9_single_target_saliency_hot.png",
+        "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\single_target_outputs\\cell-1_target-class-9\\cell-1_map-class-9_pred-class-9_single_target_saliency.pt"
+      },
+      "adv_topk_classes_for_saliency": [
+        138,
+        793,
+        133,
+        86,
+        67
+      ],
+      "adv_topk_source": "top_probs",
+      "clean_pair_image_path": "D:\\BCOS_ATTACK\\attack_result\\torchvision\\resnet50\\epsilon_0p05\\local_ostrich_ostrich_o9_tuntargeted\\clean_rgb.png",
+      "top5_adv_paths": [
+        {
+          "rank": 1,
+          "class_id": 138,
+          "class_name": "bustard",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-1\\cell-1_rank-1_class-138_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-1\\cell-1_rank-1_class-138_saliency.pt"
+        },
+        {
+          "rank": 2,
+          "class_id": 793,
+          "class_name": "shower cap",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-1\\cell-1_rank-2_class-793_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-1\\cell-1_rank-2_class-793_saliency.pt"
+        },
+        {
+          "rank": 3,
+          "class_id": 133,
+          "class_name": "bittern",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-1\\cell-1_rank-3_class-133_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-1\\cell-1_rank-3_class-133_saliency.pt"
+        },
+        {
+          "rank": 4,
+          "class_id": 86,
+          "class_name": "partridge",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-1\\cell-1_rank-4_class-86_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-1\\cell-1_rank-4_class-86_saliency.pt"
+        },
+        {
+          "rank": 5,
+          "class_id": 67,
+          "class_name": "diamondback",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-1\\cell-1_rank-5_class-67_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-1\\cell-1_rank-5_class-67_saliency.pt"
+        }
+      ],
+      "top5_clean_paths": [
+        {
+          "rank": 1,
+          "class_id": 138,
+          "class_name": "bustard",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-1\\cell-1_rank-1_class-138_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-1\\cell-1_rank-1_class-138_saliency.pt"
+        },
+        {
+          "rank": 2,
+          "class_id": 793,
+          "class_name": "shower cap",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-1\\cell-1_rank-2_class-793_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-1\\cell-1_rank-2_class-793_saliency.pt"
+        },
+        {
+          "rank": 3,
+          "class_id": 133,
+          "class_name": "bittern",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-1\\cell-1_rank-3_class-133_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-1\\cell-1_rank-3_class-133_saliency.pt"
+        },
+        {
+          "rank": 4,
+          "class_id": 86,
+          "class_name": "partridge",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-1\\cell-1_rank-4_class-86_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-1\\cell-1_rank-4_class-86_saliency.pt"
+        },
+        {
+          "rank": 5,
+          "class_id": 67,
+          "class_name": "diamondback",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-1\\cell-1_rank-5_class-67_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-1\\cell-1_rank-5_class-67_saliency.pt"
+        }
+      ]
+    },
+    {
+      "cell_index": 2,
+      "image_path": "D:\\BCOS_ATTACK\\attack_result\\torchvision\\resnet50\\epsilon_0p05\\local_peacock_peacock_o84_tuntargeted\\clean_rgb.png",
+      "target_class": 84,
+      "target_class_name": "peacock",
+      "target_spec": "pred",
+      "single_prediction": 84,
+      "single_prediction_name": "peacock",
+      "single_target_class": 84,
+      "single_target_class_name": "peacock",
+      "single_target_paths": {
+        "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\single_target_outputs\\cell-2_target-class-84\\cell-2_map-class-84_pred-class-84_single_target_saliency_hot.png",
+        "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\single_target_outputs\\cell-2_target-class-84\\cell-2_map-class-84_pred-class-84_single_target_saliency.pt"
+      },
+      "adv_topk_classes_for_saliency": [
+        7,
+        8,
+        86,
+        80,
+        879
+      ],
+      "adv_topk_source": "top_probs",
+      "clean_pair_image_path": "D:\\BCOS_ATTACK\\attack_result\\torchvision\\resnet50\\epsilon_0p05\\local_peacock_peacock_o84_tuntargeted\\clean_rgb.png",
+      "top5_adv_paths": [
+        {
+          "rank": 1,
+          "class_id": 7,
+          "class_name": "cock",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-2\\cell-2_rank-1_class-7_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-2\\cell-2_rank-1_class-7_saliency.pt"
+        },
+        {
+          "rank": 2,
+          "class_id": 8,
+          "class_name": "hen",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-2\\cell-2_rank-2_class-8_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-2\\cell-2_rank-2_class-8_saliency.pt"
+        },
+        {
+          "rank": 3,
+          "class_id": 86,
+          "class_name": "partridge",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-2\\cell-2_rank-3_class-86_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-2\\cell-2_rank-3_class-86_saliency.pt"
+        },
+        {
+          "rank": 4,
+          "class_id": 80,
+          "class_name": "black grouse",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-2\\cell-2_rank-4_class-80_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-2\\cell-2_rank-4_class-80_saliency.pt"
+        },
+        {
+          "rank": 5,
+          "class_id": 879,
+          "class_name": "umbrella",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-2\\cell-2_rank-5_class-879_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-2\\cell-2_rank-5_class-879_saliency.pt"
+        }
+      ],
+      "top5_clean_paths": [
+        {
+          "rank": 1,
+          "class_id": 7,
+          "class_name": "cock",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-2\\cell-2_rank-1_class-7_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-2\\cell-2_rank-1_class-7_saliency.pt"
+        },
+        {
+          "rank": 2,
+          "class_id": 8,
+          "class_name": "hen",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-2\\cell-2_rank-2_class-8_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-2\\cell-2_rank-2_class-8_saliency.pt"
+        },
+        {
+          "rank": 3,
+          "class_id": 86,
+          "class_name": "partridge",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-2\\cell-2_rank-3_class-86_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-2\\cell-2_rank-3_class-86_saliency.pt"
+        },
+        {
+          "rank": 4,
+          "class_id": 80,
+          "class_name": "black grouse",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-2\\cell-2_rank-4_class-80_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-2\\cell-2_rank-4_class-80_saliency.pt"
+        },
+        {
+          "rank": 5,
+          "class_id": 879,
+          "class_name": "umbrella",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-2\\cell-2_rank-5_class-879_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-2\\cell-2_rank-5_class-879_saliency.pt"
+        }
+      ]
+    },
+    {
+      "cell_index": 3,
+      "image_path": "D:\\BCOS_ATTACK\\attack_result\\torchvision\\resnet50\\epsilon_0p05\\local_pelican_pelican_o144_tuntargeted\\clean_rgb.png",
+      "target_class": 144,
+      "target_class_name": "pelican",
+      "target_spec": "pred",
+      "single_prediction": 144,
+      "single_prediction_name": "pelican",
+      "single_target_class": 144,
+      "single_target_class_name": "pelican",
+      "single_target_paths": {
+        "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\single_target_outputs\\cell-3_target-class-144\\cell-3_map-class-144_pred-class-144_single_target_saliency_hot.png",
+        "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\single_target_outputs\\cell-3_target-class-144\\cell-3_map-class-144_pred-class-144_single_target_saliency.pt"
+      },
+      "adv_topk_classes_for_saliency": [
+        132,
+        134,
+        131,
+        129,
+        611
+      ],
+      "adv_topk_source": "top_probs",
+      "clean_pair_image_path": "D:\\BCOS_ATTACK\\attack_result\\torchvision\\resnet50\\epsilon_0p05\\local_pelican_pelican_o144_tuntargeted\\clean_rgb.png",
+      "top5_adv_paths": [
+        {
+          "rank": 1,
+          "class_id": 132,
+          "class_name": "American egret",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-3\\cell-3_rank-1_class-132_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-3\\cell-3_rank-1_class-132_saliency.pt"
+        },
+        {
+          "rank": 2,
+          "class_id": 134,
+          "class_name": "crane bird",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-3\\cell-3_rank-2_class-134_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-3\\cell-3_rank-2_class-134_saliency.pt"
+        },
+        {
+          "rank": 3,
+          "class_id": 131,
+          "class_name": "little blue heron",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-3\\cell-3_rank-3_class-131_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-3\\cell-3_rank-3_class-131_saliency.pt"
+        },
+        {
+          "rank": 4,
+          "class_id": 129,
+          "class_name": "spoonbill",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-3\\cell-3_rank-4_class-129_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-3\\cell-3_rank-4_class-129_saliency.pt"
+        },
+        {
+          "rank": 5,
+          "class_id": 611,
+          "class_name": "jigsaw puzzle",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-3\\cell-3_rank-5_class-611_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\adv\\cell-3\\cell-3_rank-5_class-611_saliency.pt"
+        }
+      ],
+      "top5_clean_paths": [
+        {
+          "rank": 1,
+          "class_id": 132,
+          "class_name": "American egret",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-3\\cell-3_rank-1_class-132_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-3\\cell-3_rank-1_class-132_saliency.pt"
+        },
+        {
+          "rank": 2,
+          "class_id": 134,
+          "class_name": "crane bird",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-3\\cell-3_rank-2_class-134_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-3\\cell-3_rank-2_class-134_saliency.pt"
+        },
+        {
+          "rank": 3,
+          "class_id": 131,
+          "class_name": "little blue heron",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-3\\cell-3_rank-3_class-131_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-3\\cell-3_rank-3_class-131_saliency.pt"
+        },
+        {
+          "rank": 4,
+          "class_id": 129,
+          "class_name": "spoonbill",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-3\\cell-3_rank-4_class-129_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-3\\cell-3_rank-4_class-129_saliency.pt"
+        },
+        {
+          "rank": 5,
+          "class_id": 611,
+          "class_name": "jigsaw puzzle",
+          "saliency_png": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-3\\cell-3_rank-5_class-611_saliency_hot.png",
+          "saliency_tensor": "D:\\BCOS_ATTACK\\B-cos-v2\\test_imgs\\localisation_grid_demo\\top5_saliency\\clean\\cell-3\\cell-3_rank-5_class-611_saliency.pt"
+        }
+      ]
+    }
+  ],
+  "grid_extra_details": []
+}

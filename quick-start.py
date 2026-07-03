@@ -32,7 +32,6 @@ print(image_input.shape)
 
 # AttackModule
 from attack.PGD import PGDAttack
-from attack.SimBaAttack import SimBAAttack
 
 attacker = PGDAttack(
     model=model,

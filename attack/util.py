@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import importlib
-import importlib.util
 import pathlib
 import pickle
 import sys
@@ -37,30 +36,6 @@ def resolve_target_class_for_sample(target_classes: list[int], sample_index: int
 	if not target_classes:
 		return None
 	return int(target_classes[sample_index % len(target_classes)])
-
-
-def load_simba_utils_module(root: Path | None = None):
-	if root is None:
-		root = Path(__file__).resolve().parents[1]
-	module_path = root / "simple-blackbox-attack" / "utils.py"
-	if not module_path.exists():
-		# Fallback to local SimBA helpers when external repo is not present.
-		from attack import simba_fallback_utils
-
-		warnings.warn(
-			f"Missing external SimBA utils at {module_path}. "
-			"Using attack.simba_fallback_utils instead.",
-			RuntimeWarning,
-		)
-		return simba_fallback_utils
-
-	spec = importlib.util.spec_from_file_location("simba_utils_local", module_path)
-	if spec is None or spec.loader is None:
-		raise RuntimeError(f"Could not load SimBA utils module from: {module_path}")
-
-	module = importlib.util.module_from_spec(spec)
-	spec.loader.exec_module(module)
-	return module
 
 
 class ImageNetRGBTransform:

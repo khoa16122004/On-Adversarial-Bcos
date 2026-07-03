@@ -101,12 +101,12 @@ run_pgd "torchvision" "resnet50"
 run_pgd "torchvision" "densenet121"
 run_pgd "torchvision" "vit_b_16"
 
-run_pgd "bcos" "resnet50"
-run_pgd "bcos" "densenet121"
+run_pgd "bcos" "resnet_50"
+run_pgd "bcos" "densenet_121"
 run_pgd "bcos" "simple_vit_b_patch16_224"
 
-run_pgd "bcosify" "resnet50"
-run_pgd "bcosify" "densenet121"
+run_pgd "bcosify" "resnet_50"
+run_pgd "bcosify" "densenet_121"
 run_pgd "bcosify" "simple_vit_b_patch16_224" \
     "$PROJECT_ROOT/checkpoints/bcosify/bcosifyv2_bcos_simple_vit_b_patch16_224_0.001_lrWarmup_gapReorder.ckpt"
 

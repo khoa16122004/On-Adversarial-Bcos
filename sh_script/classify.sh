@@ -113,9 +113,9 @@ BCOSIFY_MODELS=(
     "simple_vit_b_patch16_224"
 )
 
-for model_name in "${TORCHVISION_MODELS[@]}"; do
-    run_classify "torchvision" "$model_name"
-done
+# for model_name in "${TORCHVISION_MODELS[@]}"; do
+#     run_classify "torchvision" "$model_name"
+# done
 
 for model_name in "${BCOS_MODELS[@]}"; do
     run_classify "bcos" "$model_name"

@@ -1,2 +1,0 @@
-source_model_type,source_model_name,target_model_type,target_model_name,epsilon,total,success_vs_true,asr_vs_true,success_vs_source_clean,asr_vs_source_clean
-torchvision,resnet50,bcosify,simple_vit_b_patch16_224,epsilon_0.03,1000,6,0.006,6,0.006

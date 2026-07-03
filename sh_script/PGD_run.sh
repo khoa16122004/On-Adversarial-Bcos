@@ -101,9 +101,9 @@ run_pgd() {
 # run_pgd "torchvision" "densenet121"
 # run_pgd "torchvision" "vit_b_16"
 
-run_pgd "bcos" "resnet_50"
-run_pgd "bcos" "densenet_121"
-run_pgd "bcos" "simple_vit_b_patch16_224"
+run_pgd "bcosv2" "resnet_50"
+run_pgd "bcosv2" "densenet_121"
+run_pgd "bcosv2" "simple_vit_b_patch16_224"
 
 run_pgd "bcosify" "resnet_50"
 run_pgd "bcosify" "densenet_121"

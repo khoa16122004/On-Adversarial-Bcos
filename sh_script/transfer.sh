@@ -49,11 +49,48 @@ export CUDA_VISIBLE_DEVICES=$BEST_GPU
 # CHẠY CODE
 # =========================================================
 
-python transfer.py \
-  --source-model-type torchvision \
-  --source-model-name resnet50 \
-  --target-model-type bcosify \
-  --target-model-name resnet50 \
-  --device cuda \
-  --epsilons 0.03 \
-  --batch-size 128
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="${SLURM_SUBMIT_DIR:-}"
+if [ -z "$PROJECT_ROOT" ]; then
+    PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+fi
+cd "$PROJECT_ROOT"
+export PYTHONPATH="$PROJECT_ROOT:${PYTHONPATH:-}"
+
+SOURCE_MODEL_TYPE="torchvision"
+SOURCE_MODEL_NAME="resnet50"
+DEVICE="cuda"
+BATCH_SIZE=128
+EPSILONS=(0.03)
+
+# transfer từ torchvision -> bcos/bcosify (6 target models)
+TARGETS=(
+  "bcos:resnet50"
+  "bcos:densenet121"
+  "bcos:simple_vit_b_patch16_224"
+  "bcosify:resnet50"
+  "bcosify:densenet121"
+  "bcosify:simple_vit_b_patch16_224"
+)
+
+for target in "${TARGETS[@]}"; do
+  TARGET_MODEL_TYPE="${target%%:*}"
+  TARGET_MODEL_NAME="${target#*:}"
+
+  echo "===================================================="
+  echo "Transfer: ${SOURCE_MODEL_TYPE}/${SOURCE_MODEL_NAME} -> ${TARGET_MODEL_TYPE}/${TARGET_MODEL_NAME}"
+
+  python transfer.py \
+    --source-model-type "$SOURCE_MODEL_TYPE" \
+    --source-model-name "$SOURCE_MODEL_NAME" \
+    --target-model-type "$TARGET_MODEL_TYPE" \
+    --target-model-name "$TARGET_MODEL_NAME" \
+    --device "$DEVICE" \
+    --epsilons "${EPSILONS[@]}" \
+    --batch-size "$BATCH_SIZE"
+done
+
+echo "===================================================="
+echo "Done transfer for 6 target models."

@@ -44,7 +44,15 @@ def load_simba_utils_module(root: Path | None = None):
 		root = Path(__file__).resolve().parents[1]
 	module_path = root / "simple-blackbox-attack" / "utils.py"
 	if not module_path.exists():
-		raise FileNotFoundError(f"Missing SimBA utils module: {module_path}")
+		# Fallback to local SimBA helpers when external repo is not present.
+		from attack import simba_fallback_utils
+
+		warnings.warn(
+			f"Missing external SimBA utils at {module_path}. "
+			"Using attack.simba_fallback_utils instead.",
+			RuntimeWarning,
+		)
+		return simba_fallback_utils
 
 	spec = importlib.util.spec_from_file_location("simba_utils_local", module_path)
 	if spec is None or spec.loader is None:

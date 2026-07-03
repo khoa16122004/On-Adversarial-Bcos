@@ -192,9 +192,10 @@ def resolve_bcos_checkpoint_path(
 	resolved_model_name = _resolve_model_name(model_name)
 	normalized_model_name = _normalize_model_key(resolved_model_name)
 	candidates: list[tuple[int, Path]] = []
-
+	print(checkpoint_dir)
 	for checkpoint_path in checkpoint_dir.glob("*.pth"):
 		stem = checkpoint_path.stem
+		print(stem)
 		stem_prefix = stem.split("-", 1)[0]
 		if stem == resolved_model_name:
 			candidates.append((0, checkpoint_path))

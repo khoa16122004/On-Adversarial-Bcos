@@ -69,6 +69,8 @@ class PGDAttack:
         target_weight = 1.0 / len(target_classes)
         target_distribution[:, target_classes] = target_weight
         return self._soft_target_cross_entropy(logits, target_distribution)
+    
+    
 
     def _resolve_target_classes(self, target_class: TargetSpec | None) -> list[int]:
         if target_class is None:
@@ -134,7 +136,7 @@ class PGDAttack:
 
         resolved_target_classes = self._resolve_target_classes(target_class)
         is_targeted = len(resolved_target_classes) > 0
-        loss_fn = loss_fn or F.cross_entropy
+        loss_fn = loss_fn or F.cross_entropy # crossentropy
         self.model.eval()
 
         adv_rgb = clean_rgb.detach().clone()

@@ -29,7 +29,7 @@ print("Explanation shape:", explain['explanation'].shape)
 
 save_explanation_rgba(explain['explanation'], 'test_img/gecko_explanation.png')
 print(image_input.shape) 
-raise
+
 # AttackModule
 from attack.PGD import PGDAttack
 from attack.SimBaAttack import SimBAAttack

@@ -10,6 +10,7 @@ from attack.util import (
     DEFAULT_MODEL_TYPE,
     load_model,
 )
+from script.const import ANNOTATIONS_FILE, CLASSIFICATION_RESULT_DIR, IMAGENET_VAL_DATA
 
 from dataloader import get_imagenet_dataloader
 
@@ -109,8 +110,18 @@ def main(args: argparse.Namespace) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Classify ImageNet-style folder data and save correct paths by class id.")
 
-    parser.add_argument("--img-dir", type=str, required=True, help="Root directory of class folders with images.")
-    parser.add_argument("--annotations-file", type=str, required=True, help="JSON mapping folder -> [class_id, class_name].")
+    parser.add_argument(
+        "--img-dir",
+        type=str,
+        default=IMAGENET_VAL_DATA,
+        help="Root directory of class folders with images.",
+    )
+    parser.add_argument(
+        "--annotations-file",
+        type=str,
+        default=ANNOTATIONS_FILE,
+        help="JSON mapping folder -> [class_id, class_name].",
+    )
 
     parser.add_argument(
         "--model-type",
@@ -130,7 +141,12 @@ if __name__ == "__main__":
 
     parser.add_argument("--batch-size", type=int, default=32, help="Batch size for dataloader.")
     parser.add_argument("--num-workers", type=int, default=4, help="Number of dataloader workers.")
-    parser.add_argument("--output-dir", type=Path, default=Path("attack_result") / "classify", help="Output directory.")
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=Path(CLASSIFICATION_RESULT_DIR),
+        help="Output directory.",
+    )
     parser.add_argument(
         "--device",
         type=str,

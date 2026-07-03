@@ -52,25 +52,26 @@ export CUDA_VISIBLE_DEVICES=$BEST_GPU
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+PROJECT_ROOT="${SLURM_SUBMIT_DIR:-}"
+if [ -z "$PROJECT_ROOT" ]; then
+    PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+fi
+if [ ! -f "$PROJECT_ROOT/script/const.py" ]; then
+    echo "Cannot find script/const.py under PROJECT_ROOT=$PROJECT_ROOT" >&2
+    echo "Hint: submit job from project root (sbatch sh_script/classify.sh)." >&2
+    exit 1
+fi
 cd "$PROJECT_ROOT"
 export PYTHONPATH="$PROJECT_ROOT:${PYTHONPATH:-}"
 
-# Load paths from script/const.py
-IMG_DIR=$(python -c "from script.const import IMAGENET_VAL_DATA; print(IMAGENET_VAL_DATA)")
-ANNOTATIONS_FILE=$(python -c "from script.const import ANNOTATIONS_FILE; print(ANNOTATIONS_FILE)")
-CHECKPOINT_DIR=$(python -c "from script.const import CHECKPOINT_DIR; print(CHECKPOINT_DIR)")
-RESULT_ROOT=$(python -c "from script.const import CLASSIFICATION_RESULT_DIR; print(CLASSIFICATION_RESULT_DIR)")
-
+# Output chung cho classification
+RESULT_ROOT="$PROJECT_ROOT/classification_result"
 mkdir -p "$RESULT_ROOT"
 
 # Runtime options
 BATCH_SIZE=32
 NUM_WORKERS=4
 DEVICE=cuda
-
-# Checkpoint ViT bcosify (ví dụ bạn đang dùng)
-BCOSIFY_VIT_CKPT="$CHECKPOINT_DIR/bcosify/bcosifyv2_bcos_simple_vit_b_patch16_224_0.001_lrWarmup_gapReorder.ckpt"
 
 run_classify() {
     local model_type="$1"
@@ -82,28 +83,13 @@ run_classify() {
     echo "Running classify: type=$model_type | name=$model_name"
     echo "Output dir: $out_dir"
 
-    if [ "$model_type" = "bcosify" ] && [ "$model_name" = "simple_vit_b_patch16_224" ]; then
-        python script/classify.py \
-            --img-dir "$IMG_DIR" \
-            --annotations-file "$ANNOTATIONS_FILE" \
-            --model-type "$model_type" \
-            --model-name "$model_name" \
-            --checkpoint "$BCOSIFY_VIT_CKPT" \
-            --batch-size "$BATCH_SIZE" \
-            --num-workers "$NUM_WORKERS" \
-            --device "$DEVICE" \
-            --output-dir "$out_dir"
-    else
-        python script/classify.py \
-            --img-dir "$IMG_DIR" \
-            --annotations-file "$ANNOTATIONS_FILE" \
-            --model-type "$model_type" \
-            --model-name "$model_name" \
-            --batch-size "$BATCH_SIZE" \
-            --num-workers "$NUM_WORKERS" \
-            --device "$DEVICE" \
-            --output-dir "$out_dir"
-    fi
+    python script/classify.py \
+        --model-type "$model_type" \
+        --model-name "$model_name" \
+        --batch-size "$BATCH_SIZE" \
+        --num-workers "$NUM_WORKERS" \
+        --device "$DEVICE" \
+        --output-dir "$out_dir"
 }
 
 # torchvision models

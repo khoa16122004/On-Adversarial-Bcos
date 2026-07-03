@@ -6,7 +6,7 @@
   "model_name": "resnet50",
   "checkpoint": null,
   "attack": "SimBA",
-  "epsilon": 0.03,
+  "epsilon": 0.1,
   "steps": 100,
   "order": "rand",
   "freq_dims": 14,
@@ -22,14 +22,14 @@
   "success_step": -1,
   "queries": 201,
   "history_len": 100,
-  "final_best_score": 0.8397219181060791,
+  "final_best_score": 0.8642612099647522,
   "stop_on_success": false,
   "output_files": {
-    "adv_png": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.03/ILSVRC2012_val_00002752/adv.png",
-    "clean_png": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.03/ILSVRC2012_val_00002752/clean.png",
-    "perturbation_png": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.03/ILSVRC2012_val_00002752/perturbation.png",
-    "adv_tensor": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.03/ILSVRC2012_val_00002752/adv.pt",
-    "history_txt": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.03/ILSVRC2012_val_00002752/history.txt",
-    "history_json": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.03/ILSVRC2012_val_00002752/history.json"
+    "adv_png": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.1/ILSVRC2012_val_00002752/adv.png",
+    "clean_png": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.1/ILSVRC2012_val_00002752/clean.png",
+    "perturbation_png": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.1/ILSVRC2012_val_00002752/perturbation.png",
+    "adv_tensor": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.1/ILSVRC2012_val_00002752/adv.pt",
+    "history_txt": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.1/ILSVRC2012_val_00002752/history.txt",
+    "history_json": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result/torchvision/resnet50/SimBA/epsilon_0.1/ILSVRC2012_val_00002752/history.json"
   }
 }

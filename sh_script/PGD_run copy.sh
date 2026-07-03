@@ -50,44 +50,63 @@ export CUDA_VISIBLE_DEVICES=$BEST_GPU
 # CHẠY CODE
 # =========================================================
 
-#!/bin/bash
+set -euo pipefail
 
-models=(
-    "resnet50"
-    "vgg11_bnu"
-    "densenet121"
-    "simple_vit_b_patch16_224"
-    "vitc_b_patch1_14"
-)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="${SLURM_SUBMIT_DIR:-}"
+if [ -z "$PROJECT_ROOT" ]; then
+    PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+fi
+cd "$PROJECT_ROOT"
+export PYTHONPATH="$PROJECT_ROOT:${PYTHONPATH:-}"
 
-epsilons=(
-    0.015
-    0.03
-    0.06
-)
+ATTACK_JSON="$PROJECT_ROOT/classification_result/attack_1k.json"
+OUTPUT_ROOT="$PROJECT_ROOT/attack_result"
+CHECKPOINT_DIR="$PROJECT_ROOT/checkpoints"
+DEVICE="cuda"
+STEPS=100
+EPSILONS=(0.03 0.05 0.1 0.2)
 
-num_steps_list=(
-    50
-)
+run_pgd() {
+    local model_type="$1"
+    local model_name="$2"
+    local checkpoint="${3:-}"
 
-output_root="/datastore/elo/khoatn/BCOS_ATTACK/attack_result"
-checkpoint_dir="/datastore/elo/khoatn/BCOS_ATTACK/checkpoints"
+    echo "===================================================="
+    echo "Running PGD: model_type=$model_type | model_name=$model_name"
 
-for model in "${models[@]}"; do
-    for epsilon in "${epsilons[@]}"; do
-        for num_steps in "${num_steps_list[@]}"; do
+    local cmd=(
+        python PGD_attack.py
+        --model-type "$model_type"
+        --model-name "$model_name"
+        --attack-json "$ATTACK_JSON"
+        --output-root "$OUTPUT_ROOT"
+        --checkpoint-dir "$CHECKPOINT_DIR"
+        --steps "$STEPS"
+        --device "$DEVICE"
+        --epsilons "${EPSILONS[@]}"
+    )
 
-            output_dir="${output_root}"
+    if [ -n "$checkpoint" ]; then
+        cmd+=(--checkpoint "$checkpoint")
+    fi
 
-            python PGD_logit_attack.py \
-                --model "${model}" \
-                --epsilon "${epsilon}" \
-                --steps "${num_steps}" \
-                --output-dir "${output_dir}" \
-                --replace-image-dir "/datastore/elo/quanphm/dataset/ImageNet1K/val" \
-                --samples-file "evaluator_outputs/${model}/selected_1000.json" \
-                --checkpoint-dir "${checkpoint_dir}"
+    "${cmd[@]}"
+}
 
-        done
-    done
-done
+# 9 models = 3 model types x 3 model names
+run_pgd "torchvision" "resnet50"
+run_pgd "torchvision" "densenet121"
+run_pgd "torchvision" "vit_b_16"
+
+run_pgd "bcos" "resnet50"
+run_pgd "bcos" "densenet121"
+run_pgd "bcos" "simple_vit_b_patch16_224"
+
+run_pgd "bcosify" "resnet50"
+run_pgd "bcosify" "densenet121"
+run_pgd "bcosify" "simple_vit_b_patch16_224" \
+    "$PROJECT_ROOT/checkpoints/bcosify/bcosifyv2_bcos_simple_vit_b_patch16_224_0.001_lrWarmup_gapReorder.ckpt"
+
+echo "===================================================="
+echo "Done running PGD for all 9 models. Output: $OUTPUT_ROOT"

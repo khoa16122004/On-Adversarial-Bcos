@@ -1,0 +1,4 @@
+source_model_type,source_model_name,target_model_type,target_model_name,epsilon,total,success_vs_true,asr_vs_true,success_vs_source_clean,asr_vs_source_clean
+torchvision,resnet50,bcosify,simple_vit_b_patch16_224,epsilon_0.05,1000,13,0.013,13,0.013
+torchvision,resnet50,bcosify,simple_vit_b_patch16_224,epsilon_0.1,1000,26,0.026,26,0.026
+torchvision,resnet50,bcosify,simple_vit_b_patch16_224,epsilon_0.2,1000,69,0.069,69,0.069

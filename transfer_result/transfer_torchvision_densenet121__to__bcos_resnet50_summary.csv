@@ -1,0 +1,4 @@
+source_model_type,source_model_name,target_model_type,target_model_name,epsilon,total,success_vs_true,asr_vs_true,success_vs_source_clean,asr_vs_source_clean
+torchvision,densenet121,bcos,resnet50,epsilon_0.05,1000,405,0.405,404,0.404
+torchvision,densenet121,bcos,resnet50,epsilon_0.1,1000,615,0.615,614,0.614
+torchvision,densenet121,bcos,resnet50,epsilon_0.2,1000,821,0.821,821,0.821

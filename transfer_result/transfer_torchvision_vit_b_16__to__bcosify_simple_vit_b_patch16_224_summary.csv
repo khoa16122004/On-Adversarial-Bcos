@@ -1,0 +1,5 @@
+source_model_type,source_model_name,target_model_type,target_model_name,epsilon,total,success_vs_true,asr_vs_true,success_vs_source_clean,asr_vs_source_clean
+torchvision,vit_b_16,bcosify,simple_vit_b_patch16_224,epsilon_0.03,1000,272,0.272,272,0.272
+torchvision,vit_b_16,bcosify,simple_vit_b_patch16_224,epsilon_0.05,1000,382,0.382,382,0.382
+torchvision,vit_b_16,bcosify,simple_vit_b_patch16_224,epsilon_0.1,1000,607,0.607,607,0.607
+torchvision,vit_b_16,bcosify,simple_vit_b_patch16_224,epsilon_0.2,1000,829,0.829,829,0.829

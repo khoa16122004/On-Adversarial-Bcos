@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=BCOS_PGD
-#SBATCH --output=PGD/mps_%j.out
-#SBATCH --error=PGD/mps_%j.err
+#SBATCH --job-name=classification
+#SBATCH --output=classification/mps_%j.out
+#SBATCH --error=classification/mps_%j.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4

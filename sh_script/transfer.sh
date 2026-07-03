@@ -52,7 +52,7 @@ export CUDA_VISIBLE_DEVICES=$BEST_GPU
 python transfer.py \
   --source-model-type torchvision \
   --source-model-name resnet50 \
-  --target-model-type bcos \
+  --target-model-type bcosify \
   --target-model-name resnet50 \
   --device cuda \
   --epsilons 0.03 \

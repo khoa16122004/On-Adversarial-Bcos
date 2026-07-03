@@ -6,15 +6,16 @@ from attack.util import (
     load_model,
     load_imagenet_categories,
     save_perturbation_image,
-    save_rgb_image
+    save_rgb_image,
+    save_explanation_rgba
 )
 
 model = load_model(
-    model_type='bcosify', # ['torchvision', 'bcos', 'bcosify']
-    model_name="resnet50",
+    model_type='torchvision', # ['torchvision', 'bcos', 'bcosify']
+    model_name="vit_b_16", # ['resnet50', 'densenet121', 'vgg16']
     device="cuda"
 )
-
+raise
 path_to_image = 'test_img/gecko.png'
 image = Image.open(path_to_image)
 image = model.transform.spatial_transform(image).unsqueeze(0).cuda()
@@ -26,7 +27,7 @@ print("Logits shape:", logit.shape)
 print("Predicted class:", logit.argmax(dim=1).item())
 print("Explanation shape:", explain['explanation'].shape)
 
-
+save_explanation_rgba(explain['explanation'], 'test_img/gecko_explanation.png')
 # AttackModule
 from attack.PGD import PGDAttack
 from attack.SimBaAttack import SimBAAttack

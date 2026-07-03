@@ -18,8 +18,14 @@ def _to_serializable(obj: dict[int, list[str]]) -> dict[str, list[str]]:
     return {str(class_id): paths for class_id, paths in sorted(obj.items())}
 
 
+def _resolve_device(device_arg: str) -> torch.device:
+    if device_arg == "auto":
+        return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    return torch.device(device_arg)
+
+
 def main(args: argparse.Namespace) -> None:
-    device = torch.device(args.device)
+    device = _resolve_device(args.device)
     model = load_model(
         model_type=args.model_type,
         model_name=args.model_name,
@@ -49,9 +55,7 @@ def main(args: argparse.Namespace) -> None:
         _ = class_names_batch
         images = images.to(device, non_blocking=True)
         class_ids = torch.as_tensor(class_ids, device=device, dtype=torch.long)
-        image = model.transform.spatial_transform(image).cuda()
         model_input = model.transform.inverse_transform(images)
-
 
         with torch.no_grad():
             logits = model(model_input)
@@ -77,11 +81,29 @@ def main(args: argparse.Namespace) -> None:
 
     checkpoint_tag = "custom" if args.checkpoint is not None else "default"
     output_path = out_dir / f"{args.model_type}_{args.model_name}_{checkpoint_tag}_imagenet_correct_paths.json"
+    summary_path = out_dir / f"{args.model_type}_{args.model_name}_{checkpoint_tag}_summary.json"
 
     with output_path.open("w", encoding="utf-8") as f:
         json.dump(_to_serializable(correct_by_class), f, ensure_ascii=False, indent=2)
 
+    summary = {
+        "model_type": args.model_type,
+        "model_name": args.model_name,
+        "checkpoint": str(args.checkpoint) if args.checkpoint is not None else None,
+        "checkpoint_dir": str(args.checkpoint_dir),
+        "device": str(device),
+        "batch_size": args.batch_size,
+        "num_workers": args.num_workers,
+        "total_samples": total_samples,
+        "total_correct": total_correct,
+        "top1_acc": top1_acc,
+        "num_classes_with_correct": len(correct_by_class),
+    }
+    with summary_path.open("w", encoding="utf-8") as f:
+        json.dump(summary, f, ensure_ascii=False, indent=2)
+
     print(f"Saved JSON: {output_path}")
+    print(f"Saved summary: {summary_path}")
 
 
 if __name__ == "__main__":
@@ -112,8 +134,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--device",
         type=str,
-        default="cuda" if torch.cuda.is_available() else "cpu",
-        help="Torch device to use.",
+        default="auto",
+        help="Torch device to use: auto, cpu, cuda, cuda:0...",
     )
 
     args = parser.parse_args()

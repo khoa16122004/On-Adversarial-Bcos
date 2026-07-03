@@ -2,8 +2,11 @@ from __future__ import annotations
 
 import importlib
 import importlib.util
+import pathlib
+import pickle
 import sys
-from pathlib import Path
+import warnings
+from pathlib import Path, PosixPath, WindowsPath
 
 import matplotlib.pyplot as plt
 from PIL import Image
@@ -12,11 +15,13 @@ import torch.nn as nn
 import torchvision.models as tv_models
 import torchvision.transforms as tv_transforms
 
+from script.const import CHECKPOINT_DIR
+
 
 BCOS_ROOT = Path(__file__).resolve().parents[1] / "B-cos-v2"
 BCOSIFICATION_ROOT = Path(__file__).resolve().parents[1] / "B-cosification"
-DEFAULT_CHECKPOINT_DIR = Path("D:/BCOS_ATTACK/checkpoints/bcos-v2")
-DEFAULT_BCOSIFY_CHECKPOINT_DIR = Path("D:/BCOS_ATTACK/checkpoints/bcosify")
+DEFAULT_CHECKPOINT_DIR = Path(CHECKPOINT_DIR) / "bcos-v2"
+DEFAULT_BCOSIFY_CHECKPOINT_DIR = Path(CHECKPOINT_DIR) / "bcosify"
 DEFAULT_MODEL_TYPE = "bcos"
 _ACTIVE_BCOS_SOURCE: str | None = None
 
@@ -143,6 +148,11 @@ def _get_bcosification_imagenet_model_factory_module():
 	return importlib.import_module("bcos.experiments.ImageNet.bcosification.model")
 
 
+def _get_bcosification_vit_model_factory_module():
+	_ensure_bcosification_root_on_path()
+	return importlib.import_module("bcos.experiments.ImageNet.vit_bcosification.model")
+
+
 def load_imagenet_categories() -> list[str]:
 	# Use torchvision categories to avoid importing bcos backend modules at startup.
 	return list(tv_models.ResNet50_Weights.IMAGENET1K_V2.meta["categories"])
@@ -253,7 +263,54 @@ def resolve_bcosify_checkpoint_path(
 
 
 def _load_state_dict(checkpoint_path: Path) -> dict[str, torch.Tensor]:
-	state_dict = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+	def _load_with_posixpath_compat(*, weights_only: bool):
+		# Some checkpoints serialized on Linux contain PosixPath objects that
+		# cannot be instantiated on Windows. Retry with a temporary compatibility map.
+		if sys.platform != "win32":
+			return torch.load(checkpoint_path, map_location="cpu", weights_only=weights_only)
+
+		try:
+			return torch.load(checkpoint_path, map_location="cpu", weights_only=weights_only)
+		except pathlib.UnsupportedOperation as path_exc:
+			if "PosixPath" not in str(path_exc):
+				raise
+			original_posix_path = pathlib.PosixPath
+			pathlib.PosixPath = pathlib.PurePosixPath  # type: ignore[assignment]
+			try:
+				return torch.load(checkpoint_path, map_location="cpu", weights_only=weights_only)
+			finally:
+				pathlib.PosixPath = original_posix_path
+
+	try:
+		state_dict = _load_with_posixpath_compat(weights_only=True)
+	except pickle.UnpicklingError as exc:
+		message = str(exc)
+		retry_error: Exception | None = None
+
+		# PyTorch >=2.6 defaults to weights_only=True and may reject serialized path classes.
+		if "Unsupported global" in message or "pathlib.PosixPath" in message:
+			try:
+				if hasattr(torch.serialization, "safe_globals"):
+					with torch.serialization.safe_globals([PosixPath, WindowsPath]):
+						state_dict = _load_with_posixpath_compat(weights_only=True)
+				elif hasattr(torch.serialization, "add_safe_globals"):
+					torch.serialization.add_safe_globals([PosixPath, WindowsPath])
+					state_dict = _load_with_posixpath_compat(weights_only=True)
+				else:
+					retry_error = exc
+			except Exception as inner_exc:  # nosec - trusted/local checkpoint fallback handled below
+				retry_error = inner_exc
+		else:
+			retry_error = exc
+
+		if retry_error is not None:
+			warnings.warn(
+				"weights_only checkpoint load failed; retrying with weights_only=False. "
+				"Only use trusted checkpoints. "
+				f"Original error: {retry_error}",
+				RuntimeWarning,
+			)
+			state_dict = _load_with_posixpath_compat(weights_only=False)
 	if isinstance(state_dict, dict) and "state_dict" in state_dict:
 		state_dict = state_dict["state_dict"]
 	return state_dict
@@ -350,37 +407,90 @@ def _build_bcosify_model_config(model_name: str) -> dict:
 	raise ValueError("bcosify model_name must be one of: resnet18, resnet50, densenet121")
 
 
+def _resolve_bcosify_vit_arch(model_name_like: str) -> str | None:
+	normalized = _normalize_model_key(model_name_like)
+	vit_arches = [
+		"simple_vit_ti_patch16_224",
+		"simple_vit_s_patch16_224",
+		"simple_vit_b_patch16_224",
+		"simple_vit_l_patch16_224",
+		"vitc_ti_patch1_14",
+		"vitc_s_patch1_14",
+		"vitc_b_patch1_14",
+		"vitc_l_patch1_14",
+	]
+	for arch in vit_arches:
+		if _normalize_model_key(arch) in normalized:
+			return arch
+	return None
+
+
+def _build_bcosify_vit_model_config(model_name_like: str, vit_arch: str) -> dict:
+	normalized = _normalize_model_key(model_name_like)
+	return {
+		"is_bcos": True,
+		"name": vit_arch,
+		"weights": "pretrained",
+		"bcos_args": {
+			"b": 2,
+			"max_out": 1,
+		},
+		"args": {
+			"num_classes": 1000,
+			"gap_reorder": "gapreorder" in normalized,
+		},
+		"bcosify_args": {
+			"fix_b": True,
+			"use_bias": "usebias" in normalized,
+		},
+		"logit_layer": True,
+		"act_layer": "nogelu" not in normalized,
+	}
+
+
 def load_bcosify_model(
 	model_name_or_checkpoint: str | Path,
 	device: torch.device,
 	checkpoint_dir: Path = DEFAULT_BCOSIFY_CHECKPOINT_DIR,
 	return_checkpoint_path: bool = False,
 ) -> torch.nn.Module | tuple[torch.nn.Module, Path]:
-	model_factory_module = _get_bcosification_imagenet_model_factory_module()
+	model_name_hint = str(model_name_or_checkpoint)
 
 	if isinstance(model_name_or_checkpoint, Path):
 		checkpoint_path = model_name_or_checkpoint
-		resolved_model_name = _normalize_model_key(checkpoint_path.stem)
+		model_name_hint = checkpoint_path.stem
+		resolved_model_name = _normalize_model_key(model_name_hint)
 	else:
 		candidate_path = Path(model_name_or_checkpoint)
 		is_checkpoint_like = candidate_path.suffix in {".pth", ".pt", ".ckpt"} or candidate_path.is_absolute()
 		if is_checkpoint_like:
 			checkpoint_path = candidate_path
-			resolved_model_name = _normalize_model_key(checkpoint_path.stem)
+			model_name_hint = checkpoint_path.stem
+			resolved_model_name = _normalize_model_key(model_name_hint)
 		else:
 			checkpoint_path = resolve_bcosify_checkpoint_path(model_name_or_checkpoint, checkpoint_dir)
+			model_name_hint = str(model_name_or_checkpoint)
 			resolved_model_name = _normalize_model_key(model_name_or_checkpoint)
 
-	if "resnet18" in resolved_model_name:
-		model_name = "resnet18"
+	vit_arch = _resolve_bcosify_vit_arch(model_name_hint)
+	if vit_arch is not None:
+		model_factory_module = _get_bcosification_vit_model_factory_module()
+		model_config = _build_bcosify_vit_model_config(model_name_hint, vit_arch)
+	elif "resnet18" in resolved_model_name:
+		model_factory_module = _get_bcosification_imagenet_model_factory_module()
+		model_config = _build_bcosify_model_config("resnet18")
 	elif "resnet50" in resolved_model_name:
-		model_name = "resnet50"
+		model_factory_module = _get_bcosification_imagenet_model_factory_module()
+		model_config = _build_bcosify_model_config("resnet50")
 	elif "densenet121" in resolved_model_name:
-		model_name = "densenet121"
+		model_factory_module = _get_bcosification_imagenet_model_factory_module()
+		model_config = _build_bcosify_model_config("densenet121")
 	else:
-		raise ValueError("bcosify model_name must be one of: resnet18, resnet50, densenet121")
+		raise ValueError(
+			"bcosify model_name must be one of: resnet18, resnet50, densenet121, "
+			"or a supported ViT arch (simple_vit_*, vitc_*)."
+		)
 
-	model_config = _build_bcosify_model_config(model_name)
 	model = model_factory_module.get_model(model_config)
 
 	state_dict = _load_state_dict(checkpoint_path)

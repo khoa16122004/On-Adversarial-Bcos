@@ -65,6 +65,7 @@ OUTPUT_ROOT="$PROJECT_ROOT/attack_result"
 CHECKPOINT_DIR="$PROJECT_ROOT/checkpoints"
 DEVICE="cuda"
 STEPS=100
+BATCH_SIZE=32
 EPSILONS=(0.03 0.05 0.1 0.2)
 
 run_pgd() {
@@ -83,6 +84,7 @@ run_pgd() {
         --output-root "$OUTPUT_ROOT"
         --checkpoint-dir "$CHECKPOINT_DIR"
         --steps "$STEPS"
+        --batch-size "$BATCH_SIZE"
         --device "$DEVICE"
         --epsilons "${EPSILONS[@]}"
     )

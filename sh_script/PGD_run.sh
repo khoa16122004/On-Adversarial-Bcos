@@ -97,9 +97,9 @@ run_pgd() {
 }
 
 # # 9 models = 3 model types x 3 model names
-# run_pgd "torchvision" "resnet50"
-# run_pgd "torchvision" "densenet121"
-# run_pgd "torchvision" "vit_b_16"
+run_pgd "torchvision" "resnet50"
+run_pgd "torchvision" "densenet121"
+run_pgd "torchvision" "vit_b_16"
 
 run_pgd "bcos" "resnet_50"
 run_pgd "bcos" "densenet_121"

@@ -1,5 +1,0 @@
-source_model_type,source_model_name,target_model_type,target_model_name,epsilon,total,success_vs_true,asr_vs_true,success_vs_source_clean,asr_vs_source_clean
-torchvision,vit_b_16,bcos,resnet50,epsilon_0.03,1000,98,0.098,98,0.098
-torchvision,vit_b_16,bcos,resnet50,epsilon_0.05,1000,166,0.166,166,0.166
-torchvision,vit_b_16,bcos,resnet50,epsilon_0.1,1000,313,0.313,313,0.313
-torchvision,vit_b_16,bcos,resnet50,epsilon_0.2,1000,567,0.567,567,0.567

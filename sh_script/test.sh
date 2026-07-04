@@ -1,6 +1,6 @@
 python script/select_nosucess.py \
   --transfer-json transfer_result/transfer_torchvision_densenet121__to__bcos_densenet121.json \
-  --attack-root /datastore/elo/khoatn/On-Advesrarial-Bcos \
+  --attack-root /datastore/elo/khoatn/On-Adversarial-Bcos \
   --epsilon 0.03 \
   --sample-size 100 \
   --seed 42 \

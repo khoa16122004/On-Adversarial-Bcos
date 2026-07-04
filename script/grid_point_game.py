@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 import sys
-
+from tqdm import tqdm
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -506,7 +506,7 @@ def main() -> None:
     records: list[dict] = []
     failed: list[dict] = []
 
-    for sample_index, sample in enumerate(samples):
+    for sample_index, sample in tqdm(enumerate(samples)):
         img_name = str(sample.get("img_name", f"sample_{sample_index:04d}"))
         sample_name = f"sample_{sample_index:04d}_{sanitize_name(img_name)}"
         sample_out_dir = out_root / sample_name

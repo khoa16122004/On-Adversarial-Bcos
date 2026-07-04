@@ -51,12 +51,18 @@ export PYTHONPATH="$PROJECT_ROOT:${PYTHONPATH:-}"
 
 mkdir -p "$PROJECT_ROOT/grid_point_game"
 
-python script/grid_point_game.py \
-  --input-json "$PROJECT_ROOT/localized/transfer_failed_100.json" \
-  --model-type bcos \
-  --model-name densenet121 \
-  --explain-method bcos-explain \
-  --device cuda \
-  --output-dir "$PROJECT_ROOT/grid_point_game"
+SEEDS=(42 43 44)
+
+for seed in "${SEEDS[@]}"; do
+    echo "Running grid_point_game with seed=$seed"
+    python script/grid_point_game.py \
+        --input-json "$PROJECT_ROOT/localized/transfer_failed_100.json" \
+        --model-type bcos \
+        --model-name densenet121 \
+        --explain-method bcos-explain \
+        --device cuda \
+        --output-dir "$PROJECT_ROOT/grid_point_game" \
+        --seed "$seed"
+done
 
 echo "Done grid point game."

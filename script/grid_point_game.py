@@ -110,6 +110,12 @@ def parse_args() -> argparse.Namespace:
         help="Optional cap on number of samples to process.",
     )
     parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help="Optional seed tag for output folder. If omitted, will use input_json meta.seed when available.",
+    )
+    parser.add_argument(
         "--device",
         type=str,
         default="cuda" if torch.cuda.is_available() else "cpu",
@@ -481,14 +487,20 @@ def main() -> None:
             "integrated-gradients/simple-gradient/smoothgrad currently require --model-type torchvision"
         )
 
-    device = torch.device(args.device)
-    out_root = args.output_dir / f"{sanitize_name(args.model_type)}_{sanitize_name(args.model_name)}"
-    out_root.mkdir(parents=True, exist_ok=True)
-
     payload = json.loads(args.input_json.read_text(encoding="utf-8"))
     samples = payload.get("samples", []) if isinstance(payload, dict) else []
     if not isinstance(samples, list) or not samples:
         raise ValueError("Input JSON must contain non-empty 'samples' list")
+
+    payload_meta = payload.get("meta", {}) if isinstance(payload, dict) else {}
+    json_seed = payload_meta.get("seed") if isinstance(payload_meta, dict) else None
+    run_seed = args.seed if args.seed is not None else json_seed
+
+    device = torch.device(args.device)
+    out_root = args.output_dir / f"{sanitize_name(args.model_type)}_{sanitize_name(args.model_name)}"
+    if run_seed is not None:
+        out_root = out_root / f"seed_{int(run_seed)}"
+    out_root.mkdir(parents=True, exist_ok=True)
 
     if args.max_samples is not None:
         samples = samples[: max(0, int(args.max_samples))]
@@ -579,6 +591,7 @@ def main() -> None:
     summary = {
         "input_json": str(args.input_json),
         "output_root": str(out_root),
+        "seed": int(run_seed) if run_seed is not None else None,
         "model_type": args.model_type,
         "model_name": args.model_name,
         "checkpoint": str(resolved_checkpoint_path),

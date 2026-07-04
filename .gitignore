@@ -219,3 +219,4 @@ __marimo__/
 checkpoints
 # classification_result
 transfer_result
+localized

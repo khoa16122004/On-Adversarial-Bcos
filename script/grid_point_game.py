@@ -23,8 +23,6 @@ from attack.util import (  # noqa: E402
     load_imagenet_categories,
     load_model,
     save_explanation_rgba,
-    save_hot_contribution_map,
-    save_rgb_image,
 )
 
 
@@ -177,10 +175,9 @@ def extract_cell_map_from_grid(contribution_map: torch.Tensor, cell_index: int, 
 
 def compute_grid_scores(contribution_maps: torch.Tensor, single_shape: int) -> torch.Tensor:
     positive_maps = contribution_maps.clamp(min=0)
-    pooled = (
-        F.avg_pool2d(positive_maps, single_shape, stride=single_shape)
-        .permute(0, 1, 3, 2)
-        .reshape(positive_maps.shape[0], -1)
+    # Keep native pooled order for 2x2 grid flattening: [top-left, top-right, bottom-left, bottom-right].
+    pooled = F.avg_pool2d(positive_maps, single_shape, stride=single_shape).reshape(
+        positive_maps.shape[0], -1
     )
     totals = pooled.sum(1, keepdim=True)
     normalized = torch.where(totals * pooled > 0, pooled / totals, torch.zeros_like(pooled))
@@ -387,8 +384,6 @@ def run_grid_localization(
 
     grid_dir = output_dir / prefix
     grid_dir.mkdir(parents=True, exist_ok=True)
-    grid_rgb_path = grid_dir / "grid_rgb.png"
-    save_rgb_image(grid_rgb, grid_rgb_path)
 
     for cell_index, target_class in enumerate(single_predictions):
         contribution_map, explanation, dynamic_linear_weights = compute_contribution_by_method(
@@ -404,37 +399,20 @@ def run_grid_localization(
         cell_contribution_maps.append(contribution_map)
 
         base_name = f"cell-{cell_index}_target-{target_class}_pred-{single_predictions[cell_index]}"
-        grid_map_hot = grid_dir / f"{base_name}_grid_hot.png"
-        cell_map_hot = grid_dir / f"{base_name}_cell_hot.png"
-        grid_map_tensor = grid_dir / f"{base_name}_grid.pt"
-        cell_map_tensor = grid_dir / f"{base_name}_cell.pt"
-
-        save_hot_contribution_map(contribution_map.squeeze(0).squeeze(0), grid_map_hot)
-        save_hot_contribution_map(cell_map.squeeze(0).squeeze(0), cell_map_hot)
-        torch.save(contribution_map.detach().cpu(), grid_map_tensor)
-        torch.save(cell_map.detach().cpu(), cell_map_tensor)
 
         expl_path = None
         if explanation is not None:
             expl_path = grid_dir / f"{base_name}_explanation.png"
             save_explanation_rgba(explanation, expl_path)
 
-        dyn_path = None
-        if dynamic_linear_weights is not None:
-            dyn_path = grid_dir / f"{base_name}_dynamic_linear_weights.pt"
-            torch.save(dynamic_linear_weights.detach().cpu(), dyn_path)
+        _ = cell_map, dynamic_linear_weights
 
         cell_records.append(
             {
                 "cell_index": cell_index,
                 "target_class": int(target_class),
                 "target_class_name": category_name(int(target_class)),
-                "grid_saliency_hot": str(grid_map_hot),
-                "cell_saliency_hot": str(cell_map_hot),
-                "grid_saliency_tensor": str(grid_map_tensor),
-                "cell_saliency_tensor": str(cell_map_tensor),
                 "explanation": str(expl_path) if expl_path is not None else None,
-                "dynamic_linear_weights": str(dyn_path) if dyn_path is not None else None,
             }
         )
 
@@ -451,7 +429,6 @@ def run_grid_localization(
 
     return {
         "grid_dir": str(grid_dir),
-        "grid_rgb": str(grid_rgb_path),
         "images": [str(p) for p in image_paths],
         "single_predictions": [int(x) for x in single_predictions],
         "single_prediction_names": [category_name(int(x)) for x in single_predictions],
@@ -517,6 +494,8 @@ def main() -> None:
 
     records: list[dict] = []
     failed: list[dict] = []
+    mean_adv_values: list[float] = []
+    mean_clean_values: list[float] = []
 
     for sample_index, sample in tqdm(enumerate(samples)):
         img_name = str(sample.get("img_name", f"sample_{sample_index:04d}"))
@@ -556,21 +535,16 @@ def main() -> None:
 
             mean_adv = float(adv_result["mean_localization_score"])
             mean_clean = float(clean_result["mean_localization_score"])
+            mean_adv_values.append(mean_adv)
+            mean_clean_values.append(mean_clean)
 
             records.append(
                 {
                     "sample_index": sample_index,
                     "img_name": img_name,
-                    "source_pred": sample.get("source_pred"),
-                    "target_pred": sample.get("target_pred"),
-                    "grid_info": grid_info,
-                    "adv": adv_result,
-                    "clean": clean_result,
-                    "compare": {
-                        "mean_adv": mean_adv,
-                        "mean_clean": mean_clean,
-                        "delta_adv_minus_clean": mean_adv - mean_clean,
-                    },
+                    "mean_adv": mean_adv,
+                    "mean_clean": mean_clean,
+                    "delta_adv_minus_clean": mean_adv - mean_clean,
                 }
             )
 
@@ -588,6 +562,13 @@ def main() -> None:
             )
             print(f"[{sample_index + 1}/{len(samples)}] {img_name} | ERROR: {exc}")
 
+    overall_mean_adv = (
+        float(sum(mean_adv_values) / len(mean_adv_values)) if mean_adv_values else None
+    )
+    overall_mean_clean = (
+        float(sum(mean_clean_values) / len(mean_clean_values)) if mean_clean_values else None
+    )
+
     summary = {
         "input_json": str(args.input_json),
         "output_root": str(out_root),
@@ -604,6 +585,13 @@ def main() -> None:
         "num_samples_total": len(samples),
         "num_samples_success": len(records),
         "num_samples_failed": len(failed),
+        "overall_mean_adv": overall_mean_adv,
+        "overall_mean_clean": overall_mean_clean,
+        "overall_delta_adv_minus_clean": (
+            (overall_mean_adv - overall_mean_clean)
+            if overall_mean_adv is not None and overall_mean_clean is not None
+            else None
+        ),
         "details": records,
         "failed_samples": failed,
     }

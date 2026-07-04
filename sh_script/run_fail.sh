@@ -2,11 +2,11 @@
 set -euo pipefail
 
 # Usage:
-#   bash sh_script/test.sh [source_model_name]
+#   bash sh_script/run_fail.sh [source_model_name]
 # Example:
-#   bash sh_script/test.sh densenet121
-#   bash sh_script/test.sh resnet50
-#   bash sh_script/test.sh vit_b_16
+#   bash sh_script/run_fail.sh densenet121
+#   bash sh_script/run_fail.sh resnet50
+#   bash sh_script/run_fail.sh vit_b_16
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
@@ -46,6 +46,12 @@ resolve_targets_for_source() {
 
 TARGETS=( $(resolve_targets_for_source "$SOURCE_MODEL_NAME") )
 
+epsilon_to_tag() {
+  local eps="$1"
+  # 0.03 -> 0p03 for path-safe readable tag
+  echo "${eps/./p}"
+}
+
 echo "===================================================="
 echo "Source: ${SOURCE_MODEL_TYPE}/${SOURCE_MODEL_NAME}"
 echo "Targets: ${TARGETS[*]}"
@@ -57,25 +63,28 @@ for target in "${TARGETS[@]}"; do
   TARGET_MODEL_NAME="${target#*:}"
   TRANSFER_TAG="from_${SOURCE_MODEL_TYPE}_${SOURCE_MODEL_NAME}__to__${TARGET_MODEL_TYPE}_${TARGET_MODEL_NAME}"
   TRANSFER_JSON="${TRANSFER_RESULT_DIR}/transfer_${SOURCE_MODEL_TYPE}_${SOURCE_MODEL_NAME}__to__${TARGET_MODEL_TYPE}_${TARGET_MODEL_NAME}.json"
-  OUTPUT_PAIR_DIR="${OUTPUT_LOCALIZED_DIR}/${TRANSFER_TAG}"
 
   if [ ! -f "$TRANSFER_JSON" ]; then
     echo "[skip] Missing transfer JSON: $TRANSFER_JSON"
     continue
   fi
 
-  mkdir -p "$OUTPUT_PAIR_DIR"
+  for EPSILON in "${EPSILONS[@]}"; do
+    EPS_TAG="$(epsilon_to_tag "$EPSILON")"
+    OUTPUT_PAIR_DIR="${OUTPUT_LOCALIZED_DIR}/${TRANSFER_TAG}/epsilon_${EPS_TAG}"
+    mkdir -p "$OUTPUT_PAIR_DIR"
 
-  echo "[run] Building failed-transfer sample set from ${TRANSFER_JSON}"
-  python script/select_nosucess.py \
-    --transfer-json "$TRANSFER_JSON" \
-    --attack-root "$ATTACK_ROOT" \
-    --epsilon "${EPSILONS[0]}" \
-    --sample-size "$SAMPLE_SIZE" \
-    --seed "$SEED" \
-    --imagenet-val-dir "$IMAGENET_VAL_DIR" \
-    --annotations-file "$ANNOTATIONS_FILE" \
-    --output "$OUTPUT_PAIR_DIR"
+    echo "[run] ${TRANSFER_TAG} | epsilon=${EPSILON}"
+    python script/select_nosucess.py \
+      --transfer-json "$TRANSFER_JSON" \
+      --attack-root "$ATTACK_ROOT" \
+      --epsilon "$EPSILON" \
+      --sample-size "$SAMPLE_SIZE" \
+      --seed "$SEED" \
+      --imagenet-val-dir "$IMAGENET_VAL_DIR" \
+      --annotations-file "$ANNOTATIONS_FILE" \
+      --output "$OUTPUT_PAIR_DIR"
+  done
 done
 
 echo "===================================================="

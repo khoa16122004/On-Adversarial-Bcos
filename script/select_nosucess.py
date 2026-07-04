@@ -5,8 +5,7 @@ import json
 import random
 from pathlib import Path
 
-from const import ANNOTATIONS_FILE, IMAGENET_VAL_DATA, PROJECT_ROOT
-from dataloader import ImageNet
+from const import ANNOTATIONS_FILE, CLASSIFICATION_RESULT_DIR, IMAGENET_VAL_DATA, PROJECT_ROOT
 
 
 def _sanitize_slug(text: str) -> str:
@@ -26,6 +25,66 @@ def _build_transfer_tag(source_type: str, source_name: str, target_key: str) -> 
     src = f"{_sanitize_slug(source_type)}_{_sanitize_slug(source_name)}"
     tgt = f"{_sanitize_slug(target_type)}_{_sanitize_slug(target_name)}"
     return f"from_{src}__to__{tgt}"
+
+
+def _resolve_target_correct_paths_json(target_type: str, target_name: str) -> Path:
+    base = Path(CLASSIFICATION_RESULT_DIR)
+    direct = (
+        base
+        / target_type
+        / target_name
+        / f"{target_type}_{target_name}_default_imagenet_correct_paths.json"
+    )
+    if direct.exists():
+        return direct
+
+    candidates = sorted(
+        (base / target_type / target_name).glob("*_imagenet_correct_paths.json")
+    )
+    if candidates:
+        return candidates[0]
+
+    raise FileNotFoundError(
+        "Cannot find target correct-paths JSON under classification_result for "
+        f"{target_type}:{target_name}. Expected: {direct}"
+    )
+
+
+def _load_class_metadata(annotations_file: Path) -> tuple[dict[int, str], dict[int, str]]:
+    with annotations_file.open("r", encoding="utf-8") as f:
+        annotations = json.load(f)
+    if not isinstance(annotations, dict):
+        raise ValueError(f"Invalid annotation format in: {annotations_file}")
+
+    class_id_to_folder: dict[int, str] = {}
+    class_id_to_name: dict[int, str] = {}
+    for folder_name, value in annotations.items():
+        if not isinstance(value, list) or len(value) < 2:
+            continue
+        class_id = int(value[0])
+        class_name = str(value[1]).replace("_", " ")
+        class_id_to_folder[class_id] = str(folder_name)
+        class_id_to_name[class_id] = class_name
+    return class_id_to_folder, class_id_to_name
+
+
+def _load_correct_paths_by_class(correct_paths_json: Path) -> dict[int, list[str]]:
+    with correct_paths_json.open("r", encoding="utf-8") as f:
+        data = json.load(f)
+    if not isinstance(data, dict):
+        raise ValueError(f"Invalid format in correct-paths file: {correct_paths_json}")
+
+    class_id_to_images: dict[int, list[str]] = {}
+    for class_id_str, paths in data.items():
+        if not isinstance(paths, list):
+            continue
+        class_id = int(class_id_str)
+        image_paths = [str(p) for p in paths if isinstance(p, str) and p]
+        if image_paths:
+            class_id_to_images[class_id] = image_paths
+    if not class_id_to_images:
+        raise ValueError(f"No valid image paths found in {correct_paths_json}")
+    return class_id_to_images
 
 
 def _resolve_output_path(requested_output: Path, meta: dict[str, object]) -> Path:
@@ -108,32 +167,6 @@ def _sample_two_random_classes(rng: random.Random, exclude: set[int]) -> list[in
     if len(pool) < 2:
         raise ValueError("Not enough classes available to sample two random classes.")
     return rng.sample(pool, 2)
-
-
-def _build_class_id_to_images(
-    imagenet_val_dir: Path,
-    annotations_file: Path,
-) -> tuple[dict[int, list[str]], dict[int, str], dict[int, str]]:
-    dataset = ImageNet(
-        img_dir=str(imagenet_val_dir),
-        annotations_file=str(annotations_file),
-        transform=None,
-    )
-
-    class_id_to_images: dict[int, list[str]] = {}
-    class_id_to_folder: dict[int, str] = {}
-    for img_path, class_id, _class_name, _folder_name in dataset.samples:
-        class_id_to_images.setdefault(int(class_id), []).append(str(img_path))
-        class_id_to_folder.setdefault(int(class_id), str(_folder_name))
-
-    if not class_id_to_images:
-        raise ValueError(
-            "No ImageNet validation images found. "
-            f"Check --imagenet-val-dir: {imagenet_val_dir} and --annotations-file: {annotations_file}"
-        )
-
-    class_id_to_name = dict(dataset.class_id_to_name)
-    return class_id_to_images, class_id_to_folder, class_id_to_name
 
 
 def _sample_two_random_refs(
@@ -230,6 +263,7 @@ def build_failure_samples(
         raise ValueError("Transfer report has no target results.")
 
     target_key = next(iter(results.keys()))
+    target_type, target_name = _parse_target_pair(target_key)
     target_block = results[target_key]
     if not isinstance(target_block, dict):
         raise ValueError("Invalid target block format in transfer report.")
@@ -254,10 +288,10 @@ def build_failure_samples(
 
     rng = random.Random(seed)
     chosen = rng.sample(failed, sample_size)
-    class_id_to_images, class_id_to_folder, class_id_to_name = _build_class_id_to_images(
-        imagenet_val_dir=imagenet_val_dir,
-        annotations_file=annotations_file,
-    )
+    _ = imagenet_val_dir
+    class_id_to_folder, class_id_to_name = _load_class_metadata(annotations_file)
+    correct_paths_json = _resolve_target_correct_paths_json(target_type, target_name)
+    class_id_to_images = _load_correct_paths_by_class(correct_paths_json)
 
     output: list[dict] = []
     for item in chosen:
@@ -325,6 +359,7 @@ def build_failure_samples(
         "source_model_name": source_model_name,
         "target": target_key,
         "transfer_tag": _build_transfer_tag(source_model_type, source_model_name, target_key),
+        "target_correct_paths_json": str(correct_paths_json),
         "epsilon": epsilon_key,
         "sample_size": sample_size,
         "seed": seed,

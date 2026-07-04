@@ -23,6 +23,7 @@ from attack.util import (  # noqa: E402
     load_imagenet_categories,
     load_model,
     save_explanation_rgba,
+    save_rgb_image,
 )
 
 
@@ -393,6 +394,7 @@ def run_grid_localization(
     model: torch.nn.Module,
     transform_cls,
     image_paths: list[Path],
+    explain_classes: list[int],
     output_dir: Path,
     prefix: str,
     explain_method: str,
@@ -405,6 +407,8 @@ def run_grid_localization(
 ) -> dict:
     if len(image_paths) != 4:
         raise ValueError("Expected 4 image paths")
+    if len(explain_classes) != 4:
+        raise ValueError("Expected exactly 4 explain classes (y1,y2,y3,y4)")
     for p in image_paths:
         if not p.exists():
             raise FileNotFoundError(f"Image does not exist: {p}")
@@ -436,8 +440,10 @@ def run_grid_localization(
 
     grid_dir = output_dir / prefix
     grid_dir.mkdir(parents=True, exist_ok=True)
+    grid_rgb_path = grid_dir / "grid_rgb.png"
+    save_rgb_image(grid_rgb, grid_rgb_path)
 
-    for cell_index, target_class in enumerate(single_predictions):
+    for cell_index, target_class in enumerate(explain_classes):
         contribution_map, explanation, dynamic_linear_weights = compute_contribution_by_method(
             explain_method=explain_method,
             model=model,
@@ -481,7 +487,10 @@ def run_grid_localization(
 
     return {
         "grid_dir": str(grid_dir),
+        "grid_rgb": str(grid_rgb_path),
         "images": [str(p) for p in image_paths],
+        "explain_classes": [int(x) for x in explain_classes],
+        "explain_class_names": [category_name(int(x)) for x in explain_classes],
         "single_predictions": [int(x) for x in single_predictions],
         "single_prediction_names": [category_name(int(x)) for x in single_predictions],
         "grid_prediction": int(grid_prediction),
@@ -562,10 +571,21 @@ def main() -> None:
 
         try:
             adv_paths, clean_paths, grid_info = extract_grid_paths_from_itemrefs(sample)
+
+            y1 = int(sample.get("source_pred"))
+            y2 = int(sample.get("target_pred"))
+            random_classes = sample.get("two_random_classes", [])
+            if not isinstance(random_classes, list) or len(random_classes) != 2:
+                raise ValueError("sample.two_random_classes must contain exactly 2 classes for y3,y4")
+            y3 = int(random_classes[0])
+            y4 = int(random_classes[1])
+            explain_classes = [y1, y2, y3, y4]
+
             adv_result = run_grid_localization(
                 model=model,
                 transform_cls=transform_cls,
                 image_paths=adv_paths,
+                explain_classes=explain_classes,
                 output_dir=sample_out_dir,
                 prefix="adv_grid",
                 explain_method=args.explain_method,
@@ -580,6 +600,7 @@ def main() -> None:
                 model=model,
                 transform_cls=transform_cls,
                 image_paths=clean_paths,
+                explain_classes=explain_classes,
                 output_dir=sample_out_dir,
                 prefix="clean_grid",
                 explain_method=args.explain_method,
@@ -600,6 +621,10 @@ def main() -> None:
                 {
                     "sample_index": sample_index,
                     "img_name": img_name,
+                    "y1_source_wrong_class": y1,
+                    "y2_target_class": y2,
+                    "y3_random_class": y3,
+                    "y4_random_class": y4,
                     "mean_adv": mean_adv,
                     "mean_clean": mean_clean,
                     "delta_adv_minus_clean": mean_adv - mean_clean,

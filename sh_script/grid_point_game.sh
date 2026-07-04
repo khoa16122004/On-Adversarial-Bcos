@@ -52,7 +52,7 @@ export PYTHONPATH="$PROJECT_ROOT:${PYTHONPATH:-}"
 mkdir -p "$PROJECT_ROOT/grid_point_game"
 
 SEEDS=(42)
-INPUT_BASE="$PROJECT_ROOT/localized/failed_transfer"
+INPUT_BASE="$PROJECT_ROOT/failed_transfer"
 
 if [ ! -d "$INPUT_BASE" ]; then
     echo "Input folder not found: $INPUT_BASE"

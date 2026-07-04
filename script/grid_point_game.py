@@ -395,6 +395,7 @@ def run_grid_localization(
     transform_cls,
     image_paths: list[Path],
     explain_classes: list[int],
+    pred_labels_for_name: list[int] | None,
     output_dir: Path,
     prefix: str,
     explain_method: str,
@@ -409,6 +410,8 @@ def run_grid_localization(
         raise ValueError("Expected 4 image paths")
     if len(explain_classes) != 4:
         raise ValueError("Expected exactly 4 explain classes (y1,y2,y3,y4)")
+    if pred_labels_for_name is not None and len(pred_labels_for_name) != 4:
+        raise ValueError("pred_labels_for_name must contain exactly 4 class ids")
     for p in image_paths:
         if not p.exists():
             raise FileNotFoundError(f"Image does not exist: {p}")
@@ -456,7 +459,10 @@ def run_grid_localization(
         cell_map = extract_cell_map_from_grid(contribution_map, cell_index, single_shape)
         cell_contribution_maps.append(contribution_map)
 
-        base_name = f"cell-{cell_index}_target-{target_class}_pred-{single_predictions[cell_index]}"
+        pred_label = (
+            int(pred_labels_for_name[cell_index]) if pred_labels_for_name is not None else int(single_predictions[cell_index])
+        )
+        base_name = f"cell-{cell_index}_target-{target_class}_pred-{pred_label}"
 
         expl_path = None
         if explanation is not None:
@@ -580,12 +586,19 @@ def main() -> None:
             y3 = int(random_classes[0])
             y4 = int(random_classes[1])
             explain_classes = [y1, y2, y3, y4]
+            # Requested mapping:
+            # cell-0: source image explained by y2
+            # cell-1: y2-class image explained by y1
+            # cell-2: y3, cell-3: y4
+            explain_classes = [y2, y1, y3, y4]
+            pred_labels_for_name = [y2, y1, y3, y4]
 
             adv_result = run_grid_localization(
                 model=model,
                 transform_cls=transform_cls,
                 image_paths=adv_paths,
                 explain_classes=explain_classes,
+                pred_labels_for_name=pred_labels_for_name,
                 output_dir=sample_out_dir,
                 prefix="adv_grid",
                 explain_method=args.explain_method,
@@ -601,6 +614,7 @@ def main() -> None:
                 transform_cls=transform_cls,
                 image_paths=clean_paths,
                 explain_classes=explain_classes,
+                pred_labels_for_name=pred_labels_for_name,
                 output_dir=sample_out_dir,
                 prefix="clean_grid",
                 explain_method=args.explain_method,

@@ -115,6 +115,7 @@ def _sample_two_random_refs(
     class_ids = rng.sample(available_classes, 2)
     refs = [
         {
+            "role": "random_class",
             "class_id": class_id,
             "class_folder": class_id_to_folder.get(class_id, ""),
             "class_name": class_id_to_name.get(class_id, ""),
@@ -123,6 +124,48 @@ def _sample_two_random_refs(
         for class_id in class_ids
     ]
     return class_ids, refs
+
+
+def _sample_one_ref_by_class_id(
+    rng: random.Random,
+    class_id: int,
+    class_id_to_images: dict[int, list[str]],
+    class_id_to_folder: dict[int, str],
+    class_id_to_name: dict[int, str],
+    role: str,
+) -> dict[str, object]:
+    images = class_id_to_images.get(class_id, [])
+    if not images:
+        raise ValueError(f"No images found for class_id={class_id}.")
+
+    return {
+        "role": role,
+        "class_id": class_id,
+        "class_folder": class_id_to_folder.get(class_id, ""),
+        "class_name": class_id_to_name.get(class_id, ""),
+        "img_path": rng.choice(images),
+    }
+
+
+def _resolve_source_adv_png(metadata_path: Path, source_meta: dict) -> str:
+    raw = source_meta.get("adv_png")
+    if isinstance(raw, str) and raw:
+        raw_path = Path(raw)
+        if raw_path.exists():
+            return str(raw_path)
+
+    candidates = [
+        metadata_path.parent / "adv.png",
+        metadata_path.parent / "adv.jpg",
+        metadata_path.parent / "adv.jpeg",
+    ]
+    for path in candidates:
+        if path.exists():
+            return str(path)
+
+    raise FileNotFoundError(
+        f"Cannot find source adversarial image near metadata: {metadata_path}"
+    )
 
 
 def build_failure_samples(
@@ -202,6 +245,17 @@ def build_failure_samples(
                 f"Missing 'final_pred'/'clean_pred' in {metadata_path} for image {image_name}"
             )
 
+        source_adv_png = _resolve_source_adv_png(metadata_path=metadata_path, source_meta=source_meta)
+
+        target_ref = _sample_one_ref_by_class_id(
+            rng=rng,
+            class_id=target_pred,
+            class_id_to_images=class_id_to_images,
+            class_id_to_folder=class_id_to_folder,
+            class_id_to_name=class_id_to_name,
+            role="target_pred_class",
+        )
+
         random_classes, random_refs = _sample_two_random_refs(
             rng=rng,
             class_id_to_images=class_id_to_images,
@@ -216,7 +270,14 @@ def build_failure_samples(
                 "source_pred": source_pred,
                 "target_pred": target_pred,
                 "two_random_classes": random_classes,
-                "two_random_refs": random_refs,
+                "itemrefs": [
+                    {
+                        "role": "source_adv",
+                        "img_path": source_adv_png,
+                    },
+                    target_ref,
+                    *random_refs,
+                ],
             }
         )
 

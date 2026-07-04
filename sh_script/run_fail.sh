@@ -27,7 +27,7 @@ SEED=42
 ATTACK_ROOT="/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result"
 IMAGENET_VAL_DIR="/datastore/elo/quanphm/dataset/ImageNet1K/val"
 ANNOTATIONS_FILE="script/id_2_classname.json"
-OUTPUT_LOCALIZED_DIR="localized/failed_transfer"
+OUTPUT_LOCALIZED_DIR="failed_transfer"
 TRANSFER_RESULT_DIR="transfer_result"
 
 validate_source_model() {

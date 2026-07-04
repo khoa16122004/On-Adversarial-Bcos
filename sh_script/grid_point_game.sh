@@ -51,7 +51,7 @@ export PYTHONPATH="$PROJECT_ROOT:${PYTHONPATH:-}"
 
 mkdir -p "$PROJECT_ROOT/grid_point_game"
 
-SEEDS=(42 43 44)
+SEEDS=(42)
 
 for seed in "${SEEDS[@]}"; do
     echo "Running grid_point_game with seed=$seed"

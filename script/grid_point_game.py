@@ -39,6 +39,46 @@ SMOOTH = 0
 IMAGENET_CATEGORIES = load_imagenet_categories()
 
 
+def _sanitize_slug(text: str) -> str:
+    text = text.strip()
+    if not text:
+        return "unknown"
+    kept = []
+    for ch in text:
+        if ch.isalnum() or ch in {"-", "_"}:
+            kept.append(ch)
+        else:
+            kept.append("_")
+    return "".join(kept)
+
+
+def _parse_target_pair(target_key: str) -> tuple[str, str]:
+    if ":" in target_key:
+        t_type, t_name = target_key.split(":", 1)
+        return t_type.strip(), t_name.strip()
+    return "unknown", target_key.strip()
+
+
+def _build_transfer_tag_from_meta(payload_meta: dict) -> str | None:
+    if not isinstance(payload_meta, dict):
+        return None
+
+    existing = payload_meta.get("transfer_tag")
+    if isinstance(existing, str) and existing.strip():
+        return _sanitize_slug(existing)
+
+    source_type = str(payload_meta.get("source_model_type", "")).strip()
+    source_name = str(payload_meta.get("source_model_name", "")).strip()
+    target_key = str(payload_meta.get("target", "")).strip()
+    if not source_type or not source_name or not target_key:
+        return None
+
+    target_type, target_name = _parse_target_pair(target_key)
+    src = f"{_sanitize_slug(source_type)}_{_sanitize_slug(source_name)}"
+    tgt = f"{_sanitize_slug(target_type)}_{_sanitize_slug(target_name)}"
+    return f"from_{src}__to__{tgt}"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
@@ -470,11 +510,14 @@ def main() -> None:
         raise ValueError("Input JSON must contain non-empty 'samples' list")
 
     payload_meta = payload.get("meta", {}) if isinstance(payload, dict) else {}
+    transfer_tag = _build_transfer_tag_from_meta(payload_meta)
     json_seed = payload_meta.get("seed") if isinstance(payload_meta, dict) else None
     run_seed = args.seed if args.seed is not None else json_seed
 
     device = torch.device(args.device)
     out_root = args.output_dir / f"{sanitize_name(args.model_type)}_{sanitize_name(args.model_name)}"
+    if transfer_tag is not None:
+        out_root = out_root / transfer_tag
     if run_seed is not None:
         out_root = out_root / f"seed_{int(run_seed)}"
     out_root.mkdir(parents=True, exist_ok=True)
@@ -573,6 +616,10 @@ def main() -> None:
         "input_json": str(args.input_json),
         "output_root": str(out_root),
         "seed": int(run_seed) if run_seed is not None else None,
+        "transfer_tag": transfer_tag,
+        "transfer_source_model_type": payload_meta.get("source_model_type") if isinstance(payload_meta, dict) else None,
+        "transfer_source_model_name": payload_meta.get("source_model_name") if isinstance(payload_meta, dict) else None,
+        "transfer_target": payload_meta.get("target") if isinstance(payload_meta, dict) else None,
         "model_type": args.model_type,
         "model_name": args.model_name,
         "checkpoint": str(resolved_checkpoint_path),

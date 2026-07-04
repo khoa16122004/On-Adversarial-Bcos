@@ -9,6 +9,43 @@ from const import ANNOTATIONS_FILE, IMAGENET_VAL_DATA, PROJECT_ROOT
 from dataloader import ImageNet
 
 
+def _sanitize_slug(text: str) -> str:
+    cleaned = text.strip().replace(":", "_").replace("/", "_").replace("\\", "_")
+    return "".join(ch if (ch.isalnum() or ch in {"-", "_"}) else "_" for ch in cleaned)
+
+
+def _parse_target_pair(target_key: str) -> tuple[str, str]:
+    if ":" in target_key:
+        target_type, target_name = target_key.split(":", 1)
+        return target_type.strip(), target_name.strip()
+    return "unknown", target_key.strip()
+
+
+def _build_transfer_tag(source_type: str, source_name: str, target_key: str) -> str:
+    target_type, target_name = _parse_target_pair(target_key)
+    src = f"{_sanitize_slug(source_type)}_{_sanitize_slug(source_name)}"
+    tgt = f"{_sanitize_slug(target_type)}_{_sanitize_slug(target_name)}"
+    return f"from_{src}__to__{tgt}"
+
+
+def _resolve_output_path(requested_output: Path, meta: dict[str, object]) -> Path:
+    source_type = str(meta.get("source_model_type", "unknown"))
+    source_name = str(meta.get("source_model_name", "unknown"))
+    target_key = str(meta.get("target", "unknown"))
+    transfer_tag = _build_transfer_tag(source_type, source_name, target_key)
+
+    # If output is a directory-like path, create a descriptive filename inside it.
+    if requested_output.suffix.lower() != ".json":
+        return requested_output / f"transfer_failed_{transfer_tag}.json"
+
+    # Keep explicit descriptive names as-is.
+    if "__to__" in requested_output.stem and "from_" in requested_output.stem:
+        return requested_output
+
+    # For generic names, append transfer tag before extension.
+    return requested_output.with_name(f"{requested_output.stem}__{transfer_tag}.json")
+
+
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as f:
         data = json.load(f)
@@ -287,6 +324,7 @@ def build_failure_samples(
         "source_model_type": source_model_type,
         "source_model_name": source_model_name,
         "target": target_key,
+        "transfer_tag": _build_transfer_tag(source_model_type, source_model_name, target_key),
         "epsilon": epsilon_key,
         "sample_size": sample_size,
         "seed": seed,
@@ -347,11 +385,13 @@ def main() -> None:
         seed=args.seed,
     )
 
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    with args.output.open("w", encoding="utf-8") as f:
+    resolved_output = _resolve_output_path(args.output, meta)
+
+    resolved_output.parent.mkdir(parents=True, exist_ok=True)
+    with resolved_output.open("w", encoding="utf-8") as f:
         json.dump({"meta": meta, "samples": records}, f, ensure_ascii=False, indent=2)
 
-    print(f"Saved: {args.output}")
+    print(f"Saved: {resolved_output}")
     print(f"Selected {len(records)} failed transfer samples")
     print(f"Source: {meta['source_model_type']}:{meta['source_model_name']}")
     print(f"Target: {meta['target']} | Epsilon: {meta['epsilon']}")

@@ -2,19 +2,21 @@
 set -euo pipefail
 
 # Usage:
-#   bash sh_script/run_fail.sh [source_model_name]
+#   bash sh_script/run_fail.sh [source_model_name|all]
 # Example:
 #   bash sh_script/run_fail.sh densenet121
 #   bash sh_script/run_fail.sh resnet50
 #   bash sh_script/run_fail.sh vit_b_16
+#   bash sh_script/run_fail.sh all
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$PROJECT_ROOT"
 
 SOURCE_MODEL_TYPE="torchvision"
-SOURCE_MODEL_NAME="${1:-densenet121}"
-EPSILONS=(0.03)
+SOURCE_MODEL_NAME="${1:-all}"
+EPSILONS=(0.03 0.05 0.1 0.2)
+SOURCE_MODEL_NAMES=("resnet50" "densenet121" "vit_b_16")
 SAMPLE_SIZE=100
 SEED=42
 
@@ -44,7 +46,11 @@ resolve_targets_for_source() {
   esac
 }
 
-TARGETS=( $(resolve_targets_for_source "$SOURCE_MODEL_NAME") )
+if [ "$SOURCE_MODEL_NAME" = "all" ]; then
+  RUN_SOURCE_MODELS=("${SOURCE_MODEL_NAMES[@]}")
+else
+  RUN_SOURCE_MODELS=("$SOURCE_MODEL_NAME")
+fi
 
 epsilon_to_tag() {
   local eps="$1"
@@ -53,39 +59,44 @@ epsilon_to_tag() {
 }
 
 echo "===================================================="
-echo "Source: ${SOURCE_MODEL_TYPE}/${SOURCE_MODEL_NAME}"
-echo "Targets: ${TARGETS[*]}"
+echo "Source type: ${SOURCE_MODEL_TYPE}"
+echo "Source models: ${RUN_SOURCE_MODELS[*]}"
 echo "Mode: build failed transfer only (no transfer.py run)"
 echo "===================================================="
 
-for target in "${TARGETS[@]}"; do
-  TARGET_MODEL_TYPE="${target%%:*}"
-  TARGET_MODEL_NAME="${target#*:}"
-  TRANSFER_TAG="from_${SOURCE_MODEL_TYPE}_${SOURCE_MODEL_NAME}__to__${TARGET_MODEL_TYPE}_${TARGET_MODEL_NAME}"
-  TRANSFER_JSON="${TRANSFER_RESULT_DIR}/transfer_${SOURCE_MODEL_TYPE}_${SOURCE_MODEL_NAME}__to__${TARGET_MODEL_TYPE}_${TARGET_MODEL_NAME}.json"
+for SRC_MODEL in "${RUN_SOURCE_MODELS[@]}"; do
+  TARGETS=( $(resolve_targets_for_source "$SRC_MODEL") )
+  echo "---- Source model: ${SRC_MODEL} | targets: ${TARGETS[*]}"
 
-  if [ ! -f "$TRANSFER_JSON" ]; then
-    echo "[skip] Missing transfer JSON: $TRANSFER_JSON"
-    continue
-  fi
+  for target in "${TARGETS[@]}"; do
+    TARGET_MODEL_TYPE="${target%%:*}"
+    TARGET_MODEL_NAME="${target#*:}"
+    TRANSFER_TAG="from_${SOURCE_MODEL_TYPE}_${SRC_MODEL}__to__${TARGET_MODEL_TYPE}_${TARGET_MODEL_NAME}"
+    TRANSFER_JSON="${TRANSFER_RESULT_DIR}/transfer_${SOURCE_MODEL_TYPE}_${SRC_MODEL}__to__${TARGET_MODEL_TYPE}_${TARGET_MODEL_NAME}.json"
 
-  for EPSILON in "${EPSILONS[@]}"; do
-    EPS_TAG="$(epsilon_to_tag "$EPSILON")"
-    OUTPUT_PAIR_DIR="${OUTPUT_LOCALIZED_DIR}/${TRANSFER_TAG}/epsilon_${EPS_TAG}"
-    mkdir -p "$OUTPUT_PAIR_DIR"
+    if [ ! -f "$TRANSFER_JSON" ]; then
+      echo "[skip] Missing transfer JSON: $TRANSFER_JSON"
+      continue
+    fi
 
-    echo "[run] ${TRANSFER_TAG} | epsilon=${EPSILON}"
-    python script/select_nosucess.py \
-      --transfer-json "$TRANSFER_JSON" \
-      --attack-root "$ATTACK_ROOT" \
-      --epsilon "$EPSILON" \
-      --sample-size "$SAMPLE_SIZE" \
-      --seed "$SEED" \
-      --imagenet-val-dir "$IMAGENET_VAL_DIR" \
-      --annotations-file "$ANNOTATIONS_FILE" \
-      --output "$OUTPUT_PAIR_DIR"
+    for EPSILON in "${EPSILONS[@]}"; do
+      EPS_TAG="$(epsilon_to_tag "$EPSILON")"
+      OUTPUT_PAIR_DIR="${OUTPUT_LOCALIZED_DIR}/${TRANSFER_TAG}/epsilon_${EPS_TAG}"
+      mkdir -p "$OUTPUT_PAIR_DIR"
+
+      echo "[run] ${TRANSFER_TAG} | epsilon=${EPSILON}"
+      python script/select_nosucess.py \
+        --transfer-json "$TRANSFER_JSON" \
+        --attack-root "$ATTACK_ROOT" \
+        --epsilon "$EPSILON" \
+        --sample-size "$SAMPLE_SIZE" \
+        --seed "$SEED" \
+        --imagenet-val-dir "$IMAGENET_VAL_DIR" \
+        --annotations-file "$ANNOTATIONS_FILE" \
+        --output "$OUTPUT_PAIR_DIR"
+    done
   done
 done
 
 echo "===================================================="
-echo "Done failed-transfer selection for source ${SOURCE_MODEL_NAME}."
+echo "Done failed-transfer selection for source models: ${RUN_SOURCE_MODELS[*]}."

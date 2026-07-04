@@ -79,6 +79,18 @@ def _build_transfer_tag_from_meta(payload_meta: dict) -> str | None:
     return f"from_{src}__to__{tgt}"
 
 
+def _extract_epsilon_tag(payload_meta: dict) -> str | None:
+    if not isinstance(payload_meta, dict):
+        return None
+    eps = payload_meta.get("epsilon")
+    if eps is None:
+        return None
+    eps_text = str(eps).strip()
+    if not eps_text:
+        return None
+    return _sanitize_slug(eps_text)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
@@ -511,6 +523,7 @@ def main() -> None:
 
     payload_meta = payload.get("meta", {}) if isinstance(payload, dict) else {}
     transfer_tag = _build_transfer_tag_from_meta(payload_meta)
+    epsilon_tag = _extract_epsilon_tag(payload_meta)
     json_seed = payload_meta.get("seed") if isinstance(payload_meta, dict) else None
     run_seed = args.seed if args.seed is not None else json_seed
 
@@ -518,6 +531,8 @@ def main() -> None:
     out_root = args.output_dir / f"{sanitize_name(args.model_type)}_{sanitize_name(args.model_name)}"
     if transfer_tag is not None:
         out_root = out_root / transfer_tag
+    if epsilon_tag is not None:
+        out_root = out_root / f"epsilon_{epsilon_tag}"
     if run_seed is not None:
         out_root = out_root / f"seed_{int(run_seed)}"
     out_root.mkdir(parents=True, exist_ok=True)
@@ -617,6 +632,7 @@ def main() -> None:
         "output_root": str(out_root),
         "seed": int(run_seed) if run_seed is not None else None,
         "transfer_tag": transfer_tag,
+        "transfer_epsilon": payload_meta.get("epsilon") if isinstance(payload_meta, dict) else None,
         "transfer_source_model_type": payload_meta.get("source_model_type") if isinstance(payload_meta, dict) else None,
         "transfer_source_model_name": payload_meta.get("source_model_name") if isinstance(payload_meta, dict) else None,
         "transfer_target": payload_meta.get("target") if isinstance(payload_meta, dict) else None,

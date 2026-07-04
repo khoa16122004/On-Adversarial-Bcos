@@ -31,7 +31,8 @@ from attack.util import (  # noqa: E402
 DEFAULT_INPUT_JSON = ROOT / "localization" / "transfer_failed_100.json"
 DEFAULT_OUTPUT_DIR = ROOT / "localized" / "grid_point_game"
 EXPLAIN_METHOD = "simple-gradient"
-INPUT_FORMAT = "spatial-rgb"
+# INPUT_FORMAT = "spatial-rgb"
+INPUT_FORMAT = "model-transform"
 IG_STEPS = 100
 SG_SAMPLES = 32
 SG_NOISE_STD = 0.1
@@ -130,6 +131,13 @@ def load_input_rgb(image_path: Path, transform_cls, device: torch.device, input_
         rgb_tensor = torch.from_numpy(image_np).permute(2, 0, 1).unsqueeze(0)
         return rgb_tensor.to(device)
     return transform_cls.spatial_transform(image)[None].to(device)
+
+
+def load_input_rgb_raw(image_path: Path, device: torch.device) -> torch.Tensor:
+    image = Image.open(image_path).convert("RGB")
+    image_np = np.asarray(image, dtype=np.float32) / 255.0
+    rgb_tensor = torch.from_numpy(image_np).permute(2, 0, 1).unsqueeze(0)
+    return rgb_tensor.to(device)
 
 
 def get_single_prediction(model: torch.nn.Module, transform_cls, rgb_tensor: torch.Tensor) -> int:
@@ -348,8 +356,15 @@ def run_grid_localization(
 
     rgb_tiles: list[torch.Tensor] = []
     single_predictions: list[int] = []
-    for image_path in image_paths:
-        rgb = load_input_rgb(image_path, transform_cls, device, input_format)
+    # Rule: first tile is source image (adv/clean) -> keep raw; other 3 are references -> apply spatial transform.
+    preprocess_modes: list[str] = []
+    for tile_index, image_path in enumerate(image_paths):
+        if tile_index == 0:
+            rgb = load_input_rgb_raw(image_path, device)
+            preprocess_modes.append("raw")
+        else:
+            rgb = load_input_rgb(image_path, transform_cls, device, "model-transform")
+            preprocess_modes.append("spatial")
         rgb_tiles.append(rgb)
         single_predictions.append(get_single_prediction(model, transform_cls, rgb))
 
@@ -436,6 +451,7 @@ def run_grid_localization(
         "single_prediction_names": [category_name(int(x)) for x in single_predictions],
         "grid_prediction": int(grid_prediction),
         "grid_prediction_name": category_name(int(grid_prediction)),
+        "preprocess_modes": preprocess_modes,
         "localization_scores": localization_scores.detach().cpu().tolist(),
         "mean_localization_score": float(localization_scores.mean().item()),
         "cells": cell_records,

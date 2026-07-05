@@ -71,6 +71,20 @@ def resolve_device(device_arg: str) -> torch.device:
     return torch.device(device_arg)
 
 
+def _to_jsonable(value: object) -> object:
+    if isinstance(value, Path):
+        return str(value)
+    if isinstance(value, dict):
+        return {str(k): _to_jsonable(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_to_jsonable(v) for v in value]
+    return value
+
+
+def _args_to_jsonable_dict(args: argparse.Namespace) -> dict[str, object]:
+    return {k: _to_jsonable(v) for k, v in vars(args).items()}
+
+
 def _load_visualize_records(path: Path) -> list[tuple[int, Path]]:
     if not path.exists():
         return []
@@ -182,12 +196,13 @@ def save_best_checkpoint(
 ) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     best_path = out_dir / f"{args.model_type}_{args.model_name}_trades_best_train_loss.pth"
+    serialized_args = _args_to_jsonable_dict(args)
     payload = {
         "best_epoch": best_epoch,
         "best_train_loss": best_train_loss,
         "model_type": args.model_type,
         "model_name": args.model_name,
-        "args": vars(args),
+        "args": serialized_args,
         "model_state_dict": model.state_dict(),
         "optimizer_state_dict": optimizer.state_dict(),
         "scheduler_state_dict": scheduler.state_dict(),
@@ -249,9 +264,10 @@ def main() -> None:
     best_epoch = 0
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    serialized_args = _args_to_jsonable_dict(args)
     config_path = args.output_dir / f"{args.model_type}_{args.model_name}_trades_config.json"
     with config_path.open("w", encoding="utf-8") as f:
-        json.dump(vars(args), f, ensure_ascii=False, indent=2)
+        json.dump(serialized_args, f, ensure_ascii=False, indent=2)
 
     epoch_log_path = args.output_dir / f"{args.model_type}_{args.model_name}_trades_epoch_log.jsonl"
     with epoch_log_path.open("w", encoding="utf-8") as f:

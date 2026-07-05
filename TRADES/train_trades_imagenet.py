@@ -61,6 +61,12 @@ def parse_args() -> argparse.Namespace:
         help="Run validation once every N training iterations (0 to disable).",
     )
     parser.add_argument(
+        "--val-step-max-batches",
+        type=int,
+        default=20,
+        help="For step-based validation, use at most this many val batches (0 means full val set).",
+    )
+    parser.add_argument(
         "--explain-every-steps",
         type=int,
         default=100,
@@ -187,6 +193,7 @@ def run_eval(
     loader: torch.utils.data.DataLoader,
     device: torch.device,
     use_bce: bool,
+    max_batches: int = 0,
 ) -> dict[str, float]:
     was_training = model.training
     model.eval()
@@ -195,7 +202,7 @@ def run_eval(
     total_seen = 0
 
     with torch.no_grad():
-        for images, class_ids, _, _, _ in tqdm(loader, desc="eval", leave=False):
+        for batch_index, (images, class_ids, _, _, _) in enumerate(tqdm(loader, desc="eval", leave=False), start=1):
             images = images.to(device, non_blocking=True)
             targets = torch.as_tensor(class_ids, device=device, dtype=torch.long)
 
@@ -206,6 +213,9 @@ def run_eval(
             total_correct += int((preds == targets).sum().item())
             total_loss += float(loss.item())
             total_seen += int(targets.numel())
+
+            if max_batches > 0 and batch_index >= max_batches:
+                break
 
     avg_loss = total_loss / max(total_seen, 1)
     acc = total_correct / max(total_seen, 1)
@@ -332,6 +342,7 @@ def main() -> None:
     print(f"Val dir: {args.val_dir}")
     print(f"Iter log: {iter_log_path}")
     print(f"Val every steps: {args.val_every_steps}")
+    print(f"Val step max batches: {args.val_step_max_batches}")
     print(f"Explain every steps: {args.explain_every_steps}")
     if enable_explanation_saving:
         print(f"Explain json: {args.visualize_json}")
@@ -407,7 +418,13 @@ def main() -> None:
                 f.write(json.dumps(iter_record, ensure_ascii=False) + "\n")
 
             if args.val_every_steps > 0 and global_step % args.val_every_steps == 0:
-                val_step_stats = run_eval(model=model, loader=val_loader, device=device, use_bce=use_bce_supervised_loss)
+                val_step_stats = run_eval(
+                    model=model,
+                    loader=val_loader,
+                    device=device,
+                    use_bce=use_bce_supervised_loss,
+                    max_batches=args.val_step_max_batches,
+                )
                 val_step_record = {
                     "epoch": int(epoch),
                     "iter": int(batch_idx),
@@ -415,6 +432,7 @@ def main() -> None:
                     "val_loss": float(val_step_stats["loss"]),
                     "val_acc": float(val_step_stats["acc"]),
                     "val_samples": int(val_step_stats["samples"]),
+                    "val_max_batches": int(args.val_step_max_batches),
                 }
                 with val_step_log_path.open("a", encoding="utf-8") as f:
                     f.write(json.dumps(val_step_record, ensure_ascii=False) + "\n")

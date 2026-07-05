@@ -54,6 +54,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", type=str, default="auto")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--log-interval", type=int, default=50)
+    parser.add_argument(
+        "--val-every-steps",
+        type=int,
+        default=10,
+        help="Run validation once every N training iterations (0 to disable).",
+    )
 
     parser.add_argument("--output-dir", type=Path, default=Path("checkpoints") / "trades")
     parser.add_argument(
@@ -161,6 +167,7 @@ def run_eval(
     loader: torch.utils.data.DataLoader,
     device: torch.device,
 ) -> dict[str, float]:
+    was_training = model.training
     model.eval()
     total_loss = 0.0
     total_correct = 0
@@ -181,6 +188,8 @@ def run_eval(
 
     avg_loss = total_loss / max(total_seen, 1)
     acc = total_correct / max(total_seen, 1)
+    if was_training:
+        model.train()
     return {"loss": avg_loss, "acc": acc, "samples": float(total_seen)}
 
 
@@ -277,6 +286,10 @@ def main() -> None:
     with iter_log_path.open("w", encoding="utf-8") as f:
         f.write("")
 
+    val_step_log_path = args.output_dir / f"{args.model_type}_{args.model_name}_trades_val_step_log.jsonl"
+    with val_step_log_path.open("w", encoding="utf-8") as f:
+        f.write("")
+
     enable_explanation_saving = args.model_type != "torchvision"
     explain_log_path: Path | None = None
     explain_out_root: Path | None = None
@@ -295,6 +308,7 @@ def main() -> None:
     print(f"Train dir: {args.train_dir}")
     print(f"Val dir: {args.val_dir}")
     print(f"Iter log: {iter_log_path}")
+    print(f"Val every steps: {args.val_every_steps}")
     if enable_explanation_saving:
         print(f"Explain json: {args.visualize_json}")
         print(f"Explain samples: {len(visualize_records)}")
@@ -366,6 +380,26 @@ def main() -> None:
             }
             with iter_log_path.open("a", encoding="utf-8") as f:
                 f.write(json.dumps(iter_record, ensure_ascii=False) + "\n")
+
+            if args.val_every_steps > 0 and global_step % args.val_every_steps == 0:
+                val_step_stats = run_eval(model=model, loader=val_loader, device=device)
+                val_step_record = {
+                    "epoch": int(epoch),
+                    "iter": int(batch_idx),
+                    "global_step": int(global_step),
+                    "val_loss": float(val_step_stats["loss"]),
+                    "val_acc": float(val_step_stats["acc"]),
+                    "val_samples": int(val_step_stats["samples"]),
+                }
+                with val_step_log_path.open("a", encoding="utf-8") as f:
+                    f.write(json.dumps(val_step_record, ensure_ascii=False) + "\n")
+                progress.set_postfix(
+                    {
+                        "loss": f"{running_loss / max(seen, 1):.4f}",
+                        "val_acc": f"{val_step_stats['acc']:.4f}",
+                        "lr": f"{optimizer.param_groups[0]['lr']:.5f}",
+                    }
+                )
 
             if batch_idx % args.log_interval == 0:
                 progress.set_postfix(
@@ -444,6 +478,7 @@ def main() -> None:
     print(f"Saved config: {config_path}")
     print(f"Saved epoch log: {epoch_log_path}")
     print(f"Saved iter log: {iter_log_path}")
+    print(f"Saved val-step log: {val_step_log_path}")
     if enable_explanation_saving and explain_log_path is not None and explain_out_root is not None:
         print(f"Saved explain log: {explain_log_path}")
         print(f"Saved explanations dir: {explain_out_root}")

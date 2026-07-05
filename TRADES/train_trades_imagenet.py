@@ -108,8 +108,6 @@ def _compute_supervised_loss(
 
     num_classes = logits.shape[-1]
     bce_targets = F.one_hot(targets, num_classes=num_classes).to(dtype=logits.dtype)
-    # B-cos style off-label target smoothing.
-    bce_targets = bce_targets.clamp(min=1.0 / float(num_classes))
     return F.binary_cross_entropy_with_logits(logits, bce_targets, reduction=reduction)
 
 

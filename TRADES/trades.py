@@ -14,15 +14,13 @@ def l2_norm(x):
     return squared_l2_norm(x).sqrt()
 
 
-def _build_bce_targets(logits, target, off_label=None):
+def _build_bce_targets(logits, target):
     num_classes = logits.shape[-1]
     if target.shape != logits.shape:
         target = F.one_hot(target, num_classes=num_classes).to(dtype=logits.dtype)
     else:
         target = target.to(dtype=logits.dtype)
-
-    off_value = (1.0 / float(num_classes)) if off_label is None else float(off_label)
-    return target.clamp(min=off_value)
+    return target
 
 
 def trades_loss(model,
@@ -34,8 +32,7 @@ def trades_loss(model,
                 perturb_steps=10,
                 beta=1.0,
                 distance='l_inf',
-                natural_loss='ce',
-                bce_off_label=None):
+                natural_loss='ce'):
     # define KL-loss
     criterion_kl = nn.KLDivLoss(reduction='sum')
     model.eval()
@@ -92,7 +89,7 @@ def trades_loss(model,
     # calculate robust loss
     logits = model(x_natural)
     if natural_loss == 'bce':
-        bce_target = _build_bce_targets(logits, y, off_label=bce_off_label)
+        bce_target = _build_bce_targets(logits, y)
         loss_natural = F.binary_cross_entropy_with_logits(logits, bce_target)
     else:
         loss_natural = F.cross_entropy(logits, y)

@@ -57,8 +57,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--val-every-steps",
         type=int,
-        default=10,
+        default=100,
         help="Run validation once every N training iterations (0 to disable).",
+    )
+    parser.add_argument(
+        "--explain-every-steps",
+        type=int,
+        default=100,
+        help="Save explanation snapshots once every N training iterations (0 to disable).",
     )
 
     parser.add_argument("--output-dir", type=Path, default=Path("checkpoints") / "trades")
@@ -89,6 +95,22 @@ def _to_jsonable(value: object) -> object:
 
 def _args_to_jsonable_dict(args: argparse.Namespace) -> dict[str, object]:
     return {k: _to_jsonable(v) for k, v in vars(args).items()}
+
+
+def _compute_supervised_loss(
+    logits: torch.Tensor,
+    targets: torch.Tensor,
+    use_bce: bool,
+    reduction: str = "mean",
+) -> torch.Tensor:
+    if not use_bce:
+        return F.cross_entropy(logits, targets, reduction=reduction)
+
+    num_classes = logits.shape[-1]
+    bce_targets = F.one_hot(targets, num_classes=num_classes).to(dtype=logits.dtype)
+    # B-cos style off-label target smoothing.
+    bce_targets = bce_targets.clamp(min=1.0 / float(num_classes))
+    return F.binary_cross_entropy_with_logits(logits, bce_targets, reduction=reduction)
 
 
 def _load_visualize_records(path: Path) -> list[tuple[int, Path]]:
@@ -166,6 +188,7 @@ def run_eval(
     model: torch.nn.Module,
     loader: torch.utils.data.DataLoader,
     device: torch.device,
+    use_bce: bool,
 ) -> dict[str, float]:
     was_training = model.training
     model.eval()
@@ -179,7 +202,7 @@ def run_eval(
             targets = torch.as_tensor(class_ids, device=device, dtype=torch.long)
 
             logits = model(model.transform.inverse_transform(images))
-            loss = F.cross_entropy(logits, targets, reduction="sum")
+            loss = _compute_supervised_loss(logits, targets, use_bce=use_bce, reduction="sum")
 
             preds = logits.argmax(dim=1)
             total_correct += int((preds == targets).sum().item())
@@ -230,6 +253,7 @@ def main() -> None:
 
     device = resolve_device(args.device)
     print(f"Device: {device}")
+    use_bce_supervised_loss = args.model_type in {"bcos", "bcosify"}
 
     model = load_model(
         model_type=args.model_type,
@@ -305,10 +329,12 @@ def main() -> None:
     print("=" * 70)
     print("Start TRADES training")
     print(f"Model: {args.model_type}/{args.model_name}")
+    print(f"Supervised loss: {'bce' if use_bce_supervised_loss else 'cross_entropy'}")
     print(f"Train dir: {args.train_dir}")
     print(f"Val dir: {args.val_dir}")
     print(f"Iter log: {iter_log_path}")
     print(f"Val every steps: {args.val_every_steps}")
+    print(f"Explain every steps: {args.explain_every_steps}")
     if enable_explanation_saving:
         print(f"Explain json: {args.visualize_json}")
         print(f"Explain samples: {len(visualize_records)}")
@@ -361,6 +387,7 @@ def main() -> None:
                 perturb_steps=args.num_steps,
                 beta=args.beta,
                 distance=args.distance,
+                natural_loss="bce" if use_bce_supervised_loss else "ce",
             )
             loss.backward()
             optimizer.step()
@@ -382,7 +409,7 @@ def main() -> None:
                 f.write(json.dumps(iter_record, ensure_ascii=False) + "\n")
 
             if args.val_every_steps > 0 and global_step % args.val_every_steps == 0:
-                val_step_stats = run_eval(model=model, loader=val_loader, device=device)
+                val_step_stats = run_eval(model=model, loader=val_loader, device=device, use_bce=use_bce_supervised_loss)
                 val_step_record = {
                     "epoch": int(epoch),
                     "iter": int(batch_idx),
@@ -401,6 +428,37 @@ def main() -> None:
                     }
                 )
 
+            if (
+                enable_explanation_saving
+                and explain_log_path is not None
+                and explain_out_root is not None
+                and args.explain_every_steps > 0
+                and global_step % args.explain_every_steps == 0
+            ):
+                explain_step_stats = generate_explanations_for_epoch(
+                    model=model,
+                    device=device,
+                    records=visualize_records,
+                    out_root=explain_out_root,
+                    epoch_tag=f"step_{global_step:07d}",
+                )
+                with explain_log_path.open("a", encoding="utf-8") as f:
+                    f.write(
+                        json.dumps(
+                            {
+                                "epoch": int(epoch),
+                                "iter": int(batch_idx),
+                                "global_step": int(global_step),
+                                "tag": f"step_{global_step:07d}",
+                                "saved": int(explain_step_stats["saved"]),
+                                "skipped": int(explain_step_stats["skipped"]),
+                                "errors": int(explain_step_stats["errors"]),
+                            },
+                            ensure_ascii=False,
+                        )
+                        + "\n"
+                    )
+
             if batch_idx % args.log_interval == 0:
                 progress.set_postfix(
                     {
@@ -412,7 +470,7 @@ def main() -> None:
         scheduler.step()
 
         train_avg_loss = running_loss / max(seen, 1)
-        val_stats = run_eval(model=model, loader=val_loader, device=device)
+        val_stats = run_eval(model=model, loader=val_loader, device=device, use_bce=use_bce_supervised_loss)
         record = {
             "epoch": int(epoch),
             "train_loss": train_avg_loss,

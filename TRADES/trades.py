@@ -14,6 +14,17 @@ def l2_norm(x):
     return squared_l2_norm(x).sqrt()
 
 
+def _build_bce_targets(logits, target, off_label=None):
+    num_classes = logits.shape[-1]
+    if target.shape != logits.shape:
+        target = F.one_hot(target, num_classes=num_classes).to(dtype=logits.dtype)
+    else:
+        target = target.to(dtype=logits.dtype)
+
+    off_value = (1.0 / float(num_classes)) if off_label is None else float(off_label)
+    return target.clamp(min=off_value)
+
+
 def trades_loss(model,
                 x_natural,
                 y,
@@ -22,7 +33,9 @@ def trades_loss(model,
                 epsilon=0.031,
                 perturb_steps=10,
                 beta=1.0,
-                distance='l_inf'):
+                distance='l_inf',
+                natural_loss='ce',
+                bce_off_label=None):
     # define KL-loss
     criterion_kl = nn.KLDivLoss(reduction='sum')
     model.eval()
@@ -78,7 +91,11 @@ def trades_loss(model,
     optimizer.zero_grad()
     # calculate robust loss
     logits = model(x_natural)
-    loss_natural = F.cross_entropy(logits, y)
+    if natural_loss == 'bce':
+        bce_target = _build_bce_targets(logits, y, off_label=bce_off_label)
+        loss_natural = F.binary_cross_entropy_with_logits(logits, bce_target)
+    else:
+        loss_natural = F.cross_entropy(logits, y)
     loss_robust = (1.0 / batch_size) * criterion_kl(F.log_softmax(model(x_adv), dim=1),
                                                     F.softmax(model(x_natural), dim=1))
     loss = loss_natural + beta * loss_robust

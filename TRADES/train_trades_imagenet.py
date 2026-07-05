@@ -211,8 +211,8 @@ def main() -> None:
         model_type=args.model_type,
         model_name=args.model_name,
         device=device,
-        checkpoint=args.checkpoint,
-        checkpoint_dir=args.checkpoint_dir,
+        # checkpoint=args.checkpoint,
+        # checkpoint_dir=args.checkpoint_dir,
     )
     model.train()
 

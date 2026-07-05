@@ -11,7 +11,7 @@
 
 set -euo pipefail
 
-REQUIRED_VRAM=40000
+REQUIRED_VRAM=70000
 
 # =========================================================
 # CHUAN BI MOI TRUONG (for sbatch)

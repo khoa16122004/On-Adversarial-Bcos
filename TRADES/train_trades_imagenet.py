@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 import torch
@@ -54,6 +55,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", type=str, default="auto")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--log-interval", type=int, default=50)
+    parser.add_argument("--no-tqdm", action="store_true", help="Disable tqdm progress bars.")
 
     parser.add_argument("--output-dir", type=Path, default=Path("checkpoints") / "trades")
     parser.add_argument(
@@ -160,6 +162,7 @@ def run_eval(
     model: torch.nn.Module,
     loader: torch.utils.data.DataLoader,
     device: torch.device,
+    use_tqdm: bool,
 ) -> dict[str, float]:
     model.eval()
     total_loss = 0.0
@@ -167,7 +170,7 @@ def run_eval(
     total_seen = 0
 
     with torch.no_grad():
-        for images, class_ids, _, _, _ in tqdm(loader, desc="eval", leave=False):
+        for images, class_ids, _, _, _ in tqdm(loader, desc="eval", leave=False, disable=not use_tqdm):
             images = images.to(device, non_blocking=True)
             targets = torch.as_tensor(class_ids, device=device, dtype=torch.long)
 
@@ -220,14 +223,15 @@ def main() -> None:
         torch.cuda.manual_seed_all(args.seed)
 
     device = resolve_device(args.device)
+    use_tqdm = (not args.no_tqdm) and sys.stderr.isatty()
     print(f"Device: {device}")
 
     model = load_model(
         model_type=args.model_type,
         model_name=args.model_name,
         device=device,
-        # checkpoint=args.checkpoint,
-        # checkpoint_dir=args.checkpoint_dir,
+        checkpoint=args.checkpoint,
+        checkpoint_dir=args.checkpoint_dir,
     )
     model.train()
 
@@ -295,6 +299,7 @@ def main() -> None:
     print(f"Train dir: {args.train_dir}")
     print(f"Val dir: {args.val_dir}")
     print(f"Iter log: {iter_log_path}")
+    print(f"tqdm enabled: {use_tqdm}")
     if enable_explanation_saving:
         print(f"Explain json: {args.visualize_json}")
         print(f"Explain samples: {len(visualize_records)}")
@@ -331,7 +336,12 @@ def main() -> None:
         running_loss = 0.0
         seen = 0
 
-        progress = tqdm(train_loader, desc=f"epoch {epoch}/{args.epochs}")
+        progress = tqdm(
+            train_loader,
+            desc=f"epoch {epoch}/{args.epochs}",
+            disable=not use_tqdm,
+            dynamic_ncols=True,
+        )
         for batch_idx, (images, class_ids, _, _, _) in enumerate(progress, start=1):
             images = images.to(device, non_blocking=True)
             targets = torch.as_tensor(class_ids, device=device, dtype=torch.long)
@@ -378,7 +388,7 @@ def main() -> None:
         scheduler.step()
 
         train_avg_loss = running_loss / max(seen, 1)
-        val_stats = run_eval(model=model, loader=val_loader, device=device)
+        val_stats = run_eval(model=model, loader=val_loader, device=device, use_tqdm=use_tqdm)
         record = {
             "epoch": int(epoch),
             "train_loss": train_avg_loss,

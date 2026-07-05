@@ -220,3 +220,4 @@ checkpoints
 # classification_result
 transfer_result
 localized
+failed_transfer

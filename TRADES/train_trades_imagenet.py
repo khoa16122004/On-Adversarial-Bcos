@@ -1,0 +1,438 @@
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+import torch
+import torch.nn.functional as F
+import torch.optim as optim
+from PIL import Image
+from torch.optim.lr_scheduler import CosineAnnealingLR
+from tqdm import tqdm
+
+from attack.util import DEFAULT_CHECKPOINT_DIR, load_model, save_explanation_rgba
+from script.const import ANNOTATIONS_FILE, IMAGENET_TRAIN_DATA, IMAGENET_VAL_DATA
+from script.dataloader import get_imagenet_dataloader
+
+from trades import trades_loss
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="TRADES adversarial training on ImageNet-style folders for torchvision/bcos/bcosify models."
+    )
+    parser.add_argument("--model-type", type=str, choices=["torchvision", "bcos", "bcosify"], required=True)
+    parser.add_argument("--model-name", type=str, required=True)
+    parser.add_argument("--checkpoint", type=Path, default=None, help="Optional starting checkpoint path.")
+    parser.add_argument(
+        "--checkpoint-dir",
+        type=Path,
+        default=DEFAULT_CHECKPOINT_DIR,
+        help="Checkpoint directory used by bcos/bcosify when --checkpoint is not provided.",
+    )
+
+    parser.add_argument("--train-dir", type=str, default=IMAGENET_TRAIN_DATA)
+    parser.add_argument("--val-dir", type=str, default=IMAGENET_VAL_DATA)
+    parser.add_argument("--annotations-file", type=str, default=ANNOTATIONS_FILE)
+
+    parser.add_argument("--epochs", type=int, default=10)
+    parser.add_argument("--batch-size", type=int, default=64)
+    parser.add_argument("--val-batch-size", type=int, default=64)
+    parser.add_argument("--num-workers", type=int, default=8)
+
+    parser.add_argument("--lr", type=float, default=0.01)
+    parser.add_argument("--momentum", type=float, default=0.9)
+    parser.add_argument("--weight-decay", type=float, default=1e-4)
+
+    parser.add_argument("--epsilon", type=float, default=4.0 / 255.0)
+    parser.add_argument("--step-size", type=float, default=1.0 / 255.0)
+    parser.add_argument("--num-steps", type=int, default=10)
+    parser.add_argument("--beta", type=float, default=6.0)
+    parser.add_argument("--distance", type=str, choices=["l_inf", "l_2"], default="l_inf")
+
+    parser.add_argument("--device", type=str, default="auto")
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--log-interval", type=int, default=50)
+
+    parser.add_argument("--output-dir", type=Path, default=Path("checkpoints") / "trades")
+    parser.add_argument(
+        "--visualize-json",
+        type=Path,
+        default=Path("visualize_during_train.json"),
+        help="JSON mapping class_id -> [image_path] used for saving explanation snapshots.",
+    )
+    return parser.parse_args()
+
+
+def resolve_device(device_arg: str) -> torch.device:
+    if device_arg == "auto":
+        return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    return torch.device(device_arg)
+
+
+def _load_visualize_records(path: Path) -> list[tuple[int, Path]]:
+    if not path.exists():
+        return []
+    with path.open("r", encoding="utf-8") as f:
+        payload = json.load(f)
+    if not isinstance(payload, dict):
+        raise ValueError("visualize json must be a dict: {class_id: [image_path, ...]}")
+
+    records: list[tuple[int, Path]] = []
+    for class_id_raw, image_list in payload.items():
+        if not isinstance(image_list, list) or not image_list:
+            continue
+        class_id = int(class_id_raw)
+        image_path = Path(str(image_list[0]))
+        if image_path.exists():
+            records.append((class_id, image_path))
+    return records
+
+
+def _unpack_explain_output(explain_result: object) -> dict:
+    if isinstance(explain_result, tuple):
+        if not explain_result:
+            raise ValueError("model.explain returned empty tuple")
+        explain_result = explain_result[0]
+    if not isinstance(explain_result, dict):
+        raise TypeError(f"Unsupported explain output type: {type(explain_result)}")
+    return explain_result
+
+
+def generate_explanations_for_epoch(
+    model: torch.nn.Module,
+    device: torch.device,
+    records: list[tuple[int, Path]],
+    out_root: Path,
+    epoch_tag: str,
+) -> dict[str, int]:
+    if not records:
+        return {"saved": 0, "skipped": 0, "errors": 0}
+    if not hasattr(model, "explain"):
+        return {"saved": 0, "skipped": len(records), "errors": 0}
+
+    stats = {"saved": 0, "skipped": 0, "errors": 0}
+    epoch_dir = out_root / epoch_tag
+    epoch_dir.mkdir(parents=True, exist_ok=True)
+
+    was_training = model.training
+    model.eval()
+    for class_id, image_path in records:
+        sample_name = image_path.stem
+        sample_dir = epoch_dir / f"class_{class_id}" / sample_name
+        sample_dir.mkdir(parents=True, exist_ok=True)
+
+        try:
+            pil_image = Image.open(image_path).convert("RGB")
+            clean_rgb = model.transform.spatial_transform(pil_image).unsqueeze(0).to(device)
+            model_input = model.transform.inverse_transform(clean_rgb)
+            explain_result = model.explain(model_input.detach().clone().requires_grad_(True), idx=class_id)
+            explain_out = _unpack_explain_output(explain_result)
+            explanation = explain_out.get("explanation")
+            if explanation is None:
+                stats["skipped"] += 1
+                continue
+            save_explanation_rgba(explanation, sample_dir / "explanation.png")
+            stats["saved"] += 1
+        except Exception:
+            stats["errors"] += 1
+    if was_training:
+        model.train()
+    return stats
+
+
+def run_eval(
+    model: torch.nn.Module,
+    loader: torch.utils.data.DataLoader,
+    device: torch.device,
+) -> dict[str, float]:
+    model.eval()
+    total_loss = 0.0
+    total_correct = 0
+    total_seen = 0
+
+    with torch.no_grad():
+        for images, class_ids, _, _, _ in tqdm(loader, desc="eval", leave=False):
+            images = images.to(device, non_blocking=True)
+            targets = torch.as_tensor(class_ids, device=device, dtype=torch.long)
+
+            logits = model(model.transform.inverse_transform(images))
+            loss = F.cross_entropy(logits, targets, reduction="sum")
+
+            preds = logits.argmax(dim=1)
+            total_correct += int((preds == targets).sum().item())
+            total_loss += float(loss.item())
+            total_seen += int(targets.numel())
+
+    avg_loss = total_loss / max(total_seen, 1)
+    acc = total_correct / max(total_seen, 1)
+    return {"loss": avg_loss, "acc": acc, "samples": float(total_seen)}
+
+
+def save_best_checkpoint(
+    out_dir: Path,
+    model: torch.nn.Module,
+    optimizer: optim.Optimizer,
+    scheduler: CosineAnnealingLR,
+    args: argparse.Namespace,
+    history: list[dict[str, float]],
+    best_epoch: int,
+    best_train_loss: float,
+) -> Path:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    best_path = out_dir / f"{args.model_type}_{args.model_name}_trades_best_train_loss.pth"
+    payload = {
+        "best_epoch": best_epoch,
+        "best_train_loss": best_train_loss,
+        "model_type": args.model_type,
+        "model_name": args.model_name,
+        "args": vars(args),
+        "model_state_dict": model.state_dict(),
+        "optimizer_state_dict": optimizer.state_dict(),
+        "scheduler_state_dict": scheduler.state_dict(),
+        "history": history,
+    }
+    torch.save(payload, best_path)
+    return best_path
+
+
+def main() -> None:
+    args = parse_args()
+
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
+
+    device = resolve_device(args.device)
+    print(f"Device: {device}")
+
+    model = load_model(
+        model_type=args.model_type,
+        model_name=args.model_name,
+        device=device,
+        checkpoint=args.checkpoint,
+        checkpoint_dir=args.checkpoint_dir,
+    )
+    model.train()
+
+    if not hasattr(model, "transform") or not hasattr(model.transform, "spatial_transform"):
+        raise ValueError("Loaded model must expose transform.spatial_transform.")
+
+    train_loader, _ = get_imagenet_dataloader(
+        img_dir=args.train_dir,
+        annotations_file=args.annotations_file,
+        batch_size=args.batch_size,
+        transform=model.transform.spatial_transform,
+        num_workers=args.num_workers,
+        shuffle=True,
+    )
+    val_loader, _ = get_imagenet_dataloader(
+        img_dir=args.val_dir,
+        annotations_file=args.annotations_file,
+        batch_size=args.val_batch_size,
+        transform=model.transform.spatial_transform,
+        num_workers=args.num_workers,
+        shuffle=False,
+    )
+
+    optimizer = optim.SGD(
+        model.parameters(),
+        lr=args.lr,
+        momentum=args.momentum,
+        weight_decay=args.weight_decay,
+    )
+    scheduler = CosineAnnealingLR(optimizer, T_max=args.epochs)
+
+    history: list[dict[str, float]] = []
+    best_train_loss = float("inf")
+    best_epoch = 0
+
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    config_path = args.output_dir / f"{args.model_type}_{args.model_name}_trades_config.json"
+    with config_path.open("w", encoding="utf-8") as f:
+        json.dump(vars(args), f, ensure_ascii=False, indent=2)
+
+    epoch_log_path = args.output_dir / f"{args.model_type}_{args.model_name}_trades_epoch_log.jsonl"
+    with epoch_log_path.open("w", encoding="utf-8") as f:
+        f.write("")
+
+    iter_log_path = args.output_dir / f"{args.model_type}_{args.model_name}_trades_iter_log.jsonl"
+    with iter_log_path.open("w", encoding="utf-8") as f:
+        f.write("")
+
+    enable_explanation_saving = args.model_type != "torchvision"
+    explain_log_path: Path | None = None
+    explain_out_root: Path | None = None
+    visualize_records: list[tuple[int, Path]] = []
+    if enable_explanation_saving:
+        explain_log_path = args.output_dir / f"{args.model_type}_{args.model_name}_trades_explain_log.jsonl"
+        with explain_log_path.open("w", encoding="utf-8") as f:
+            f.write("")
+        visualize_records = _load_visualize_records(args.visualize_json)
+        explain_out_root = args.output_dir / f"{args.model_type}_{args.model_name}_explanations"
+        explain_out_root.mkdir(parents=True, exist_ok=True)
+
+    print("=" * 70)
+    print("Start TRADES training")
+    print(f"Model: {args.model_type}/{args.model_name}")
+    print(f"Train dir: {args.train_dir}")
+    print(f"Val dir: {args.val_dir}")
+    print(f"Iter log: {iter_log_path}")
+    if enable_explanation_saving:
+        print(f"Explain json: {args.visualize_json}")
+        print(f"Explain samples: {len(visualize_records)}")
+    else:
+        print("Explain saving: disabled for torchvision")
+    print("=" * 70)
+
+    if enable_explanation_saving and explain_log_path is not None and explain_out_root is not None:
+        start_explain_stats = generate_explanations_for_epoch(
+            model=model,
+            device=device,
+            records=visualize_records,
+            out_root=explain_out_root,
+            epoch_tag="epoch_000_start",
+        )
+        with explain_log_path.open("a", encoding="utf-8") as f:
+            f.write(
+                json.dumps(
+                    {
+                        "epoch": 0,
+                        "tag": "epoch_000_start",
+                        "saved": int(start_explain_stats["saved"]),
+                        "skipped": int(start_explain_stats["skipped"]),
+                        "errors": int(start_explain_stats["errors"]),
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n"
+            )
+
+    global_step = 0
+    for epoch in range(1, args.epochs + 1):
+        model.train()
+        running_loss = 0.0
+        seen = 0
+
+        progress = tqdm(train_loader, desc=f"epoch {epoch}/{args.epochs}")
+        for batch_idx, (images, class_ids, _, _, _) in enumerate(progress, start=1):
+            images = images.to(device, non_blocking=True)
+            targets = torch.as_tensor(class_ids, device=device, dtype=torch.long)
+
+            model_input = model.transform.inverse_transform(images)
+            loss = trades_loss(
+                model=model,
+                x_natural=model_input,
+                y=targets,
+                optimizer=optimizer,
+                step_size=args.step_size,
+                epsilon=args.epsilon,
+                perturb_steps=args.num_steps,
+                beta=args.beta,
+                distance=args.distance,
+            )
+            loss.backward()
+            optimizer.step()
+
+            batch_size = int(targets.numel())
+            running_loss += float(loss.item()) * batch_size
+            seen += batch_size
+            global_step += 1
+
+            iter_record = {
+                "epoch": int(epoch),
+                "iter": int(batch_idx),
+                "global_step": int(global_step),
+                "loss": float(loss.item()),
+                "lr": float(optimizer.param_groups[0]["lr"]),
+                "batch_size": int(batch_size),
+            }
+            with iter_log_path.open("a", encoding="utf-8") as f:
+                f.write(json.dumps(iter_record, ensure_ascii=False) + "\n")
+
+            if batch_idx % args.log_interval == 0:
+                progress.set_postfix(
+                    {
+                        "loss": f"{running_loss / max(seen, 1):.4f}",
+                        "lr": f"{optimizer.param_groups[0]['lr']:.5f}",
+                    }
+                )
+
+        scheduler.step()
+
+        train_avg_loss = running_loss / max(seen, 1)
+        val_stats = run_eval(model=model, loader=val_loader, device=device)
+        record = {
+            "epoch": int(epoch),
+            "train_loss": train_avg_loss,
+            "train_samples": int(seen),
+            "val_loss": float(val_stats["loss"]),
+            "val_acc": float(val_stats["acc"]),
+            "val_samples": int(val_stats["samples"]),
+            "lr": float(optimizer.param_groups[0]["lr"]),
+        }
+        history.append(record)
+
+        with epoch_log_path.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+        print(
+            f"[epoch {epoch}] train_loss={train_avg_loss:.4f} "
+            f"val_loss={val_stats['loss']:.4f} val_acc={val_stats['acc']:.4f}"
+        )
+
+        if train_avg_loss < best_train_loss:
+            best_train_loss = train_avg_loss
+            best_epoch = epoch
+            best_path = save_best_checkpoint(
+                out_dir=args.output_dir,
+                model=model,
+                optimizer=optimizer,
+                scheduler=scheduler,
+                args=args,
+                history=history,
+                best_epoch=best_epoch,
+                best_train_loss=best_train_loss,
+            )
+            print(f"Saved best checkpoint: {best_path} (train_loss={best_train_loss:.4f})")
+
+        if enable_explanation_saving and explain_log_path is not None and explain_out_root is not None:
+            explain_stats = generate_explanations_for_epoch(
+                model=model,
+                device=device,
+                records=visualize_records,
+                out_root=explain_out_root,
+                epoch_tag=f"epoch_{epoch:03d}",
+            )
+            with explain_log_path.open("a", encoding="utf-8") as f:
+                f.write(
+                    json.dumps(
+                        {
+                            "epoch": int(epoch),
+                            "tag": f"epoch_{epoch:03d}",
+                            "saved": int(explain_stats["saved"]),
+                            "skipped": int(explain_stats["skipped"]),
+                            "errors": int(explain_stats["errors"]),
+                        },
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
+
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    history_path = args.output_dir / f"{args.model_type}_{args.model_name}_trades_history.json"
+    with history_path.open("w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=2)
+    print(f"Saved history: {history_path}")
+    print(f"Saved config: {config_path}")
+    print(f"Saved epoch log: {epoch_log_path}")
+    print(f"Saved iter log: {iter_log_path}")
+    if enable_explanation_saving and explain_log_path is not None and explain_out_root is not None:
+        print(f"Saved explain log: {explain_log_path}")
+        print(f"Saved explanations dir: {explain_out_root}")
+    print(f"Best epoch: {best_epoch} | Best train_loss: {best_train_loss:.4f}")
+
+
+if __name__ == "__main__":
+    main()

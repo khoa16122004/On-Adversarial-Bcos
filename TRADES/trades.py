@@ -20,12 +20,14 @@ def l2_norm(x):
     return squared_l2_norm(x).sqrt()
 
 
-def _build_bce_targets(logits, target):
+def _build_bce_targets(logits, target, off_label=None):
     num_classes = logits.shape[-1]
     if target.shape != logits.shape:
         target = F.one_hot(target, num_classes=num_classes).to(dtype=logits.dtype)
     else:
         target = target.to(dtype=logits.dtype)
+    if off_label is not None:
+        target = target.clamp(min=off_label)
     return target
 
 
@@ -39,6 +41,7 @@ def trades_loss(model,
                 beta=1.0,
                 distance='l_inf',
                 natural_loss='ce',
+                bce_off_label=None,
                 preprocess=None,
                 clip_min=0.0,
                 clip_max=1.0):
@@ -103,8 +106,9 @@ def trades_loss(model,
     x_nat_model = _apply_preprocess(x_natural, preprocess)
     x_adv_model = _apply_preprocess(x_adv, preprocess)
     logits = model(x_nat_model)
-    if natural_loss == 'bce':
-        bce_target = _build_bce_targets(logits, y)
+    if natural_loss in {'bce', 'bce_uniform'}:
+        off_label = bce_off_label if natural_loss == 'bce_uniform' else None
+        bce_target = _build_bce_targets(logits, y, off_label=off_label)
         loss_natural = F.binary_cross_entropy_with_logits(logits, bce_target)
     else:
         loss_natural = F.cross_entropy(logits, y)

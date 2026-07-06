@@ -87,6 +87,8 @@ STEP_SIZE=0.0015 # step_size=2/255
 NUM_STEPS=10
 BETA=6.0
 DISTANCE="l_inf"
+SUPERVISED_LOSS="auto"
+BCE_OFF_LABEL=""
 DEVICE="cuda"
 SEED=42
 
@@ -109,28 +111,37 @@ run_train() {
   echo "Val dir: $IMAGENET_VAL_DIR"
   echo "Output: $out_dir"
 
-  python TRADES/train_trades_imagenet.py \
-    --model-type "$model_type" \
-    --model-name "$model_name" \
-    --checkpoint-dir "$CHECKPOINT_DIR" \
-    --train-dir "$IMAGENET_TRAIN_DIR" \
-    --val-dir "$IMAGENET_VAL_DIR" \
-    --annotations-file "$ANNOTATIONS_FILE" \
-    --epochs "$EPOCHS" \
-    --batch-size "$BATCH_SIZE" \
-    --val-batch-size "$VAL_BATCH_SIZE" \
-    --num-workers "$NUM_WORKERS" \
-    --lr "$LR" \
-    --momentum "$MOMENTUM" \
-    --weight-decay "$WEIGHT_DECAY" \
-    --epsilon "$EPSILON" \
-    --step-size "$STEP_SIZE" \
-    --num-steps "$NUM_STEPS" \
-    --beta "$BETA" \
-    --distance "$DISTANCE" \
-    --device "$DEVICE" \
-    --seed "$SEED" \
+  local cmd=(
+    python TRADES/train_trades_imagenet.py
+    --model-type "$model_type"
+    --model-name "$model_name"
+    --checkpoint-dir "$CHECKPOINT_DIR"
+    --train-dir "$IMAGENET_TRAIN_DIR"
+    --val-dir "$IMAGENET_VAL_DIR"
+    --annotations-file "$ANNOTATIONS_FILE"
+    --epochs "$EPOCHS"
+    --batch-size "$BATCH_SIZE"
+    --val-batch-size "$VAL_BATCH_SIZE"
+    --num-workers "$NUM_WORKERS"
+    --lr "$LR"
+    --momentum "$MOMENTUM"
+    --weight-decay "$WEIGHT_DECAY"
+    --epsilon "$EPSILON"
+    --step-size "$STEP_SIZE"
+    --num-steps "$NUM_STEPS"
+    --beta "$BETA"
+    --distance "$DISTANCE"
+    --supervised-loss "$SUPERVISED_LOSS"
+    --device "$DEVICE"
+    --seed "$SEED"
     --output-dir "$out_dir"
+  )
+
+  if [ -n "$BCE_OFF_LABEL" ]; then
+    cmd+=(--bce-off-label "$BCE_OFF_LABEL")
+  fi
+
+  "${cmd[@]}"
 }
 
 

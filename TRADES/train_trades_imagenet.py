@@ -50,6 +50,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--num-steps", type=int, default=10)
     parser.add_argument("--beta", type=float, default=6.0)
     parser.add_argument("--distance", type=str, choices=["l_inf", "l_2"], default="l_inf")
+    parser.add_argument(
+        "--supervised-loss",
+        type=str,
+        choices=["auto", "ce", "bce", "bce_uniform"],
+        default="auto",
+        help="Supervised classification loss. auto: ce for torchvision, bce_uniform for bcos/bcosify.",
+    )
+    parser.add_argument(
+        "--bce-off-label",
+        type=float,
+        default=None,
+        help="Off-label target value used when supervised-loss is bce_uniform. None means 1/num_classes.",
+    )
 
     parser.add_argument("--device", type=str, default="auto")
     parser.add_argument("--seed", type=int, default=42)
@@ -100,15 +113,27 @@ def _args_to_jsonable_dict(args: argparse.Namespace) -> dict[str, object]:
 def _compute_supervised_loss(
     logits: torch.Tensor,
     targets: torch.Tensor,
-    use_bce: bool,
+    supervised_loss: str,
+    bce_off_label: float | None,
     reduction: str = "mean",
 ) -> torch.Tensor:
-    if not use_bce:
+    if supervised_loss == "ce":
         return F.cross_entropy(logits, targets, reduction=reduction)
 
     num_classes = logits.shape[-1]
     bce_targets = F.one_hot(targets, num_classes=num_classes).to(dtype=logits.dtype)
+    if supervised_loss == "bce_uniform":
+        off_label = bce_off_label if bce_off_label is not None else 1.0 / float(num_classes)
+        bce_targets = bce_targets.clamp(min=off_label)
     return F.binary_cross_entropy_with_logits(logits, bce_targets, reduction=reduction)
+
+
+def _resolve_supervised_loss(args: argparse.Namespace) -> str:
+    if args.supervised_loss != "auto":
+        return args.supervised_loss
+    if args.model_type == "torchvision":
+        return "ce"
+    return "bce_uniform"
 
 
 def _load_visualize_records(path: Path) -> list[tuple[int, Path]]:
@@ -186,7 +211,8 @@ def run_eval(
     model: torch.nn.Module,
     loader: torch.utils.data.DataLoader,
     device: torch.device,
-    use_bce: bool,
+    supervised_loss: str,
+    bce_off_label: float | None,
 ) -> dict[str, float]:
     was_training = model.training
     model.eval()
@@ -200,7 +226,13 @@ def run_eval(
             targets = torch.as_tensor(class_ids, device=device, dtype=torch.long)
 
             logits = model(model.transform.inverse_transform(images))
-            loss = _compute_supervised_loss(logits, targets, use_bce=use_bce, reduction="sum")
+            loss = _compute_supervised_loss(
+                logits,
+                targets,
+                supervised_loss=supervised_loss,
+                bce_off_label=bce_off_label,
+                reduction="sum",
+            )
 
             preds = logits.argmax(dim=1)
             total_correct += int((preds == targets).sum().item())
@@ -251,7 +283,7 @@ def main() -> None:
 
     device = resolve_device(args.device)
     print(f"Device: {device}")
-    use_bce_supervised_loss = args.model_type in {"bcos", "bcosify"}
+    supervised_loss = _resolve_supervised_loss(args)
 
     model = load_model(
         model_type=args.model_type,
@@ -335,7 +367,12 @@ def main() -> None:
     print("=" * 70)
     print("Start TRADES training")
     print(f"Model: {args.model_type}/{args.model_name}")
-    print(f"Supervised loss: {'bce' if use_bce_supervised_loss else 'cross_entropy'}")
+    print(f"Supervised loss: {supervised_loss}")
+    if supervised_loss == "bce_uniform":
+        if args.bce_off_label is None:
+            print("BCE off-label: auto (1/num_classes)")
+        else:
+            print(f"BCE off-label: {args.bce_off_label}")
     print(f"Train dir: {args.train_dir}")
     print(f"Val dir: {args.val_dir}")
     print(f"Iter log: {iter_log_path}")
@@ -392,7 +429,8 @@ def main() -> None:
                 perturb_steps=args.num_steps,
                 beta=args.beta,
                 distance=args.distance,
-                natural_loss="bce" if use_bce_supervised_loss else "ce",
+                natural_loss=supervised_loss,
+                bce_off_label=args.bce_off_label,
                 preprocess=model.transform.inverse_transform,
                 clip_min=0.0,
                 clip_max=1.0,
@@ -421,7 +459,8 @@ def main() -> None:
                     model=model,
                     loader=val_loader,
                     device=device,
-                    use_bce=use_bce_supervised_loss,
+                    supervised_loss=supervised_loss,
+                    bce_off_label=args.bce_off_label,
                 )
                 val_step_record = {
                     "epoch": int(epoch),
@@ -483,7 +522,13 @@ def main() -> None:
         scheduler.step()
 
         train_avg_loss = running_loss / max(seen, 1)
-        val_stats = run_eval(model=model, loader=val_loader, device=device, use_bce=use_bce_supervised_loss)
+        val_stats = run_eval(
+            model=model,
+            loader=val_loader,
+            device=device,
+            supervised_loss=supervised_loss,
+            bce_off_label=args.bce_off_label,
+        )
         record = {
             "epoch": int(epoch),
             "train_loss": train_avg_loss,

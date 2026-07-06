@@ -318,8 +318,8 @@ def main() -> None:
         model_name=args.model_name,
         device=device,
         checkpoint=args.checkpoint,
-        checkpoint_dir=args.checkpoint_dir,
-        from_scratch=args.from_scratch,
+        # checkpoint_dir=args.checkpoint_dir,
+        # from_scratch=args.from_scratch,
     )
     model.train()
 

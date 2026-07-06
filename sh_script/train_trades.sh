@@ -11,7 +11,7 @@
 
 set -euo pipefail
 
-REQUIRED_VRAM=70000
+REQUIRED_VRAM=50000
 
 # =========================================================
 # CHUAN BI MOI TRUONG (for sbatch)
@@ -83,7 +83,7 @@ LR=0.01
 MOMENTUM=0.9
 WEIGHT_DECAY=1e-4
 EPSILON=0.01 # epsilon=4/255
-STEP_SIZE=0.00075 # step_size=2/255
+STEP_SIZE=0.0039 # step_size=2/255
 NUM_STEPS=10
 BETA=0.1
 DISTANCE="l_inf"

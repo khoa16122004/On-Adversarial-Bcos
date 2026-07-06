@@ -51,6 +51,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--beta", type=float, default=6.0)
     parser.add_argument("--distance", type=str, choices=["l_inf", "l_2"], default="l_inf")
     parser.add_argument(
+        "--train-objective",
+        type=str,
+        choices=["trades", "clean"],
+        default="trades",
+        help="trades: supervised + KL robust term, clean: supervised loss only (no KL/PGD branch).",
+    )
+    parser.add_argument(
         "--supervised-loss",
         type=str,
         choices=["auto", "ce", "bce", "bce_uniform"],
@@ -393,6 +400,7 @@ def main() -> None:
     print("=" * 70)
     print("Start TRADES training")
     print(f"Model: {args.model_type}/{args.model_name}")
+    print(f"Train objective: {args.train_objective}")
     print(f"Supervised loss: {supervised_loss}")
     if supervised_loss == "bce_uniform":
         if args.bce_off_label is None:
@@ -457,6 +465,7 @@ def main() -> None:
                 distance=args.distance,
                 natural_loss=supervised_loss,
                 bce_off_label=args.bce_off_label,
+                use_robust_loss=args.train_objective == "trades",
                 preprocess=model.transform.inverse_transform,
                 clip_min=0.0,
                 clip_max=1.0,

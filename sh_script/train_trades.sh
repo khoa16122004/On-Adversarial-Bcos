@@ -87,6 +87,7 @@ STEP_SIZE=0.0015 # step_size=2/255
 NUM_STEPS=10
 BETA=6.0
 DISTANCE="l_inf"
+TRAIN_OBJECTIVE="clean"
 SUPERVISED_LOSS="auto"
 BCE_OFF_LABEL=""
 DEVICE="cuda"
@@ -132,6 +133,7 @@ run_train() {
     --num-steps "$NUM_STEPS"
     --beta "$BETA"
     --distance "$DISTANCE"
+    --train-objective "$TRAIN_OBJECTIVE"
     --supervised-loss "$SUPERVISED_LOSS"
     --debug-grad-every-steps "$DEBUG_GRAD_EVERY_STEPS"
     --device "$DEVICE"

@@ -42,69 +42,74 @@ def trades_loss(model,
                 distance='l_inf',
                 natural_loss='ce',
                 bce_off_label=None,
+                use_robust_loss=True,
                 preprocess=None,
                 clip_min=0.0,
                 clip_max=1.0):
-    # define KL-loss
     criterion_kl = nn.KLDivLoss(reduction='sum')
-    model.eval()
     batch_size = len(x_natural)
     device = x_natural.device
-    # generate adversarial example
-    x_adv = x_natural.detach() + 0.001 * torch.randn(x_natural.shape, device=device).detach()
-    if distance == 'l_inf':
-        for _ in range(perturb_steps):
-            x_adv.requires_grad_()
-            with torch.enable_grad():
-                x_adv_model = _apply_preprocess(x_adv, preprocess)
-                x_nat_model = _apply_preprocess(x_natural, preprocess)
-                loss_kl = criterion_kl(F.log_softmax(model(x_adv_model), dim=1),
-                                       F.softmax(model(x_nat_model), dim=1))
-            grad = torch.autograd.grad(loss_kl, [x_adv])[0]
-            x_adv = x_adv.detach() + step_size * torch.sign(grad.detach())
-            x_adv = torch.min(torch.max(x_adv, x_natural - epsilon), x_natural + epsilon)
-            x_adv = torch.clamp(x_adv, clip_min, clip_max)
-    elif distance == 'l_2':
-        delta = 0.001 * torch.randn(x_natural.shape, device=device).detach()
-        delta = Variable(delta.data, requires_grad=True)
 
-        # Setup optimizers
-        optimizer_delta = optim.SGD([delta], lr=epsilon / perturb_steps * 2)
-
-        for _ in range(perturb_steps):
-            adv = x_natural + delta
-
-            # optimize
-            optimizer_delta.zero_grad()
-            with torch.enable_grad():
-                adv_model = _apply_preprocess(adv, preprocess)
-                x_nat_model = _apply_preprocess(x_natural, preprocess)
-                loss = (-1) * criterion_kl(F.log_softmax(model(adv_model), dim=1),
+    if use_robust_loss:
+        model.eval()
+        # generate adversarial example
+        x_adv = x_natural.detach() + 0.001 * torch.randn(x_natural.shape, device=device).detach()
+        if distance == 'l_inf':
+            for _ in range(perturb_steps):
+                x_adv.requires_grad_()
+                with torch.enable_grad():
+                    x_adv_model = _apply_preprocess(x_adv, preprocess)
+                    x_nat_model = _apply_preprocess(x_natural, preprocess)
+                    loss_kl = criterion_kl(F.log_softmax(model(x_adv_model), dim=1),
                                            F.softmax(model(x_nat_model), dim=1))
-            loss.backward()
-            # renorming gradient
-            grad_norms = delta.grad.view(batch_size, -1).norm(p=2, dim=1)
-            delta.grad.div_(grad_norms.view(-1, 1, 1, 1))
-            # avoid nan or inf if gradient is 0
-            if (grad_norms == 0).any():
-                delta.grad[grad_norms == 0] = torch.randn_like(delta.grad[grad_norms == 0])
-            optimizer_delta.step()
+                grad = torch.autograd.grad(loss_kl, [x_adv])[0]
+                x_adv = x_adv.detach() + step_size * torch.sign(grad.detach())
+                x_adv = torch.min(torch.max(x_adv, x_natural - epsilon), x_natural + epsilon)
+                x_adv = torch.clamp(x_adv, clip_min, clip_max)
+        elif distance == 'l_2':
+            delta = 0.001 * torch.randn(x_natural.shape, device=device).detach()
+            delta = Variable(delta.data, requires_grad=True)
 
-            # projection
-            delta.data.add_(x_natural)
-            delta.data.clamp_(clip_min, clip_max).sub_(x_natural)
-            delta.data.renorm_(p=2, dim=0, maxnorm=epsilon)
-        x_adv = Variable(x_natural + delta, requires_grad=False)
+            # Setup optimizers
+            optimizer_delta = optim.SGD([delta], lr=epsilon / perturb_steps * 2)
+
+            for _ in range(perturb_steps):
+                adv = x_natural + delta
+
+                # optimize
+                optimizer_delta.zero_grad()
+                with torch.enable_grad():
+                    adv_model = _apply_preprocess(adv, preprocess)
+                    x_nat_model = _apply_preprocess(x_natural, preprocess)
+                    loss = (-1) * criterion_kl(F.log_softmax(model(adv_model), dim=1),
+                                               F.softmax(model(x_nat_model), dim=1))
+                loss.backward()
+                # renorming gradient
+                grad_norms = delta.grad.view(batch_size, -1).norm(p=2, dim=1)
+                delta.grad.div_(grad_norms.view(-1, 1, 1, 1))
+                # avoid nan or inf if gradient is 0
+                if (grad_norms == 0).any():
+                    delta.grad[grad_norms == 0] = torch.randn_like(delta.grad[grad_norms == 0])
+                optimizer_delta.step()
+
+                # projection
+                delta.data.add_(x_natural)
+                delta.data.clamp_(clip_min, clip_max).sub_(x_natural)
+                delta.data.renorm_(p=2, dim=0, maxnorm=epsilon)
+            x_adv = Variable(x_natural + delta, requires_grad=False)
+        else:
+            x_adv = torch.clamp(x_adv, clip_min, clip_max)
+
+        model.train()
+        x_adv = Variable(torch.clamp(x_adv, clip_min, clip_max), requires_grad=False)
     else:
-        x_adv = torch.clamp(x_adv, clip_min, clip_max)
-    model.train()
+        x_adv = None
+        model.train()
 
-    x_adv = Variable(torch.clamp(x_adv, clip_min, clip_max), requires_grad=False)
     # zero gradient
     optimizer.zero_grad()
     # calculate robust loss
     x_nat_model = _apply_preprocess(x_natural, preprocess)
-    x_adv_model = _apply_preprocess(x_adv, preprocess)
     logits = model(x_nat_model)
     if natural_loss in {'bce', 'bce_uniform'}:
         off_label = bce_off_label if natural_loss == 'bce_uniform' else None
@@ -112,7 +117,12 @@ def trades_loss(model,
         loss_natural = F.binary_cross_entropy_with_logits(logits, bce_target)
     else:
         loss_natural = F.cross_entropy(logits, y)
-    loss_robust = (1.0 / batch_size) * criterion_kl(F.log_softmax(model(x_adv_model), dim=1),
-                                                    F.softmax(model(x_nat_model), dim=1))
-    loss = loss_natural + beta * loss_robust
+
+    if use_robust_loss:
+        x_adv_model = _apply_preprocess(x_adv, preprocess)
+        loss_robust = (1.0 / batch_size) * criterion_kl(F.log_softmax(model(x_adv_model), dim=1),
+                                                        F.softmax(model(x_nat_model), dim=1))
+        loss = loss_natural + beta * loss_robust
+    else:
+        loss = loss_natural
     return loss

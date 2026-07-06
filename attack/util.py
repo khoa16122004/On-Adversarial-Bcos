@@ -436,25 +436,33 @@ def load_bcosify_model(
 	model_name_or_checkpoint: str | Path,
 	device: torch.device,
 	checkpoint_dir: Path = DEFAULT_BCOSIFY_CHECKPOINT_DIR,
+	from_scratch: bool = False,
 	return_checkpoint_path: bool = False,
 ) -> torch.nn.Module | tuple[torch.nn.Module, Path]:
 	model_name_hint = str(model_name_or_checkpoint)
+	checkpoint_path: Path | None = None
 
-	if isinstance(model_name_or_checkpoint, Path):
-		checkpoint_path = model_name_or_checkpoint
-		model_name_hint = checkpoint_path.stem
-		resolved_model_name = _normalize_model_key(model_name_hint)
+	if from_scratch:
+		if isinstance(model_name_or_checkpoint, Path):
+			raise ValueError("from_scratch=True requires a model name, not a checkpoint path.")
+		resolved_model_name = _normalize_model_key(model_name_or_checkpoint)
+		model_name_hint = str(model_name_or_checkpoint)
 	else:
-		candidate_path = Path(model_name_or_checkpoint)
-		is_checkpoint_like = candidate_path.suffix in {".pth", ".pt", ".ckpt"} or candidate_path.is_absolute()
-		if is_checkpoint_like:
-			checkpoint_path = candidate_path
+		if isinstance(model_name_or_checkpoint, Path):
+			checkpoint_path = model_name_or_checkpoint
 			model_name_hint = checkpoint_path.stem
 			resolved_model_name = _normalize_model_key(model_name_hint)
 		else:
-			checkpoint_path = resolve_bcosify_checkpoint_path(model_name_or_checkpoint, checkpoint_dir)
-			model_name_hint = str(model_name_or_checkpoint)
-			resolved_model_name = _normalize_model_key(model_name_or_checkpoint)
+			candidate_path = Path(model_name_or_checkpoint)
+			is_checkpoint_like = candidate_path.suffix in {".pth", ".pt", ".ckpt"} or candidate_path.is_absolute()
+			if is_checkpoint_like:
+				checkpoint_path = candidate_path
+				model_name_hint = checkpoint_path.stem
+				resolved_model_name = _normalize_model_key(model_name_hint)
+			else:
+				checkpoint_path = resolve_bcosify_checkpoint_path(model_name_or_checkpoint, checkpoint_dir)
+				model_name_hint = str(model_name_or_checkpoint)
+				resolved_model_name = _normalize_model_key(model_name_or_checkpoint)
 
 	vit_arch = _resolve_bcosify_vit_arch(model_name_hint)
 	if vit_arch is not None:
@@ -475,17 +483,23 @@ def load_bcosify_model(
 			"or a supported ViT arch (simple_vit_*, vitc_*)."
 		)
 
+	if from_scratch and "weights" in model_config:
+		model_config["weights"] = None
+
 	model = model_factory_module.get_model(model_config)
 
-	state_dict = _load_state_dict(checkpoint_path)
-	adapted_state_dict = _adapt_state_dict_for_model(state_dict, model)
-	model.load_state_dict(adapted_state_dict, strict=False)
+	if checkpoint_path is not None:
+		state_dict = _load_state_dict(checkpoint_path)
+		adapted_state_dict = _adapt_state_dict_for_model(state_dict, model)
+		model.load_state_dict(adapted_state_dict, strict=False)
 
 	model.transform = BcosifyImageTransform()
 	model = model.to(device)
 	model.eval()
 
 	if return_checkpoint_path:
+		if checkpoint_path is None:
+			raise ValueError("No checkpoint path is available when from_scratch=True.")
 		return model, checkpoint_path
 	return model
 
@@ -494,30 +508,40 @@ def load_bcos_model(
 	model_name_or_checkpoint: str | Path,
 	device: torch.device,
 	checkpoint_dir: Path = DEFAULT_CHECKPOINT_DIR,
+	from_scratch: bool = False,
 	return_checkpoint_path: bool = False,
 ) -> torch.nn.Module | tuple[torch.nn.Module, Path]:
 	pretrained_module = _get_pretrained_module()
+	checkpoint_path: Path | None = None
 
-	if isinstance(model_name_or_checkpoint, Path):
-		checkpoint_path = model_name_or_checkpoint
-		resolved_model_name = _resolve_model_name(checkpoint_path.stem.split("-", 1)[0])
+	if from_scratch:
+		if isinstance(model_name_or_checkpoint, Path):
+			raise ValueError("from_scratch=True requires a model name, not a checkpoint path.")
+		resolved_model_name = _resolve_model_name(model_name_or_checkpoint)
 	else:
-		candidate_path = Path(model_name_or_checkpoint)
-		is_checkpoint_like = candidate_path.suffix in {".pth", ".pt"} or candidate_path.is_absolute()
-		if is_checkpoint_like:
-			checkpoint_path = candidate_path
+		if isinstance(model_name_or_checkpoint, Path):
+			checkpoint_path = model_name_or_checkpoint
 			resolved_model_name = _resolve_model_name(checkpoint_path.stem.split("-", 1)[0])
 		else:
-			resolved_model_name = _resolve_model_name(model_name_or_checkpoint)
-			checkpoint_path = resolve_bcos_checkpoint_path(resolved_model_name, checkpoint_dir)
+			candidate_path = Path(model_name_or_checkpoint)
+			is_checkpoint_like = candidate_path.suffix in {".pth", ".pt"} or candidate_path.is_absolute()
+			if is_checkpoint_like:
+				checkpoint_path = candidate_path
+				resolved_model_name = _resolve_model_name(checkpoint_path.stem.split("-", 1)[0])
+			else:
+				resolved_model_name = _resolve_model_name(model_name_or_checkpoint)
+				checkpoint_path = resolve_bcos_checkpoint_path(resolved_model_name, checkpoint_dir)
 
 	model_factory = getattr(pretrained_module, resolved_model_name)
 	model = model_factory(pretrained=False)
-	model.load_state_dict(_load_state_dict(checkpoint_path))
+	if checkpoint_path is not None:
+		model.load_state_dict(_load_state_dict(checkpoint_path))
 	model = model.to(device)
 	model.eval()
 
 	if return_checkpoint_path:
+		if checkpoint_path is None:
+			raise ValueError("No checkpoint path is available when from_scratch=True.")
 		return model, checkpoint_path
 	return model
 
@@ -526,12 +550,17 @@ def load_torchvision_model(
 	model_name: str,
 	device: torch.device,
 	checkpoint_path: Path | None = None,
+	from_scratch: bool = False,
 	return_checkpoint_path: bool = False,
 ) -> torch.nn.Module | tuple[torch.nn.Module, Path | None]:
 	resolved_model_name = _resolve_torchvision_model_name(model_name)
 	model_factory = getattr(tv_models, resolved_model_name)
 
-	if checkpoint_path is None:
+	if from_scratch:
+		if checkpoint_path is not None:
+			raise ValueError("from_scratch=True is incompatible with checkpoint_path.")
+		model = model_factory(weights=None)
+	elif checkpoint_path is None:
 		weights_enum = tv_models.get_model_weights(model_factory)
 		weights = weights_enum.DEFAULT
 		model = model_factory(weights=weights)
@@ -554,15 +583,19 @@ def load_model(
 	device: torch.device,
 	checkpoint: Path | None = None,
 	checkpoint_dir: Path = DEFAULT_CHECKPOINT_DIR,
+	from_scratch: bool = False,
 	return_checkpoint_path: bool = False,
 ) -> torch.nn.Module | tuple[torch.nn.Module, Path | None]:
 	model_type = model_type.lower()
 	if model_type == "bcos":
+		if from_scratch and checkpoint is not None:
+			raise ValueError("from_scratch=True is incompatible with checkpoint for bcos models.")
 		model_source: str | Path = checkpoint if checkpoint is not None else model_name
 		return load_bcos_model(
 			model_source,
 			device=device,
 			checkpoint_dir=checkpoint_dir,
+			from_scratch=from_scratch,
 			return_checkpoint_path=return_checkpoint_path,
 		)
 	if model_type == "torchvision":
@@ -570,9 +603,12 @@ def load_model(
 			model_name=model_name,
 			device=device,
 			checkpoint_path=checkpoint,
+			from_scratch=from_scratch,
 			return_checkpoint_path=return_checkpoint_path,
 		)
 	if model_type == "bcosify":
+		if from_scratch and checkpoint is not None:
+			raise ValueError("from_scratch=True is incompatible with checkpoint for bcosify models.")
 		model_source: str | Path = checkpoint if checkpoint is not None else model_name
 		bcosify_checkpoint_dir = checkpoint_dir
 		if checkpoint is None and checkpoint_dir == DEFAULT_CHECKPOINT_DIR:
@@ -581,6 +617,7 @@ def load_model(
 			model_source,
 			device=device,
 			checkpoint_dir=bcosify_checkpoint_dir,
+			from_scratch=from_scratch,
 			return_checkpoint_path=return_checkpoint_path,
 		)
 	raise ValueError("model_type must be one of: 'bcos', 'torchvision', 'bcosify'.")

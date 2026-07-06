@@ -31,6 +31,19 @@ def _build_bce_targets(logits, target, off_label=None):
     return target
 
 
+def _robust_consistency_loss(
+    logits_adv,
+    logits_nat,
+    natural_loss,
+    criterion_kl,
+):
+    if natural_loss in {"bce", "bce_uniform"}:
+        # BCE-style consistency: match per-class Bernoulli targets from clean logits.
+        soft_targets = torch.sigmoid(logits_nat).detach()
+        return F.binary_cross_entropy_with_logits(logits_adv, soft_targets)
+    return criterion_kl(F.log_softmax(logits_adv, dim=1), F.softmax(logits_nat, dim=1))
+
+
 def trades_loss(model,
                 x_natural,
                 y,
@@ -60,9 +73,15 @@ def trades_loss(model,
                 with torch.enable_grad():
                     x_adv_model = _apply_preprocess(x_adv, preprocess)
                     x_nat_model = _apply_preprocess(x_natural, preprocess)
-                    loss_kl = criterion_kl(F.log_softmax(model(x_adv_model), dim=1),
-                                           F.softmax(model(x_nat_model), dim=1))
-                grad = torch.autograd.grad(loss_kl, [x_adv])[0]
+                    logits_adv = model(x_adv_model)
+                    logits_nat = model(x_nat_model)
+                    loss_robust_inner = _robust_consistency_loss(
+                        logits_adv=logits_adv,
+                        logits_nat=logits_nat,
+                        natural_loss=natural_loss,
+                        criterion_kl=criterion_kl,
+                    )
+                grad = torch.autograd.grad(loss_robust_inner, [x_adv])[0]
                 x_adv = x_adv.detach() + step_size * torch.sign(grad.detach())
                 x_adv = torch.min(torch.max(x_adv, x_natural - epsilon), x_natural + epsilon)
                 x_adv = torch.clamp(x_adv, clip_min, clip_max)
@@ -81,8 +100,14 @@ def trades_loss(model,
                 with torch.enable_grad():
                     adv_model = _apply_preprocess(adv, preprocess)
                     x_nat_model = _apply_preprocess(x_natural, preprocess)
-                    loss = (-1) * criterion_kl(F.log_softmax(model(adv_model), dim=1),
-                                               F.softmax(model(x_nat_model), dim=1))
+                    logits_adv = model(adv_model)
+                    logits_nat = model(x_nat_model)
+                    loss = (-1) * _robust_consistency_loss(
+                        logits_adv=logits_adv,
+                        logits_nat=logits_nat,
+                        natural_loss=natural_loss,
+                        criterion_kl=criterion_kl,
+                    )
                 loss.backward()
                 # renorming gradient
                 grad_norms = delta.grad.view(batch_size, -1).norm(p=2, dim=1)
@@ -120,8 +145,16 @@ def trades_loss(model,
 
     if use_robust_loss:
         x_adv_model = _apply_preprocess(x_adv, preprocess)
-        loss_robust = (1.0 / batch_size) * criterion_kl(F.log_softmax(model(x_adv_model), dim=1),
-                                                        F.softmax(model(x_nat_model), dim=1))
+        logits_adv = model(x_adv_model)
+        logits_nat = model(x_nat_model)
+        loss_robust = _robust_consistency_loss(
+            logits_adv=logits_adv,
+            logits_nat=logits_nat,
+            natural_loss=natural_loss,
+            criterion_kl=criterion_kl,
+        )
+        if natural_loss not in {"bce", "bce_uniform"}:
+            loss_robust = (1.0 / batch_size) * loss_robust
         loss = loss_natural + beta * loss_robust
     else:
         loss = loss_natural

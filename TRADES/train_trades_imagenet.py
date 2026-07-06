@@ -26,6 +26,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model-name", type=str, required=True)
     parser.add_argument("--checkpoint", type=Path, default=None, help="Optional starting checkpoint path.")
     parser.add_argument(
+        "--from-scratch",
+        action="store_true",
+        help="Initialize model randomly without loading pretrained/default/checkpoint weights.",
+    )
+    parser.add_argument(
         "--checkpoint-dir",
         type=Path,
         default=DEFAULT_CHECKPOINT_DIR,
@@ -312,8 +317,9 @@ def main() -> None:
         model_type=args.model_type,
         model_name=args.model_name,
         device=device,
-        # checkpoint=args.checkpoint,
-        # checkpoint_dir=args.checkpoint_dir,
+        checkpoint=args.checkpoint,
+        checkpoint_dir=args.checkpoint_dir,
+        from_scratch=args.from_scratch,
     )
     model.train()
 
@@ -339,7 +345,7 @@ def main() -> None:
     #     shuffle=True,
     # )
     train_loader, _ = get_imagenet_dataloader( # for test
-        img_dir=args.val_dir,
+        img_dir=args.train_dir,
         annotations_file=args.annotations_file,
         batch_size=args.batch_size,
         transform=model.transform.spatial_transform,
@@ -400,6 +406,7 @@ def main() -> None:
     print("=" * 70)
     print("Start TRADES training")
     print(f"Model: {args.model_type}/{args.model_name}")
+    print(f"From scratch: {args.from_scratch}")
     print(f"Train objective: {args.train_objective}")
     print(f"Supervised loss: {supervised_loss}")
     if supervised_loss == "bce_uniform":

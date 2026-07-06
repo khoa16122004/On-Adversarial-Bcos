@@ -88,6 +88,7 @@ NUM_STEPS=10
 BETA=0.1
 DISTANCE="l_inf"
 TRAIN_OBJECTIVE="trades"
+TRAIN_FROM_SCRATCH=0
 SUPERVISED_LOSS="auto"
 BCE_OFF_LABEL=""
 DEVICE="cuda"
@@ -143,6 +144,10 @@ run_train() {
 
   if [ -n "$BCE_OFF_LABEL" ]; then
     cmd+=(--bce-off-label "$BCE_OFF_LABEL")
+  fi
+
+  if [ "$TRAIN_FROM_SCRATCH" -eq 1 ]; then
+    cmd+=(--from-scratch)
   fi
 
   "${cmd[@]}"

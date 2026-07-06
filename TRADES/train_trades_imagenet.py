@@ -68,6 +68,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--log-interval", type=int, default=50)
     parser.add_argument(
+        "--debug-grad-every-steps",
+        type=int,
+        default=0,
+        help="If >0, log gradient/update diagnostics every N global steps.",
+    )
+    parser.add_argument(
         "--val-every-steps",
         type=int,
         default=100,
@@ -134,6 +140,16 @@ def _resolve_supervised_loss(args: argparse.Namespace) -> str:
     if args.model_type == "torchvision":
         return "ce"
     return "bce_uniform"
+
+
+def _compute_grad_l2_norm(model: torch.nn.Module) -> float:
+    total_sq = 0.0
+    for param in model.parameters():
+        if param.grad is None:
+            continue
+        grad = param.grad.detach()
+        total_sq += float(torch.sum(grad * grad).item())
+    return total_sq ** 0.5
 
 
 def _load_visualize_records(path: Path) -> list[tuple[int, Path]]:
@@ -294,6 +310,16 @@ def main() -> None:
     )
     model.train()
 
+    trainable_params = sum(int(p.numel()) for p in model.parameters() if p.requires_grad)
+    print(f"Trainable params: {trainable_params}")
+
+    monitor_param: torch.nn.Parameter | None = next(
+        (p for p in model.parameters() if p.requires_grad),
+        None,
+    )
+    if monitor_param is None:
+        raise ValueError("Model has no trainable parameters (all requires_grad=False).")
+
     if not hasattr(model, "transform") or not hasattr(model.transform, "spatial_transform"):
         raise ValueError("Loaded model must expose transform.spatial_transform.")
 
@@ -436,6 +462,18 @@ def main() -> None:
                 clip_max=1.0,
             )
             loss.backward()
+
+            debug_grad = args.debug_grad_every_steps > 0 and global_step % args.debug_grad_every_steps == 0
+            grad_l2_norm = 0.0
+            monitor_grad_l2 = 0.0
+            monitor_update_l2 = 0.0
+            monitor_before = None
+            if debug_grad:
+                grad_l2_norm = _compute_grad_l2_norm(model)
+                if monitor_param.grad is not None:
+                    monitor_grad_l2 = float(monitor_param.grad.detach().norm().item())
+                monitor_before = monitor_param.detach().clone()
+
             optimizer.step()
 
             batch_size = int(targets.numel())
@@ -451,6 +489,18 @@ def main() -> None:
                 "lr": float(optimizer.param_groups[0]["lr"]),
                 "batch_size": int(batch_size),
             }
+            if debug_grad and monitor_before is not None:
+                monitor_update_l2 = float((monitor_param.detach() - monitor_before).norm().item())
+                iter_record["grad_l2_norm"] = grad_l2_norm
+                iter_record["monitor_grad_l2"] = monitor_grad_l2
+                iter_record["monitor_update_l2"] = monitor_update_l2
+                iter_record["grad_is_finite"] = bool(torch.isfinite(torch.tensor(grad_l2_norm)))
+                if grad_l2_norm <= 0.0 or monitor_update_l2 <= 0.0:
+                    print(
+                        "[debug-grad] potential stalled update "
+                        f"step={global_step} grad_l2={grad_l2_norm:.6e} monitor_update_l2={monitor_update_l2:.6e}"
+                    )
+
             with iter_log_path.open("a", encoding="utf-8") as f:
                 f.write(json.dumps(iter_record, ensure_ascii=False) + "\n")
 

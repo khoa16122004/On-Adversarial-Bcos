@@ -91,6 +91,7 @@ SUPERVISED_LOSS="auto"
 BCE_OFF_LABEL=""
 DEVICE="cuda"
 SEED=42
+DEBUG_GRAD_EVERY_STEPS=50
 
 OUTPUT_ROOT="$PROJECT_ROOT/checkpoints/trades"
 CHECKPOINT_DIR="$PROJECT_ROOT/checkpoints"
@@ -132,6 +133,7 @@ run_train() {
     --beta "$BETA"
     --distance "$DISTANCE"
     --supervised-loss "$SUPERVISED_LOSS"
+    --debug-grad-every-steps "$DEBUG_GRAD_EVERY_STEPS"
     --device "$DEVICE"
     --seed "$SEED"
     --output-dir "$out_dir"

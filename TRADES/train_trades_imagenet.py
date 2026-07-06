@@ -257,8 +257,8 @@ def main() -> None:
         model_type=args.model_type,
         model_name=args.model_name,
         device=device,
-        # checkpoint=args.checkpoint,
-        # checkpoint_dir=args.checkpoint_dir,
+        checkpoint=args.checkpoint,
+        checkpoint_dir=args.checkpoint_dir,
     )
     model.train()
 
@@ -374,10 +374,9 @@ def main() -> None:
             images = images.to(device, non_blocking=True)
             targets = torch.as_tensor(class_ids, device=device, dtype=torch.long)
 
-            model_input = model.transform.inverse_transform(images)
             loss = trades_loss(
                 model=model,
-                x_natural=model_input,
+                x_natural=images,
                 y=targets,
                 optimizer=optimizer,
                 step_size=args.step_size,
@@ -386,6 +385,9 @@ def main() -> None:
                 beta=args.beta,
                 distance=args.distance,
                 natural_loss="bce" if use_bce_supervised_loss else "ce",
+                preprocess=model.transform.inverse_transform,
+                clip_min=0.0,
+                clip_max=1.0,
             )
             loss.backward()
             optimizer.step()

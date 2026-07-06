@@ -76,7 +76,7 @@ IMAGENET_VAL_DIR="/datastore/elo/quanphm/dataset/ImageNet1K/val"
 ANNOTATIONS_FILE="$PROJECT_ROOT/script/id_2_classname.json"
 
 EPOCHS=10
-BATCH_SIZE=128
+BATCH_SIZE=64
 VAL_BATCH_SIZE=64
 NUM_WORKERS=8
 LR=0.01

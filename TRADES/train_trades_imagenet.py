@@ -265,8 +265,16 @@ def main() -> None:
     if not hasattr(model, "transform") or not hasattr(model.transform, "spatial_transform"):
         raise ValueError("Loaded model must expose transform.spatial_transform.")
 
-    train_loader, _ = get_imagenet_dataloader(
-        img_dir=args.train_dir,
+    # train_loader, _ = get_imagenet_dataloader(
+    #     img_dir=args.train_dir,
+    #     annotations_file=args.annotations_file,
+    #     batch_size=args.batch_size,
+    #     transform=model.transform.spatial_transform,
+    #     num_workers=args.num_workers,
+    #     shuffle=True,
+    # )
+    train_loader, _ = get_imagenet_dataloader( # for test
+        img_dir=args.val_dir,
         annotations_file=args.annotations_file,
         batch_size=args.batch_size,
         transform=model.transform.spatial_transform,

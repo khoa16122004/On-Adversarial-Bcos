@@ -20,8 +20,8 @@ def _safe_float(v: object, default: float = 0.0) -> float:
         return default
 
 
-def eval_asr(attack_root: Path) -> tuple[list[dict], dict]:
-    files = _collect_metadata_files(attack_root)
+def eval_asr(attack_root: Path, attack_method: str) -> tuple[list[dict], dict]:
+    files = _collect_metadata_files(attack_root, attack_method)
     if not files:
         raise FileNotFoundError(f"No metadata.json found under: {attack_root}")
 
@@ -102,6 +102,12 @@ def main() -> None:
         help="Root directory containing attack outputs.",
     )
     parser.add_argument(
+        "--attack-method",
+        type=str,
+        default="PGD",
+        help="Attack method to evaluate.",
+    )
+    parser.add_argument(
         "--output-dir",
         type=Path,
         default=Path(PROJECT_ROOT) / "eval_result",
@@ -115,7 +121,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    rows, overall = eval_asr(args.attack_root)
+    rows, overall = eval_asr(args.attack_root, args.attack_method)
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     json_path = args.output_dir / f"{args.prefix}_summary.json"

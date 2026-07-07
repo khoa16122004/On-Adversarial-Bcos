@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=classification
-#SBATCH --output=classification/mps_%j.out
-#SBATCH --error=classification/mps_%j.err
+#SBATCH --job-name=transfer
+#SBATCH --output=transfer/mps_%j.out
+#SBATCH --error=transfer/mps_%j.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
@@ -89,7 +89,8 @@ for target in "${TARGETS[@]}"; do
     --target-model-name "$TARGET_MODEL_NAME" \
     --device "$DEVICE" \
     --epsilons "${EPSILONS[@]}" \
-    --batch-size "$BATCH_SIZE"
+    --batch-size "$BATCH_SIZE" \
+    --attack-method "NES_PGD"
 done
 
 echo "===================================================="

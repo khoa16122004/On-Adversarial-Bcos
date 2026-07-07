@@ -31,8 +31,8 @@ def _resolve_device(device_arg: str) -> torch.device:
     return torch.device(device_arg)
 
 
-def _source_attack_root(base_attack_root: Path, model_type: str, model_name: str) -> Path:
-    return base_attack_root / model_type / model_name / "PGD"
+def _source_attack_root(base_attack_root: Path, model_type: str, model_name: str, attack_method: str) -> Path:
+    return base_attack_root / model_type / model_name / attack_method
 
 
 def _parse_target_list(raw: str | None, source: tuple[str, str]) -> list[tuple[str, str]]:
@@ -166,9 +166,9 @@ def run_transfer(args: argparse.Namespace) -> None:
         Path(args.checkpoint_override_json) if args.checkpoint_override_json else None
     )
 
-    attack_root = _source_attack_root(Path(args.attack_root), args.source_model_type, args.source_model_name)
+    attack_root = _source_attack_root(Path(args.attack_root), args.source_model_type, args.source_model_name, args.attack_method)
     if not attack_root.exists():
-        raise FileNotFoundError(f"Source PGD folder not found: {attack_root}")
+        raise FileNotFoundError(f"Source {args.attack_method} folder not found: {attack_root}")
 
     epsilon_dirs = sorted(p for p in attack_root.iterdir() if p.is_dir() and p.name.startswith("epsilon_"))
     if args.epsilons:
@@ -280,6 +280,12 @@ def parse_args() -> argparse.Namespace:
         type=str,
         default=str(Path(PROJECT_ROOT) / "attack_result"),
         help="Root folder containing PGD attack outputs",
+    )
+    parser.add_argument(
+        "--attack-method",
+        type=str,
+        default="PGD",
+        help="Attack method to evaluate.",
     )
     parser.add_argument(
         "--output-root",

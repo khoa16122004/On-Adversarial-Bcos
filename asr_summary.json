@@ -1,0 +1,221 @@
+{
+  "attack_root": "/datastore/elo/khoatn/On-Adversarial-Bcos/attack_result",
+  "overall": {
+    "total": 20896,
+    "success": 15905,
+    "asr": 0.7611504594180705,
+    "num_groups": 21
+  },
+  "groups": [
+    {
+      "model_type": "bcos",
+      "model_name": "densenet_121",
+      "epsilon": "0.03",
+      "total": 1000,
+      "success": 588,
+      "asr": 0.588,
+      "mean_success_step": 56.60204081632653,
+      "mean_step_size": 0.00075
+    },
+    {
+      "model_type": "bcos",
+      "model_name": "densenet_121",
+      "epsilon": "0.05",
+      "total": 1000,
+      "success": 824,
+      "asr": 0.824,
+      "mean_success_step": 47.1747572815534,
+      "mean_step_size": 0.00125
+    },
+    {
+      "model_type": "bcos",
+      "model_name": "densenet_121",
+      "epsilon": "0.1",
+      "total": 1000,
+      "success": 964,
+      "asr": 0.964,
+      "mean_success_step": 31.198132780082986,
+      "mean_step_size": 0.0025
+    },
+    {
+      "model_type": "bcos",
+      "model_name": "densenet_121",
+      "epsilon": "0.2",
+      "total": 1000,
+      "success": 996,
+      "asr": 0.996,
+      "mean_success_step": 18.59136546184739,
+      "mean_step_size": 0.005
+    },
+    {
+      "model_type": "bcos",
+      "model_name": "resnet_50",
+      "epsilon": "0.03",
+      "total": 1000,
+      "success": 533,
+      "asr": 0.533,
+      "mean_success_step": 58.686679174484055,
+      "mean_step_size": 0.00075
+    },
+    {
+      "model_type": "bcos",
+      "model_name": "resnet_50",
+      "epsilon": "0.05",
+      "total": 1000,
+      "success": 789,
+      "asr": 0.789,
+      "mean_success_step": 49.85424588086185,
+      "mean_step_size": 0.00125
+    },
+    {
+      "model_type": "bcos",
+      "model_name": "resnet_50",
+      "epsilon": "0.1",
+      "total": 1000,
+      "success": 938,
+      "asr": 0.938,
+      "mean_success_step": 33.24200426439232,
+      "mean_step_size": 0.0025
+    },
+    {
+      "model_type": "bcos",
+      "model_name": "resnet_50",
+      "epsilon": "0.2",
+      "total": 1000,
+      "success": 975,
+      "asr": 0.975,
+      "mean_success_step": 20.58871794871795,
+      "mean_step_size": 0.005
+    },
+    {
+      "model_type": "bcos",
+      "model_name": "simple_vit_b_patch16_224",
+      "epsilon": "0.03",
+      "total": 896,
+      "success": 520,
+      "asr": 0.5803571428571429,
+      "mean_success_step": 54.36538461538461,
+      "mean_step_size": 0.00075
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "densenet121",
+      "epsilon": "0.03",
+      "total": 1000,
+      "success": 826,
+      "asr": 0.826,
+      "mean_success_step": 52.46610169491525,
+      "mean_step_size": 0.00075
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "densenet121",
+      "epsilon": "0.05",
+      "total": 1000,
+      "success": 945,
+      "asr": 0.945,
+      "mean_success_step": 39.87830687830688,
+      "mean_step_size": 0.00125
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "densenet121",
+      "epsilon": "0.1",
+      "total": 1000,
+      "success": 992,
+      "asr": 0.992,
+      "mean_success_step": 25.10483870967742,
+      "mean_step_size": 0.0025
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "densenet121",
+      "epsilon": "0.2",
+      "total": 1000,
+      "success": 999,
+      "asr": 0.999,
+      "mean_success_step": 15.92992992992993,
+      "mean_step_size": 0.005
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "resnet50",
+      "epsilon": "0.03",
+      "total": 1000,
+      "success": 408,
+      "asr": 0.408,
+      "mean_success_step": 60.2328431372549,
+      "mean_step_size": 0.00075
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "resnet50",
+      "epsilon": "0.05",
+      "total": 1000,
+      "success": 553,
+      "asr": 0.553,
+      "mean_success_step": 52.54611211573237,
+      "mean_step_size": 0.00125
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "resnet50",
+      "epsilon": "0.1",
+      "total": 1000,
+      "success": 711,
+      "asr": 0.711,
+      "mean_success_step": 44.49789029535865,
+      "mean_step_size": 0.0025
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "resnet50",
+      "epsilon": "0.2",
+      "total": 1000,
+      "success": 798,
+      "asr": 0.798,
+      "mean_success_step": 37.68546365914787,
+      "mean_step_size": 0.005
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "vit_b_16",
+      "epsilon": "0.03",
+      "total": 1000,
+      "success": 364,
+      "asr": 0.364,
+      "mean_success_step": 58.27197802197802,
+      "mean_step_size": 0.00075
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "vit_b_16",
+      "epsilon": "0.05",
+      "total": 1000,
+      "success": 567,
+      "asr": 0.567,
+      "mean_success_step": 53.216931216931215,
+      "mean_step_size": 0.00125
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "vit_b_16",
+      "epsilon": "0.1",
+      "total": 1000,
+      "success": 755,
+      "asr": 0.755,
+      "mean_success_step": 42.3523178807947,
+      "mean_step_size": 0.0025
+    },
+    {
+      "model_type": "torchvision",
+      "model_name": "vit_b_16",
+      "epsilon": "0.2",
+      "total": 1000,
+      "success": 860,
+      "asr": 0.86,
+      "mean_success_step": 34.29302325581396,
+      "mean_step_size": 0.005
+    }
+  ]
+}

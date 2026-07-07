@@ -90,7 +90,9 @@ for target in "${TARGETS[@]}"; do
     --device "$DEVICE" \
     --epsilons "${EPSILONS[@]}" \
     --batch-size "$BATCH_SIZE" \
-    --attack-method "NES_PGD"
+    --attack-method "NES_PGD" \
+    --output-root "./transfer_result/NES_PGD"
+
 done
 
 echo "===================================================="

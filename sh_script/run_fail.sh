@@ -114,8 +114,7 @@ for SRC_MODEL in "${RUN_SOURCE_MODELS[@]}"; do
         --seed "$SEED" \
         --imagenet-val-dir "$IMAGENET_VAL_DIR" \
         --annotations-file "$ANNOTATIONS_FILE" \
-        --output "$OUTPUT_PAIR_DIR" \
-        --output-root "./transfer_result/NES_PGD"
+        --output "$OUTPUT_PAIR_DIR"
     done
   done
 done

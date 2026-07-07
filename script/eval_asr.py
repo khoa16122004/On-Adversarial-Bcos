@@ -9,8 +9,8 @@ from pathlib import Path
 from const import PROJECT_ROOT
 
 
-def _collect_metadata_files(attack_root: Path) -> list[Path]:
-    return sorted(attack_root.glob("*/*/PGD/epsilon_*/*/metadata.json"))
+def _collect_metadata_files(attack_root: Path, attack_method: str) -> list[Path]:
+    return sorted(attack_root.glob(f"*/*/{attack_method}/epsilon_*/*/metadata.json"))
 
 
 def _safe_float(v: object, default: float = 0.0) -> float:

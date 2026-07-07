@@ -71,8 +71,10 @@ export PYTHONPATH="$PROJECT_ROOT:${PYTHONPATH:-}"
 
 
 # You asked to use this ImageNet train root.
-IMAGENET_TRAIN_DIR="/datastore/elo/quanphm/dataset/ImageNet1K/train"
-IMAGENET_VAL_DIR="/datastore/elo/quanphm/dataset/ImageNet1K/val"
+IMAGENET_TRAIN_DIR="/kaggle/input/datasets/lijiyu/imagenet/"
+IMAGENET_VAL_DIR="/kaggle/input/datasets/lijiyu/imagenet/"
+# IMAGENET_TRAIN_DIR="/datastore/elo/quanphm/dataset/ImageNet1K/train"
+# IMAGENET_VAL_DIR="/datastore/elo/quanphm/dataset/ImageNet1K/val"
 ANNOTATIONS_FILE="$PROJECT_ROOT/script/id_2_classname.json"
 
 EPOCHS=10
@@ -95,7 +97,7 @@ DEVICE="cuda"
 SEED=42
 DEBUG_GRAD_EVERY_STEPS=50
 
-OUTPUT_ROOT="$PROJECT_ROOT/checkpoints/trades"
+OUTPUT_ROOT="/kaggle/working/checkpoints/trades"
 CHECKPOINT_DIR="$PROJECT_ROOT/checkpoints"
 
 MODEL_TYPE="${1:-bcos}"

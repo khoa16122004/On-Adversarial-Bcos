@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 
 import torch
 import torch.nn.functional as F
@@ -10,6 +11,10 @@ import torch.optim as optim
 from PIL import Image
 from torch.optim.lr_scheduler import CosineAnnealingLR
 from tqdm import tqdm
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from attack.util import DEFAULT_CHECKPOINT_DIR, load_model, save_explanation_rgba
 from script.const import ANNOTATIONS_FILE, IMAGENET_TRAIN_DATA, IMAGENET_VAL_DATA
@@ -45,6 +50,28 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--val-batch-size", type=int, default=64)
     parser.add_argument("--num-workers", type=int, default=8)
+    parser.add_argument(
+        "--disable-dataloader-cache",
+        action="store_true",
+        help="Disable filesystem cache for image index metadata.",
+    )
+    parser.add_argument(
+        "--dataloader-cache-dir",
+        type=str,
+        default=None,
+        help="Optional cache directory for dataloader index metadata.",
+    )
+    parser.add_argument(
+        "--prefetch-factor",
+        type=int,
+        default=4,
+        help="Number of prefetched batches per worker (only when num-workers > 0).",
+    )
+    parser.add_argument(
+        "--no-persistent-workers",
+        action="store_true",
+        help="Disable persistent dataloader workers across epochs.",
+    )
 
     parser.add_argument("--lr", type=float, default=0.01)
     parser.add_argument("--momentum", type=float, default=0.9)
@@ -351,6 +378,10 @@ def main() -> None:
         transform=model.transform.spatial_transform,
         num_workers=args.num_workers,
         shuffle=True,
+        use_cache=not args.disable_dataloader_cache,
+        cache_dir=args.dataloader_cache_dir,
+        persistent_workers=not args.no_persistent_workers,
+        prefetch_factor=args.prefetch_factor,
     )
     val_loader, _ = get_imagenet_dataloader(
         img_dir=args.val_dir,
@@ -359,6 +390,10 @@ def main() -> None:
         transform=model.transform.spatial_transform,
         num_workers=args.num_workers,
         shuffle=False,
+        use_cache=not args.disable_dataloader_cache,
+        cache_dir=args.dataloader_cache_dir,
+        persistent_workers=not args.no_persistent_workers,
+        prefetch_factor=args.prefetch_factor,
     )
 
     optimizer = optim.SGD(
@@ -416,6 +451,10 @@ def main() -> None:
             print(f"BCE off-label: {args.bce_off_label}")
     print(f"Train dir: {args.train_dir}")
     print(f"Val dir: {args.val_dir}")
+    print(f"Dataloader cache: {not args.disable_dataloader_cache}")
+    print(f"Dataloader cache dir: {args.dataloader_cache_dir}")
+    print(f"Dataloader persistent workers: {not args.no_persistent_workers}")
+    print(f"Dataloader prefetch factor: {args.prefetch_factor}")
     print(f"Iter log: {iter_log_path}")
     print(f"Val every steps: {args.val_every_steps}")
     print(f"Explain every steps: {args.explain_every_steps}")
